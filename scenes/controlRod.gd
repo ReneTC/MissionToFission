@@ -4,6 +4,7 @@ class_name ControlRod
 @export var height = 400
 @export var width = 10
 @export var color = Color("1A1A1A")
+@export var speed = 10
 
 
 func _ready() -> void:
@@ -25,3 +26,14 @@ func initialize(pos_to_set):
 # delete neutron on enter
 func _on_body_entered(body: Node2D) -> void:
 	body.queue_free()
+
+
+
+func get_input():
+	if Input.is_action_pressed("q"):
+		position.y += speed
+	if Input.is_action_pressed("e"):
+		position.y -= speed
+
+func _physics_process(delta):
+	get_input()

@@ -13,8 +13,4 @@ script = ExtResource("1_1umod")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n34k7")
 
-[node name="DecayTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://jrlpr8m6wdtl"]
+[gd_scene load_steps=2 format=3 uid="uid://jrlpr8m6wdtl"]
+
+[ext_resource type="Script" path="res://scenes/maps/rbmk_reactor.gd" id="1_q4504"]
 
 [node name="RbmkReactor" type="Node2D"]
+script = ExtResource("1_q4504")

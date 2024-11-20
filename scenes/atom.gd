@@ -1,4 +1,5 @@
 extends Area2D
+class_name Atom
 
 @export var number_neutrons_emitted = 3
 @export var radius = 20
@@ -7,17 +8,17 @@ extends Area2D
 @export var color_decayed = Color("DCEEFF")
 @export var is_enriched = true
 
-@onready var decay_timer = $DecayTimer
 var life_time
 var neutron_scene: PackedScene
 var excited = true
 @onready var parent = self.get_parent()
-var initial_position: Vector2
 
 var geiger_sound = preload("res://assets/geig.mp3")
 
+static var enriched_present = 0
+static var unenriched_present = 0
+
 func _ready() -> void:
-	initial_position = position
 	neutron_scene = load("res://scenes/neutron.tscn")
 	self.connect("body_entered", on_body_entered)
 	
@@ -26,7 +27,10 @@ func _ready() -> void:
 	
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 	
-
+	if self.excited:
+		enriched_present += 1
+	else:
+		unenriched_present += 1
 	
 func initialize(pos_to_set, encriched):
 	position = pos_to_set
@@ -52,8 +56,10 @@ func on_body_entered(body: Node):
 		
 func decay():
 	excited = false
-	decay_timer.stop()
 	self.is_enriched = false
+	
+	unenriched_present += 1
+	enriched_present -= 1
 	# disable collison check w neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, false)
 	
@@ -62,12 +68,12 @@ func decay():
 	
 func enrich():
 	self.is_enriched = true
-	
+	unenriched_present -= 1
+	enriched_present += 1
 	# enable collsion check w neutrons again
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 	queue_redraw()
-	# TODO: Move change collision mask such that neutrons does not waste time checking collsioin with unfissile materil
-	pass
+
 	
 func emit_neutrons(neutrons_to_emit):
 	for i in range(neutrons_to_emit):

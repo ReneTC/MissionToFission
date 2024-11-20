@@ -14,10 +14,7 @@ func _ready() -> void:
 
 
 func _input(event) -> void:
-	# close program on exit
-	if Input.is_action_pressed("ui_cancel"):
-		get_tree().quit()
-			
+
 	# click to put objects (test only)	
 	if event is InputEventMouseButton and not event.is_pressed():
 		match event.button_index:

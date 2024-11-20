@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://olef6xbr1hf4"]
 
-[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_oa2uj"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_oa2uj"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_wr85y"]
 
 [node name="MainMenu" type="Control"]
@@ -39,7 +39,7 @@ layout_mode = 2
 [node name="Heading" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.404511, 0.404511, 0.404511, 1)
 theme_override_font_sizes/font_size = 150
 text = "Mission to Fission"
 horizontal_alignment = 1
@@ -59,6 +59,10 @@ alignment = 1
 layout_mode = 2
 text = "Start game"
 
+[node name="Button_basicReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "Basic Reactor"
+
 [node name="Button_sandbox" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 text = "Start Sandbox"
@@ -67,7 +71,11 @@ text = "Start Sandbox"
 layout_mode = 2
 text = "Quit"
 
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]

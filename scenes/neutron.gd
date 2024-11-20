@@ -4,6 +4,7 @@ class_name Neutron
 @export var radius = 5
 @export var color = Color("1A1A1A")
 
+static var neutrons_present = 0
 
 func _ready() -> void:
 	# set collsion size
@@ -16,6 +17,7 @@ func _ready() -> void:
 	# set collide settings 
 	set_collision_layer_value(globals.neutrol_collide_slot, true)
 	
+	neutrons_present += 1
 	
 
 func _draw():
