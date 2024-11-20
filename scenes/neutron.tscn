@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://biw1q2eoojc7i"]
+
+[ext_resource type="Script" path="res://scenes/neutron.gd" id="1_q8b54"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6xvb"]
+
+[sub_resource type="AudioStream" id="AudioStream_i1l8b"]
+
+[node name="Neutron" type="RigidBody2D"]
+linear_damp_mode = 1
+script = ExtResource("1_q8b54")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+show_behind_parent = true
+shape = SubResource("CircleShape2D_d6xvb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStream_i1l8b")

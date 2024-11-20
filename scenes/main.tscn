@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://cigw76i772ye8"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_6rfcu"]
+[ext_resource type="Texture2D" uid="uid://dwc3ksxmsjx1c" path="res://assets/wall-vertical.png" id="2_wupat"]
+[ext_resource type="Texture2D" uid="uid://5wlrla1oigp" path="res://assets/wall-horizontal.png" id="3_mdf68"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uww5p"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uexqe"]
+size = Vector2(31, 647)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_274vt"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fj2wh"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkecp"]
+size = Vector2(1149, 21)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oohby"]
+friction = 0.0
+bounce = 1.0
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6rfcu")
+number_atoms = 104
+atom_speed = 0
+atom_mean_lifetime = 200
+
+[node name="left-wall" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_uww5p")
+
+[node name="Sprite2D" type="Sprite2D" parent="left-wall"]
+position = Vector2(19, 325)
+texture = ExtResource("2_wupat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left-wall"]
+visible = false
+position = Vector2(18.5, 323.5)
+shape = SubResource("RectangleShape2D_uexqe")
+
+[node name="right-wall" type="StaticBody2D" parent="."]
+position = Vector2(1111, 0)
+physics_material_override = SubResource("PhysicsMaterial_274vt")
+
+[node name="Sprite2D" type="Sprite2D" parent="right-wall"]
+position = Vector2(19, 325)
+texture = ExtResource("2_wupat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right-wall"]
+visible = false
+position = Vector2(18.5, 323.5)
+shape = SubResource("RectangleShape2D_uexqe")
+
+[node name="top-wall" type="StaticBody2D" parent="."]
+position = Vector2(559, -311)
+physics_material_override = SubResource("PhysicsMaterial_fj2wh")
+
+[node name="Sprite2D" type="Sprite2D" parent="top-wall"]
+position = Vector2(19, 325)
+texture = ExtResource("3_mdf68")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top-wall"]
+visible = false
+position = Vector2(16.5, 325.5)
+shape = SubResource("RectangleShape2D_fkecp")
+
+[node name="bottom-wall" type="StaticBody2D" parent="."]
+position = Vector2(557, 313)
+physics_material_override = SubResource("PhysicsMaterial_oohby")
+
+[node name="Sprite2D" type="Sprite2D" parent="bottom-wall"]
+position = Vector2(19, 325)
+texture = ExtResource("3_mdf68")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom-wall"]
+visible = false
+position = Vector2(16.5, 325.5)
+shape = SubResource("RectangleShape2D_fkecp")

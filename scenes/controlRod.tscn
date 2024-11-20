@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq7kk7ce0ad1t"]
+
+[ext_resource type="Script" path="res://scenes/controlRod.gd" id="1_to805"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spc3x"]
+size = Vector2(15.34, 20)
+
+[node name="ControlRod" type="Area2D"]
+script = ExtResource("1_to805")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_spc3x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
