@@ -12,6 +12,11 @@ func _ready() -> void:
 	# sound effect geiger
 	$AudioStreamPlayer2D.stream = preload("res://assets/geig.mp3")
 	$AudioStreamPlayer2D.play()
+	
+	# set collide settings 
+	set_collision_layer_value(globals.neutrol_collide_slot, true)
+	
+	
 
 func _draw():
 	draw_circle(Vector2(0, 0), self.radius, self.color)

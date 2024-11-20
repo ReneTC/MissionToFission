@@ -24,6 +24,8 @@ func _ready() -> void:
 	# set collsion size
 	$CollisionShape2D.shape.radius = self.radius
 	
+	set_collision_mask_value(globals.neutrol_collide_slot, true)
+	
 
 	
 func initialize(pos_to_set, encriched):
@@ -43,17 +45,26 @@ func on_body_entered(body: Node):
 	if excited == true and body is Neutron:
 		decay()
 		emit_neutrons(self.number_neutrons_emitted)
+		
+
 		body.queue_free()
+		
 		
 func decay():
 	excited = false
 	decay_timer.stop()
 	self.is_enriched = false
+	# disable collison check w neutrons
+	set_collision_mask_value(globals.neutrol_collide_slot, false)
+	
 	queue_redraw()
-	# TODO: Move change collision mask such that neutrons does not waste time checking collsioin with unfissile materil
+	
 	
 func enrich():
 	self.is_enriched = true
+	
+	# enable collsion check w neutrons again
+	set_collision_mask_value(globals.neutrol_collide_slot, true)
 	queue_redraw()
 	# TODO: Move change collision mask such that neutrons does not waste time checking collsioin with unfissile materil
 	pass

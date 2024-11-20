@@ -6,6 +6,8 @@
 size = Vector2(15.34, 20)
 
 [node name="ControlRod" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_to805")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

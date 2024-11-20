@@ -55,10 +55,15 @@ alignment = 1
 layout_mode = 2
 text = "Start game"
 
+[node name="Button_sandbox" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "Start Sandbox"
+
 [node name="Button_quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_play" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]

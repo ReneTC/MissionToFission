@@ -10,7 +10,9 @@ func _ready() -> void:
 	# set collisohape to set varables
 	var rectangle_shape =  $CollisionShape2D.shape as RectangleShape2D
 	rectangle_shape.extents = Vector2(self.width/2., self.height/2.) 
-	# TODO should only listen for nutrons, not atoms or self
+	
+	# enable collison check w neutrons
+	set_collision_mask_value(globals.neutrol_collide_slot, true)
 
 
 func _draw():

@@ -7,6 +7,8 @@
 [sub_resource type="AudioStream" id="AudioStream_i1l8b"]
 
 [node name="Neutron" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
 linear_damp_mode = 1
 script = ExtResource("1_q8b54")
 

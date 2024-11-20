@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="A Vision Of Fission"
+config/name="Mission To Fission"
 config/version="1.0.0"
 run/main_scene="res://scenes/sandbox.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
@@ -20,6 +20,7 @@ boot_splash/show_image=false
 [autoload]
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+globals="*res://assets/globals.gd"
 
 [display]
 
