@@ -29,3 +29,9 @@ func initialize(pos_to_set):
 	var movement_direction = Vector2(randf() - 0.5, randf() - 0.5)
 	movement_direction /= movement_direction.length()
 	linear_velocity = 100 * movement_direction
+
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+	neutrons_present -= 1

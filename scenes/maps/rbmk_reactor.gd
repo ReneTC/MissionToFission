@@ -16,10 +16,6 @@ func _ready() -> void:
 		for y in range(-y_grid_range, y_grid_range): 
 			pass 
 
-	pass # Replace with function body.
 	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	
+	

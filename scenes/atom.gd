@@ -8,15 +8,16 @@ class_name Atom
 @export var color_decayed = Color("DCEEFF")
 @export var is_enriched = true
 
-var life_time
 var neutron_scene: PackedScene
-var excited = true
+
 @onready var parent = self.get_parent()
 
-var geiger_sound = preload("res://assets/geig.mp3")
 
-static var enriched_present = 0
-static var unenriched_present = 0
+# enrich static settings
+static var enriched_present = 0.
+static var unenriched_present = 0.
+static var keep_enriched = false
+static var enrich_percent = 0.80
 
 func _ready() -> void:
 	neutron_scene = load("res://scenes/neutron.tscn")
@@ -27,10 +28,13 @@ func _ready() -> void:
 	
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 	
-	if self.excited:
+	if self.is_enriched:
 		enriched_present += 1
 	else:
 		unenriched_present += 1
+		
+	add_to_group("atoms")
+	enrich_check()
 	
 func initialize(pos_to_set, encriched):
 	position = pos_to_set
@@ -46,25 +50,41 @@ func _draw():
 
 
 func on_body_entered(body: Node):
-	if excited == true and body is Neutron:
+	if is_enriched == true and body is Neutron:
 		decay()
 		emit_neutrons(self.number_neutrons_emitted)
 		
-
+		# delete neutron
+		Neutron.neutrons_present -= 1
 		body.queue_free()
 		
 		
 func decay():
-	excited = false
+
 	self.is_enriched = false
 	
 	unenriched_present += 1
 	enriched_present -= 1
-	# disable collison check w neutrons
+	# disable collison check for decayed atom with neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, false)
-	
 	queue_redraw()
 	
+	# check if random atom should enrich 
+	if keep_enriched:
+		enrich_check()
+				
+	
+func enrich_check():
+	# check if enrichment percent is too low
+	if unenriched_present/(unenriched_present+enriched_present) >  enrich_percent:
+		# keep looping until unenriched atom is enriched 
+		var start_over_enrich = true
+		while start_over_enrich:
+			var all_atoms = get_tree().get_nodes_in_group("atoms")
+			var random_atom = all_atoms.pick_random() 
+			if not random_atom.is_enriched:
+				start_over_enrich = false 
+				random_atom.enrich()
 	
 func enrich():
 	self.is_enriched = true

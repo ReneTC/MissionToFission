@@ -34,4 +34,6 @@ func _input(event) -> void:
 				var new_controlRod = controlRod_scene.instantiate()
 				new_controlRod.initialize(event.position) 
 				add_child(new_controlRod) 
-			
+				
+func _process(delta: float) -> void:
+	$Label.text = str(Neutron.neutrons_present)

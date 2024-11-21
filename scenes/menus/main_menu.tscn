@@ -55,10 +55,6 @@ theme_override_constants/margin_right = 600
 layout_mode = 2
 alignment = 1
 
-[node name="Button_play" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
-layout_mode = 2
-text = "Start game"
-
 [node name="Button_basicReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 text = "Basic Reactor"
@@ -71,10 +67,6 @@ text = "Start Sandbox"
 layout_mode = 2
 text = "Quit"
 
-[node name="MenuButton" type="MenuButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
-layout_mode = 2
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]

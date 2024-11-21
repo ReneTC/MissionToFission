@@ -26,6 +26,7 @@ func initialize(pos_to_set):
 # delete neutron on enter
 func _on_body_entered(body: Node2D) -> void:
 	body.queue_free()
+	Neutron.neutrons_present -= 1
 
 
 
@@ -35,5 +36,5 @@ func get_input():
 	if Input.is_action_pressed("e"):
 		position.y -= speed
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
