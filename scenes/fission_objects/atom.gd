@@ -4,8 +4,8 @@ class_name Atom
 @export var number_neutrons_emitted: int = 3
 @export var radius: float = 20
 
-@export var color_enriched = Color("2D8EFF")
-@export var color_decayed = Color("DCEEFF")
+@export var color_enriched:Color = Color("2D8EFF")
+@export var color_decayed:Color = Color("DCEEFF")
 @export var is_enriched: bool = true
 
 var neutron_scene: PackedScene
@@ -58,8 +58,8 @@ func on_body_entered(body: Node):
 	body.queue_free()
 		
 		
-func decay():
-
+func decay() -> void:
+ 
 	# check if random atom should enrich 
 	if keep_enriched:
 		enrich_check()

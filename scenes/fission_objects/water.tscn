@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://uw7j7tx3ve6x"]
+
+[ext_resource type="Script" path="res://scenes/fission_objects/water.gd" id="1_1rrdm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjm0m"]
+size = Vector2(15.34, 20)
+
+[node name="Water" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_1rrdm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bjm0m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
