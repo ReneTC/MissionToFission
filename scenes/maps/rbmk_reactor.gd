@@ -4,9 +4,8 @@ var x_grid_range = 5
 var y_grid_range = 3
 
 # add water 
-# add moderation
-# add moderators 
 # add xenon
+# add moderation
 
 
 # Called when the node enters the scene tree for the first time.

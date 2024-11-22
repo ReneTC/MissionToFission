@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpkjv3wvxr15q"]
 
-[ext_resource type="Script" path="res://scenes/atom.gd" id="1_1umod"]
+[ext_resource type="Script" path="res://scenes/fission_objects/atom.gd" id="1_1umod"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n34k7"]
 radius = 0.2

@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name Neutron
 
-@export var radius = 5
+@export var radius: float = 5.
 @export var color = Color("1A1A1A")
 
 static var neutrons_present = 0

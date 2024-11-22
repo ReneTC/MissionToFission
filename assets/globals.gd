@@ -1,8 +1,8 @@
 extends Node
 
-var neutrol_collide_slot = 1
-var atoms_collide_slot = 2
-var controlRods_collide_slot = 3
+var neutrol_collide_slot: int = 1
+var atoms_collide_slot: int = 2
+var controlRods_collide_slot: int = 3
 
 func _input(_event) -> void:
 	# close program on esc button

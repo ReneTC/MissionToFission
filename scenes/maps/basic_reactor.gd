@@ -1,16 +1,12 @@
 extends Node2D
 
-var x_grid_range = 30
-var y_grid_range = 15
-var margin = 60
+var x_grid_range: int = 30
+var y_grid_range: int = 15
+var margin: int = 60
 
-var atom_scene = load("res://scenes/atom.tscn")
-var neutron_scene = load("res://scenes/neutron.tscn")
-var controlRod_scene = load("res://scenes/controlRod.tscn")
-
-
-# make atom enrich over time
-# delete atom when fly out
+var atom_scene = load("res://scenes/fission_objects/atom.tscn")
+var neutron_scene = load("res://scenes/fission_objects/neutron.tscn")
+var controlRod_scene = load("res://scenes/fission_objects/controlRod.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +14,7 @@ func _ready() -> void:
 	for x in range(0,x_grid_range):
 		for y in range(0, y_grid_range): 
 			var new_atom = atom_scene.instantiate()
-			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), false) 
+			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), true) 
 			add_child(new_atom) 
 		
 		if x % 3 == 0:
@@ -30,8 +26,6 @@ func _ready() -> void:
 	# set enrichment atom settings 
 	Atom.keep_enriched = true
 	
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
