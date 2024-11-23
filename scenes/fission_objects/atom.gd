@@ -8,6 +8,9 @@ class_name Atom
 @export var color_decayed:Color = Color("DCEEFF")
 @export var is_enriched: bool = true
 
+# timer to not allow enrichment right away after fission
+var enirch_timer = true
+
 var neutron_scene: PackedScene
 
 @onready var parent = self.get_parent()
@@ -60,10 +63,11 @@ func on_body_entered(body: Node):
 		
 		
 func decay() -> void:
- 
 	# check if random atom should enrich 
 	if keep_enriched:
 		enrich_check()
+	
+	self.enirch_timer = false
 	self.is_enriched = false
 	
 	unenriched_present += 1
@@ -71,18 +75,20 @@ func decay() -> void:
 	# disable collison check for decayed atom with neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, false)
 	queue_redraw()
-
 	
+	# start timer to not allow enrichjment right away
+	$Timer.start()
+
+
+
 func enrich_check():
 	if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
-		
 		# keep looping until unenriched atom is enriched 
-		var start_over_enrich: bool = true
-		while start_over_enrich:
 			var random_atom = get_tree().get_nodes_in_group("atoms").pick_random() 
-			if not random_atom.is_enriched:
-				start_over_enrich = false 
+			if not random_atom.is_enriched and random_atom.enirch_timer:
 				random_atom.enrich()
+				
+			
 	
 func enrich() -> void:
 	self.is_enriched = true
@@ -98,3 +104,8 @@ func emit_neutrons(neutrons_to_emit):
 		var new_neutron = neutron_scene.instantiate()
 		new_neutron.initialize(position) 
 		parent.call_deferred("add_child", new_neutron)
+
+
+func _on_timer_timeout() -> void:
+	enirch_timer = true
+	enrich_check()

@@ -30,7 +30,7 @@ func _ready() -> void:
 	add_child(new_atom4) 
 
 	Atom.keep_enriched = true
-	Atom.enrich_percent = 0.25
+
 	
 	var new_controlRod = controlRod_scene.instantiate()
 	new_controlRod.initialize(Vector2(50, 50)) 
