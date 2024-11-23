@@ -15,8 +15,23 @@ func _ready() -> void:
 	# place objects 
 	var new_atom = atom_scene.instantiate()
 	new_atom.initialize(Vector2(200, 200), true) 
-	add_child(new_atom) 
+	add_child(new_atom)
+	
+	var new_atom2 = atom_scene.instantiate()
+	new_atom2.initialize(Vector2(250, 200), true) 
+	add_child(new_atom2) 
 
+	var new_atom3 = atom_scene.instantiate()
+	new_atom3.initialize(Vector2(200, 250), true) 
+	add_child(new_atom3) 
+	
+	var new_atom4 = atom_scene.instantiate()
+	new_atom4.initialize(Vector2(250, 250), true) 
+	add_child(new_atom4) 
+
+	Atom.keep_enriched = true
+	Atom.enrich_percent = 0.25
+	
 	var new_controlRod = controlRod_scene.instantiate()
 	new_controlRod.initialize(Vector2(50, 50)) 
 	add_child(new_controlRod) 

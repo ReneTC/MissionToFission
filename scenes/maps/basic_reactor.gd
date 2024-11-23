@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 	# set enrichment atom settings 
 	Atom.keep_enriched = true
-	
+	Atom.enrich_percent = 0.5
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

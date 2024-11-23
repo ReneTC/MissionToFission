@@ -34,7 +34,7 @@ func _ready() -> void:
 		unenriched_present += 1
 		
 	add_to_group("atoms")
-	enrich_check()
+	
 	
 func initialize(pos_to_set, encriched):
 	position = pos_to_set
@@ -50,12 +50,13 @@ func _draw():
 
 
 func on_body_entered(body: Node):
-	decay()
-	emit_neutrons(self.number_neutrons_emitted)
-	
-	# delete neutron
-	Neutron.neutrons_present -= 1
-	body.queue_free()
+	if is_enriched == true and body is Neutron:
+		decay()
+		emit_neutrons(self.number_neutrons_emitted)
+		
+		# delete neutron
+		Neutron.neutrons_present -= 1
+		body.queue_free()
 		
 		
 func decay() -> void:
@@ -70,12 +71,11 @@ func decay() -> void:
 	# disable collison check for decayed atom with neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, false)
 	queue_redraw()
-	
-				
+
 	
 func enrich_check():
-	# check if enrichment percent is too low
-	if unenriched_present/(unenriched_present+enriched_present) >  enrich_percent:
+	if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
+		
 		# keep looping until unenriched atom is enriched 
 		var start_over_enrich: bool = true
 		while start_over_enrich:
