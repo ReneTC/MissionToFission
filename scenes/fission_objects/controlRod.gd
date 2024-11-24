@@ -3,24 +3,24 @@ class_name ControlRod
 
 @export var height: float = 800
 @export var width: float = 10
-@export var color = Color("1A1A1A")
+@export var color:Color = Color("1A1A1A")
 @export var speed: float = 10
 
 
 func _ready() -> void:
 	# set collisohape to set varables
-	var rectangle_shape =  $CollisionShape2D.shape as RectangleShape2D
+	var rectangle_shape:Shape2D =  $CollisionShape2D.shape as RectangleShape2D
 	rectangle_shape.extents = Vector2(self.width/2., self.height/2.) 
 	
 	# enable collison check w neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 
 
-func _draw():
+func _draw() -> void:
 	draw_rect(Rect2(-self.width/2., -self.height/2., self.width, self.height), self.color)
 
 
-func initialize(pos_to_set):
+func initialize(pos_to_set:Vector2) -> void:
 	position = Vector2(pos_to_set[0], pos_to_set[1])
 	
 # delete neutron on enter
@@ -30,14 +30,14 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 
-func get_input():
-	var direction = 0
+func get_input() -> void:
+	var direction:float = 0
 	if Input.is_action_pressed("q"):
-		direction = 1
+		direction = 1.
 	if Input.is_action_pressed("e"):
-		direction = -1
+		direction = -1.
 
 	position.y = clamp(position.y+direction*speed, -370, 500)
 
-func _physics_process(_delta) -> void:
+func _physics_process(_delta:float) -> void:
 	get_input()

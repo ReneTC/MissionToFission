@@ -9,11 +9,11 @@ class_name Atom
 @export var is_enriched: bool = true
 
 # timer to not allow enrichment right away after fission
-var enirch_timer = true
+var enirch_timer:bool = true
 
 var neutron_scene: PackedScene
 
-@onready var parent = self.get_parent()
+@onready var parent:Node = self.get_parent()
 
 
 # enrich static settings
@@ -39,20 +39,18 @@ func _ready() -> void:
 	add_to_group("atoms")
 	
 	
-func initialize(pos_to_set, encriched):
+func initialize(pos_to_set:Vector2, encriched:bool) -> void:
 	position = pos_to_set
 	is_enriched = encriched
 
 
-func _draw():
-	var color_to_draw = null
-	# draw status 
+func _draw() -> void:
+	var color_to_draw:Color = color_decayed
 	if is_enriched: color_to_draw = color_enriched
-	else: color_to_draw = color_decayed
 	draw_circle(Vector2(0, 0), self.radius, color_to_draw)
 
 
-func on_body_entered(body: Node):
+func on_body_entered(body: Node) -> void:
 	if is_enriched == true and body is Neutron:
 		decay()
 		emit_neutrons(self.number_neutrons_emitted)
@@ -81,10 +79,10 @@ func decay() -> void:
 
 
 
-func enrich_check():
+func enrich_check() -> void:
 	if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
 		# keep looping until unenriched atom is enriched 
-			var random_atom = get_tree().get_nodes_in_group("atoms").pick_random() 
+			var random_atom:Node = get_tree().get_nodes_in_group("atoms").pick_random() 
 			if not random_atom.is_enriched and random_atom.enirch_timer:
 				random_atom.enrich()
 				
@@ -99,9 +97,9 @@ func enrich() -> void:
 	queue_redraw()
 
 	
-func emit_neutrons(neutrons_to_emit):
+func emit_neutrons(neutrons_to_emit:int) -> void:
 	for i in range(neutrons_to_emit):
-		var new_neutron = neutron_scene.instantiate()
+		var new_neutron:Node = neutron_scene.instantiate()
 		new_neutron.initialize(position) 
 		parent.call_deferred("add_child", new_neutron)
 

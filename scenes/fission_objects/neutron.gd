@@ -2,9 +2,9 @@ extends RigidBody2D
 class_name Neutron
 
 @export var radius: float = 5.
-@export var color = Color("1A1A1A")
+@export var color:Color = Color("1A1A1A")
 
-static var neutrons_present = 0
+static var neutrons_present:int = 0
 
 func _ready() -> void:
 	# set collsion size
@@ -20,13 +20,13 @@ func _ready() -> void:
 	neutrons_present += 1
 	
 
-func _draw():
+func _draw() -> void:
 	draw_circle(Vector2(0, 0), self.radius, self.color)
 	
-func initialize(pos_to_set):
+func initialize(pos_to_set:Vector2) -> void:
 	position = pos_to_set
 
-	var movement_direction = Vector2(randf() - 0.5, randf() - 0.5)
+	var movement_direction:Vector2 = Vector2(randf() - 0.5, randf() - 0.5)
 	movement_direction /= movement_direction.length()
 	linear_velocity = 100 * movement_direction
 

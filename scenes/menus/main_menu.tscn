@@ -59,6 +59,10 @@ alignment = 1
 layout_mode = 2
 text = "Basic Reactor"
 
+[node name="Button_rbmkReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "R.B.M.K Reactor"
+
 [node name="Button_sandbox" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 text = "Start Sandbox"
@@ -68,6 +72,7 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_rbmkReactor" to="." method="_on_button_rbmk_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]
