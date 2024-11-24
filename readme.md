@@ -5,9 +5,6 @@
 This game is made with Godot 4.3. 
 
 ## Other Todo's:
-	- make water absord neutrons 
-	- make water reapear
-	- make Thermal vs fast neutrons
 	- Make Xenon
 	
 ## ideas:
@@ -16,4 +13,5 @@ This game is made with Godot 4.3.
 	- make control rods move faster or slower 
 	- higher enrichment / lower 
 	- more uranium nuclei
-	
+- Notes
+	- https://wenrexa.itch.io/nesia04 make ui like thus

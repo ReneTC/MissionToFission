@@ -4,10 +4,13 @@ class_name Atom
 @export var number_neutrons_emitted: int = 3
 @export var radius: float = 20
 
-@export var color_enriched:Color = Color("2D8EFF")
-@export var color_decayed:Color = Color("BBBBBB")
+var color_enriched:Color = Color("2D8EFF")
+var color_decayed:Color = Color("BBBBBB")
+var color_xenon:Color = Color("444444")
 @export var is_enriched: bool = true
-
+@export var is_xenon: bool = false
+var become_xenon_later_chance: float = 0.5 
+var xenon_time_rand_multiplier:float = 10
 # timer to not allow enrichment right away after fission
 var enirch_timer:bool = true
 
@@ -23,6 +26,9 @@ static var keep_enriched: bool = false
 static var enrich_percent: float = 0.80
 
 static var enable_moderation:bool = false
+static var enable_xenon:bool = false
+
+
 func _ready() -> void:
 	neutron_scene = load("res://scenes/fission_objects/neutron.tscn")
 	self.connect("body_entered", on_body_entered)
@@ -48,13 +54,18 @@ func initialize(pos_to_set:Vector2, encriched:bool) -> void:
 func _draw() -> void:
 	var color_to_draw:Color = color_decayed
 	if is_enriched: color_to_draw = color_enriched
+	elif is_xenon: color_to_draw = color_xenon
 	draw_circle(Vector2(0, 0), self.radius, color_to_draw)
 
 
 func on_body_entered(body: Node) -> void:
-	if is_enriched == true and body is Neutron:
-		decay()
-		emit_neutrons(self.number_neutrons_emitted)
+	if body is Neutron:
+		if self.is_xenon and Atom.enable_xenon:
+			self.is_xenon = false 
+			queue_redraw()
+		if is_enriched == true:
+			decay()
+			emit_neutrons(self.number_neutrons_emitted)
 		
 		# delete neutron
 		Neutron.neutrons_present -= 1
@@ -65,7 +76,10 @@ func decay() -> void:
 	# check if random atom should enrich 
 	if keep_enriched:
 		enrich_check()
-	
+	if not self.is_xenon and Atom.enable_xenon:
+		# not all should become xenon
+		if randf() < self.become_xenon_later_chance:
+			$Timer_Xenon.start(randf() * self.xenon_time_rand_multiplier)
 	self.enirch_timer = false
 	self.is_enriched = false
 	
@@ -76,7 +90,7 @@ func decay() -> void:
 	queue_redraw()
 	
 	# start timer to not allow enrichjment right away
-	$Timer.start()
+	$Timer_enrich_wait.start()
 
 
 
@@ -104,7 +118,14 @@ func emit_neutrons(neutrons_to_emit:int) -> void:
 		new_neutron.initialize(position) 
 		parent.call_deferred("add_child", new_neutron)
 
-
-func _on_timer_timeout() -> void:
+# on timout, atoms will be able to be selected for enrichement at random
+func _on_timer_enrich_wait_timeout() -> void:
 	enirch_timer = true
 	enrich_check()
+
+
+# becomes xenon
+func _on_timer_xenon_timeout() -> void:
+	self.is_xenon = true
+	set_collision_mask_value(globals.neutrol_collide_slot, true)
+	queue_redraw()

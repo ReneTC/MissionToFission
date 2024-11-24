@@ -3,7 +3,7 @@ class_name ControlRod
 
 @export var height: float = 800
 @export var width: float = 10
-@export var color:Color = Color("1A1A1A")
+@export var color:Color = Color("444444")
 @export var speed: float = 10
 
 

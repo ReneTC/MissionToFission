@@ -2,7 +2,7 @@ extends RigidBody2D
 class_name Neutron
 
 @export var radius: float = 5.
-@export var color:Color = Color("1A1A1A")
+@export var color:Color = Color("444444")
 var thermal_speed:float = 100
 var current_speed:float = thermal_speed
 var fast_speed:float = 200

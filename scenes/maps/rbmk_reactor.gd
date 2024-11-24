@@ -18,6 +18,7 @@ func _ready() -> void:
 	Atom.keep_enriched = true
 	Atom.enrich_percent = 0.5
 	Atom.enable_moderation = true
+	Atom.enable_xenon = true
 	Neutron.enable_moderation = true
 
 	# set atoms and controlRods
