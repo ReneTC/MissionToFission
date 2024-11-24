@@ -5,7 +5,7 @@ class_name Atom
 @export var radius: float = 20
 
 @export var color_enriched:Color = Color("2D8EFF")
-@export var color_decayed:Color = Color("DCEEFF")
+@export var color_decayed:Color = Color("BBBBBB")
 @export var is_enriched: bool = true
 
 # timer to not allow enrichment right away after fission
@@ -22,6 +22,7 @@ static var unenriched_present: int = 0
 static var keep_enriched: bool = false
 static var enrich_percent: float = 0.80
 
+static var enable_moderation:bool = false
 func _ready() -> void:
 	neutron_scene = load("res://scenes/fission_objects/neutron.tscn")
 	self.connect("body_entered", on_body_entered)

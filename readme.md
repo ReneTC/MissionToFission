@@ -5,10 +5,10 @@
 This game is made with Godot 4.3. 
 
 ## Other Todo's:
-	- Set wall (moderator and abosorber) by drawrect instead of png walls
-	- Make function for auto enrich atoms 
-	- Make moderators 
+	- make water absord neutrons 
+	- make water reapear
 	- make Thermal vs fast neutrons
+	- Make Xenon
 	
 ## ideas:
 - modifiers:

@@ -3,9 +3,13 @@ class_name Neutron
 
 @export var radius: float = 5.
 @export var color:Color = Color("1A1A1A")
-
+var thermal_speed:float = 100
+var current_speed:float = thermal_speed
+var fast_speed:float = 200
+var is_fast:bool = false
 static var neutrons_present:int = 0
 
+static var enable_moderation:bool = false
 func _ready() -> void:
 	# set collsion size
 	$CollisionShape2D.shape.radius = self.radius
@@ -19,16 +23,26 @@ func _ready() -> void:
 	
 	neutrons_present += 1
 	
+	if enable_moderation:
+		set_collision_layer_value(globals.moderator_neutron_slot, true)
+		set_collision_layer_value(globals.neutrol_collide_slot, false)
+		is_fast = true 
+	
 
 func _draw() -> void:
+		# draw inner white circle as dot to indicate fast neutron
 	draw_circle(Vector2(0, 0), self.radius, self.color)
+	if is_fast:
+		draw_circle(Vector2(0, 0), self.radius*0.8, Color("FFFFFF"))
 	
 func initialize(pos_to_set:Vector2) -> void:
 	position = pos_to_set
 
 	var movement_direction:Vector2 = Vector2(randf() - 0.5, randf() - 0.5)
 	movement_direction /= movement_direction.length()
-	linear_velocity = 100 * movement_direction
+	if enable_moderation:
+		self.current_speed = self.fast_speed
+	linear_velocity = self.current_speed * movement_direction
 
 
 

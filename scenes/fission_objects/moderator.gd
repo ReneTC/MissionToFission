@@ -13,8 +13,7 @@ func _ready() -> void:
 	rectangle_shape.extents = Vector2(self.width/2., self.height/2.) 
 	
 	# enable collison check w neutrons
-	set_collision_mask_value(globals.neutrol_collide_slot, true)
-
+	set_collision_mask_value(globals.moderator_neutron_slot, true)
 
 func _draw() -> void:
 	draw_rect(Rect2(-self.width/2., -self.height/2., self.width, self.height), Color("ffffff"))
@@ -26,3 +25,12 @@ func initialize(pos_to_set:Vector2) -> void:
 	
 func _on_body_entered(body: Node2D) -> void:
 	body.linear_velocity[0] = -body.linear_velocity[0]
+	if body.is_fast:
+		body.is_fast = false
+		body.current_speed = body.thermal_speed
+		body.linear_velocity = body.linear_velocity.normalized() * body.current_speed
+		# stop collidng width moderator:
+		body.set_collision_layer_value(globals.moderator_neutron_slot, false)
+		# start colliding width atoms:
+		body.set_collision_layer_value(globals.neutrol_collide_slot, true)
+		body.queue_redraw()

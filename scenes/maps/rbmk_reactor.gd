@@ -1,16 +1,25 @@
 extends Node2D
 
+# grid settings
 var x_grid_range: int = 30
 var y_grid_range: int = 15
 var margin: int = 60
 
+# get fission objects
 var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 var controlRod_scene:PackedScene = load("res://scenes/fission_objects/controlRod.tscn")
 var water_scene:PackedScene = load("res://scenes/fission_objects/water.tscn")
 var moderator_scene:PackedScene = load("res://scenes/fission_objects/moderator.tscn")
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
+	# set map settings 
+	Atom.keep_enriched = true
+	Atom.enrich_percent = 0.5
+	Atom.enable_moderation = true
+	Neutron.enable_moderation = true
+
 	# set atoms and controlRods
 	for x in range(0,x_grid_range):
 		x *= margin
@@ -39,10 +48,6 @@ func _ready() -> void:
 			add_child(new_atom) 
 			
 		
-
-	# set enrichment atom settings 
-	Atom.keep_enriched = true
-	Atom.enrich_percent = 0.5
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

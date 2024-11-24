@@ -8,6 +8,8 @@ var hot_color:Color = Color("FF4949")
 var gone_color:Color = Color("FFFFFF")
 var speed: float = 10
 
+var absorb_chance: float = 0.05
+
 var temp: float = 0.
 
 func _ready() -> void:
@@ -17,7 +19,7 @@ func _ready() -> void:
 	
 	# enable collison check w neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
-
+	set_collision_mask_value(globals.moderator_neutron_slot, true)
 
 func _draw() -> void:
 	var color_draw:Color = self.gone_color
@@ -33,8 +35,13 @@ func initialize(pos_to_set:Vector2) -> void:
 	
 func _process(_delta:float) -> void:
 	if Engine.get_process_frames() % 30 == 0:
+		self.temp = clampf(self.temp - 1, 0, 100000000)
 		queue_redraw()
 		
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	self.temp += 1
+	if randf() < self.absorb_chance:
+		body.queue_free()
+		Neutron.neutrons_present -= 1
+	
