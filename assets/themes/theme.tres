@@ -16,6 +16,14 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkr46"]
 bg_color = Color(1, 1, 1, 0.831373)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
 
 [resource]
 Button/colors/font_color = Color(0.266667, 0.266667, 0.266667, 1)
@@ -26,4 +34,7 @@ Button/styles/disabled = ExtResource("1_mt7qf")
 Button/styles/focus = ExtResource("1_mt7qf")
 Button/styles/hover = ExtResource("1_mt7qf")
 Button/styles/normal = SubResource("StyleBoxFlat_kjpiw")
+MarginContainer/constants/margin_bottom = 100
+MarginContainer/constants/margin_top = 100
 Panel/styles/panel = SubResource("StyleBoxFlat_fkr46")
+VBoxContainer/constants/separation = 20

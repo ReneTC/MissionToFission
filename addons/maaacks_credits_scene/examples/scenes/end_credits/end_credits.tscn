@@ -40,22 +40,19 @@ theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_colors/selection_color = Color(0, 0, 0, 1)
-text = "[center][font_size=48]Collaborators[/font_size]
+text = "[center]
+[font_size=64]Made by[/font_size]
+- Higgsino Physics
 
-[font_size=32]Made by[/font_size]
-Higgsino Physics
-
-[font_size=48]Tools[/font_size]
+[font_size=64]Tools[/font_size]
 [font_size=24]Godot[/font_size]
 Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
 Source: [url=https://godotengine.org/]godotengine.org[/url]  
-License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
 
 
 [font_size=24]Godot Credits Scene[/font_size]
 Author: [url=https://github.com/Maaack/Godot-Credits-Scene/graphs/contributors]Marek Belski[/url]  
 Source: [url=https://github.com/Maaack/Godot-Credits-Scene]github: Godot-Credits-Scene[/url]  
-License: [url=LICENSE.txt]MIT License[/url]  
 [/center]"
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="4"]

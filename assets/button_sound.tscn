@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://gbubw8k2clnw"]
+
+[ext_resource type="AudioStream" uid="uid://ca7kpvy0xq1q8" path="res://assets/geig.mp3" id="2_a3k48"]
+
+[sub_resource type="GDScript" id="GDScript_32u4s"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="ButtonSound" type="Button"]
+text = "sound"
+script = SubResource("GDScript_32u4s")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_a3k48")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

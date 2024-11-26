@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Mission To Fission"
 config/version="1.0.0"
-run/main_scene="res://scenes/menus/game_runner.tscn"
+run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 boot_splash/show_image=false

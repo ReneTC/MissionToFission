@@ -27,6 +27,8 @@ func _ready() -> void:
 	
 	# Instantiate the scene
 	var instance_current = scene.instantiate()
-
 	# Add the instance to the current scene
+	instance_current.PROCESS_MODE_PAUSABLE
 	add_child(instance_current)
+	
+	

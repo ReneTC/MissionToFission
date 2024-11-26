@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk3umo2e4kym2"]
+
+[ext_resource type="AudioStream" uid="uid://ca7kpvy0xq1q8" path="res://assets/geig.mp3" id="1_05wj4"]
+[ext_resource type="AudioStream" uid="uid://dg6j4vajln8ey" path="res://assets/sounds/yes.wav" id="2_bb0u8"]
+
+[node name="Haptics" type="Node"]
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_05wj4")
+bus = &"SFX"
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bb0u8")
+bus = &"SFX"

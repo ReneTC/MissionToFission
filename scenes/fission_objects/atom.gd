@@ -29,16 +29,21 @@ static var enable_moderation:bool = false
 static var enable_xenon:bool = false
 
 
+func get_random_decay_time() -> float:
+	return 50. * randf() + 2.
+
 func _ready() -> void:
 	neutron_scene = load("res://scenes/fission_objects/neutron.tscn")
 	self.connect("body_entered", on_body_entered)
 	
 	# set collsion size
 	$CollisionShape2D.shape.radius = self.radius
-
+	$Timer_spontenius_neutron_emission.start(get_random_decay_time())
 	if self.is_enriched:
 		set_collision_mask_value(globals.neutrol_collide_slot, true)
-
+		$Timer_spontenius_neutron_emission.paused = true
+	else:
+		$Timer_spontenius_neutron_emission.paused = false
 	# look for fast nuetrons 
 	if self.enable_moderation and self.is_enriched:
 		set_collision_mask_value(globals.moderator_neutron_slot, true)
@@ -92,7 +97,8 @@ func decay() -> void:
 			$Timer_Xenon.start(randf() * self.xenon_time_rand_multiplier)
 	self.enirch_timer = false
 	self.is_enriched = false
-	
+	$Timer_spontenius_neutron_emission.paused = false
+	$Timer_spontenius_neutron_emission.wait_time = get_random_decay_time()
 	unenriched_present += 1
 	enriched_present -= 1
 	# disable collison check for decayed atom with neutrons
@@ -117,6 +123,7 @@ func enrich_check() -> void:
 	
 func enrich() -> void:
 	self.is_enriched = true
+	$Timer_spontenius_neutron_emission.paused = true
 	unenriched_present -= 1
 	enriched_present += 1
 	# enable collsion check w neutrons again
@@ -149,3 +156,10 @@ func _on_timer_xenon_timeout() -> void:
 	if enable_moderation:
 		set_collision_mask_value(globals.moderator_neutron_slot, true)
 	queue_redraw()
+
+
+func _on_timer_spontenius_neutron_emission_timeout() -> void:
+	$Timer_spontenius_neutron_emission.wait_time = get_random_decay_time()
+	var new_neutron:Node = neutron_scene.instantiate()
+	new_neutron.initialize(position) 
+	parent.call_deferred("add_child", new_neutron)

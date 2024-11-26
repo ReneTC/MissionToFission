@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://olef6xbr1hf4"]
+[gd_scene load_steps=4 format=3 uid="uid://olef6xbr1hf4"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_oa2uj"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_uci5c"]
+[ext_resource type="AudioStream" uid="uid://dn3b3m42gcfak" path="res://assets/sounds/start_music.mp3" id="3_bmfp5"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,6 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,9 +77,16 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bmfp5")
+volume_db = -16.675
+autoplay = true
+bus = &"Music"
+
+[connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" to="." method="_on_buttons_v_box_child_entered_tree"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_rbmkReactor" to="." method="_on_button_rbmk_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_credits" to="." method="_on_button_credits_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]
