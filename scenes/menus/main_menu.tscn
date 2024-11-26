@@ -39,7 +39,7 @@ layout_mode = 2
 [node name="Heading" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-theme_override_colors/font_color = Color(0.404511, 0.404511, 0.404511, 1)
+theme_override_colors/font_color = Color(0.266667, 0.266667, 0.266667, 1)
 theme_override_font_sizes/font_size = 150
 text = "Mission to Fission"
 horizontal_alignment = 1
@@ -65,7 +65,7 @@ text = "R.B.M.K Reactor"
 
 [node name="Button_sandbox" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
-text = "Start Sandbox"
+text = "Sandbox"
 
 [node name="Button_credits" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
@@ -79,5 +79,5 @@ text = "Quit"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_rbmkReactor" to="." method="_on_button_rbmk_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_credits" to="." method="_on_button_credits_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]
