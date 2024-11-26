@@ -30,6 +30,7 @@ This game is made with Godot 4.3, and scripted width GDScript. Probably it shoul
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)
 - fix issue with neutrons count not resetting when switching map
+- Some mind of static var reset button..
 - fix end screen pop up 
 - fix contribute link credits. and chance to about instead
 

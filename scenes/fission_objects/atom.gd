@@ -56,7 +56,7 @@ func _ready() -> void:
 	add_to_group("atoms")
 	
 	
-func initialize(pos_to_set:Vector2, encriched:bool) -> void:
+func initialize(pos_to_set:Vector2, encriched:bool = true) -> void:
 	position = pos_to_set
 	is_enriched = encriched
 
