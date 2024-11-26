@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://olef6xbr1hf4"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_oa2uj"]
-[ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_wr85y"]
+[ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_uci5c"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_wr85y")
+theme = ExtResource("1_uci5c")
 script = ExtResource("1_oa2uj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -67,6 +67,10 @@ text = "R.B.M.K Reactor"
 layout_mode = 2
 text = "Start Sandbox"
 
+[node name="Button_credits" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "Credits"
+
 [node name="Button_quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 text = "Quit"
@@ -74,5 +78,6 @@ text = "Quit"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_rbmkReactor" to="." method="_on_button_rbmk_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_credits" to="." method="_on_button_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_3_pressed"]

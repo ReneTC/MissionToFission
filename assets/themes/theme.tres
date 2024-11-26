@@ -1,19 +1,7 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cn5xuu2uvf5w3"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cn5xuu2uvf5w3"]
 
-[ext_resource type="FontFile" uid="uid://d1n00wxtaqjy4" path="res://assets/themes/fonts/cmunbx.ttf" id="1_3rppi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06tb3"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[ext_resource type="StyleBox" uid="uid://cq54e3k588l7f" path="res://assets/themes/style/new_style_box_flat.tres" id="1_1d0dp"]
 
 [resource]
-default_font = ExtResource("1_3rppi")
-Button/styles/normal = SubResource("StyleBoxFlat_06tb3")
+Button/font_sizes/font_size = 20
+Button/styles/normal = ExtResource("1_1d0dp")

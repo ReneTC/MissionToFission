@@ -27,6 +27,10 @@ This game is made with Godot 4.3, and scripted width GDScript. Probably it shoul
 - Optimize performance.
 - Make actual game with objective. Currently, there is no goal. Just a simulator.
 
+## Small Todo's 
+- Tween animations (such as color changes and deletions)
+
+
 <!---
 ## Higgsino notes. Ideas for game:
 - modifiers:

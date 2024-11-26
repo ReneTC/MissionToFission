@@ -1,7 +1,7 @@
 extends Area2D
 class_name ControlRod
 
-@export var height: float = 800
+@export var height: float = 900
 @export var width: float = 10
 @export var color:Color = Color("444444")
 @export var speed: float = 10
@@ -40,7 +40,7 @@ func get_input() -> void:
 	if Input.is_action_pressed("e"):
 		direction = -1.
 
-	position.y = clamp(position.y+direction*speed, -370, 500)
+	position.y = clamp(position.y+direction*speed, -420, 480)
 
 func _physics_process(_delta:float) -> void:
 	get_input()

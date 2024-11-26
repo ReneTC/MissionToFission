@@ -32,10 +32,11 @@ func _ready() -> void:
 	
 
 func _draw() -> void:
-		# draw inner white circle as dot to indicate fast neutron
 	draw_circle(Vector2(0, 0), self.radius, self.color)
+	
+	# draw inner white circle as dot to indicate fast neutron
 	if is_fast:
-		draw_circle(Vector2(0, 0), self.radius*0.8, Color("FFFFFF"))
+		draw_circle(Vector2(0, 0), self.radius*0.5, Color("FFFFFF"))
 
 	
 func initialize(pos_to_set:Vector2) -> void:
