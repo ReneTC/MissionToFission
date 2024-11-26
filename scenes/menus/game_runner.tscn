@@ -1,15 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu7kdn5dr5aor"]
+[gd_scene load_steps=3 format=3 uid="uid://bu7kdn5dr5aor"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
-[ext_resource type="PackedScene" uid="uid://dei8hnl3kug8j" path="res://scenes/maps/basic_reactor.tscn" id="2_13wlm"]
 [ext_resource type="PackedScene" uid="uid://btg6pnsjf142h" path="res://scenes/menus/pause_menu.tscn" id="3_vb0gl"]
 
 [node name="GameRunner" type="Node"]
 process_mode = 3
 script = ExtResource("1_3sh3x")
-
-[node name="BasicReactor" parent="." instance=ExtResource("2_13wlm")]
-process_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
