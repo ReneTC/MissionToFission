@@ -10,6 +10,8 @@ var is_fast:bool = false
 static var neutrons_present:int = 0
 
 static var enable_moderation:bool = false
+
+
 func _ready() -> void:
 	# set collsion size
 	$CollisionShape2D.shape.radius = self.radius
@@ -34,6 +36,7 @@ func _draw() -> void:
 	draw_circle(Vector2(0, 0), self.radius, self.color)
 	if is_fast:
 		draw_circle(Vector2(0, 0), self.radius*0.8, Color("FFFFFF"))
+
 	
 func initialize(pos_to_set:Vector2) -> void:
 	position = pos_to_set

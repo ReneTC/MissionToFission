@@ -35,8 +35,13 @@ func _ready() -> void:
 	
 	# set collsion size
 	$CollisionShape2D.shape.radius = self.radius
-	
-	set_collision_mask_value(globals.neutrol_collide_slot, true)
+
+	if self.is_enriched:
+		set_collision_mask_value(globals.neutrol_collide_slot, true)
+
+	# look for fast nuetrons 
+	if self.enable_moderation and self.is_enriched:
+		set_collision_mask_value(globals.moderator_neutron_slot, true)
 	
 	if self.is_enriched:
 		enriched_present += 1
@@ -60,16 +65,21 @@ func _draw() -> void:
 
 func on_body_entered(body: Node) -> void:
 	if body is Neutron:
-		if self.is_xenon and Atom.enable_xenon:
+		if self.is_xenon and Atom.enable_xenon:	
 			self.is_xenon = false 
 			queue_redraw()
-		if is_enriched == true:
+			
+			# delete neutron
+			Neutron.neutrons_present -= 1
+			body.queue_free()
+
+		if is_enriched == true and not body.is_fast:
 			decay()
 			emit_neutrons(self.number_neutrons_emitted)
 		
-		# delete neutron
-		Neutron.neutrons_present -= 1
-		body.queue_free()
+			# delete neutron
+			Neutron.neutrons_present -= 1
+			body.queue_free()
 		
 		
 func decay() -> void:
@@ -87,6 +97,8 @@ func decay() -> void:
 	enriched_present -= 1
 	# disable collison check for decayed atom with neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, false)
+	if enable_moderation:
+		set_collision_mask_value(globals.moderator_neutron_slot, false)
 	queue_redraw()
 	
 	# start timer to not allow enrichjment right away
@@ -109,6 +121,11 @@ func enrich() -> void:
 	enriched_present += 1
 	# enable collsion check w neutrons again
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
+
+	# also fast neutrons 
+	if enable_moderation:
+		set_collision_mask_value(globals.moderator_neutron_slot, true)
+
 	queue_redraw()
 
 	
@@ -128,4 +145,7 @@ func _on_timer_enrich_wait_timeout() -> void:
 func _on_timer_xenon_timeout() -> void:
 	self.is_xenon = true
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
+
+	if enable_moderation:
+		set_collision_mask_value(globals.moderator_neutron_slot, true)
 	queue_redraw()

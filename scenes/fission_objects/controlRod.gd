@@ -15,6 +15,9 @@ func _ready() -> void:
 	# enable collison check w neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 
+	# also fast neutrons
+	set_collision_mask_value(globals.moderator_neutron_slot, true)
+
 
 func _draw() -> void:
 	draw_rect(Rect2(-self.width/2., -self.height/2., self.width, self.height), self.color)
