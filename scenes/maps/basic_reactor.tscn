@@ -1,34 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dei8hnl3kug8j"]
+[gd_scene load_steps=2 format=3 uid="uid://dei8hnl3kug8j"]
 
 [ext_resource type="Script" path="res://scenes/maps/basic_reactor.gd" id="1_0b72r"]
-[ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="2_rr4wk"]
 
 [node name="BasicReactor" type="Node2D"]
 script = ExtResource("1_0b72r")
-
-[node name="Label" type="Label" parent="."]
-offset_left = 701.0
-offset_top = 18.0
-offset_right = 774.0
-offset_bottom = 41.0
-theme = ExtResource("2_rr4wk")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "sadasd"
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 904.0
-offset_top = 16.0
-offset_right = 977.0
-offset_bottom = 39.0
-theme = ExtResource("2_rr4wk")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "sadasd"
-
-[node name="Label3" type="Label" parent="."]
-offset_left = 1125.0
-offset_top = 4.0
-offset_right = 1299.0
-offset_bottom = 62.0
-theme = ExtResource("2_rr4wk")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "sadasd"

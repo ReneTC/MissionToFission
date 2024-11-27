@@ -52,7 +52,3 @@ text = "Total Neutrons: "
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 text = "Enriched Uranium:"
-
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
-layout_mode = 2
-text = "Water temp (avg): "

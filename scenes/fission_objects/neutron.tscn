@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://biw1q2eoojc7i"]
+[gd_scene load_steps=5 format=3 uid="uid://biw1q2eoojc7i"]
 
 [ext_resource type="Script" path="res://scenes/fission_objects/neutron.gd" id="1_q8b54"]
-[ext_resource type="AudioStream" uid="uid://ca7kpvy0xq1q8" path="res://assets/geig.mp3" id="2_2ohxi"]
+[ext_resource type="AudioStream" uid="uid://cdxujixqqccnt" path="res://assets/sounds/geig_short.mp3" id="2_f1fve"]
+[ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="3_xy1x8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d6xvb"]
 
@@ -17,12 +18,15 @@ show_behind_parent = true
 shape = SubResource("CircleShape2D_d6xvb")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_2ohxi")
+stream = ExtResource("2_f1fve")
+volume_db = -11.265
 max_polyphony = 100
 bus = &"SFX"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(2.38419e-07, -0.5)
 scale = Vector2(1.1, 1.05)
+
+[node name="UiButtonSound" parent="." instance=ExtResource("3_xy1x8")]
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

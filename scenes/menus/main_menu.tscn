@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://olef6xbr1hf4"]
+[gd_scene load_steps=6 format=3 uid="uid://olef6xbr1hf4"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_oa2uj"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_uci5c"]
 [ext_resource type="AudioStream" uid="uid://dn3b3m42gcfak" path="res://assets/sounds/start_music.mp3" id="3_bmfp5"]
+[ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="4_t1nab"]
+[ext_resource type="AudioStream" uid="uid://bhwate8k0p16q" path="res://assets/sounds/LittleSwoosh2a.wav" id="5_8ibjq"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -28,6 +30,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -800.0
+offset_bottom = -1071.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
@@ -39,7 +43,9 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 2
 
 [node name="Heading" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(-0.39, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(0.266667, 0.266667, 0.266667, 1)
 theme_override_font_sizes/font_size = 150
@@ -49,31 +55,36 @@ vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 600
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 600
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_direction = 1
 layout_mode = 2
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Button_basicReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+[node name="Button_basicReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
+size_flags_stretch_ratio = 11.05
+localize_numeral_system = false
 text = "Basic Reactor"
 
-[node name="Button_rbmkReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+[node name="Button_rbmkReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
 text = "R.B.M.K Reactor"
 
-[node name="Button_sandbox" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+[node name="Button_sandbox" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
+custom_minimum_size = Vector2(3.315, 0)
 layout_mode = 2
 text = "Sandbox"
 
-[node name="Button_credits" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+[node name="Button_credits" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
 text = "Credits"
 
-[node name="Button_quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+[node name="Button_quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
 text = "Quit"
 
@@ -82,6 +93,15 @@ stream = ExtResource("3_bmfp5")
 volume_db = -16.675
 autoplay = true
 bus = &"Music"
+
+[node name="UiButtonSound" parent="." instance=ExtResource("4_t1nab")]
+
+[node name="fly_in_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8ibjq")
+bus = &"SFX"
+
+[node name="pop_in_soud" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" to="." method="_on_buttons_v_box_child_entered_tree"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjqvkbkt7yhvl"]
+
+[ext_resource type="Script" path="res://assets/ui_button_sound.gd" id="1_rep2r"]
+[ext_resource type="AudioStream" uid="uid://7ugi3d0mc6xk" path="res://assets/sounds/SciFiNotification2.wav" id="2_q2k3g"]
+[ext_resource type="AudioStream" uid="uid://bdylakknn516y" path="res://assets/sounds/SciFiNotification1.wav" id="3_arxmi"]
+
+[node name="UiButtonSound" type="Node"]
+script = ExtResource("1_rep2r")
+
+[node name="hover_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q2k3g")
+volume_db = -30.679
+max_polyphony = 5
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_arxmi")
+volume_db = -7.86
+max_polyphony = 5

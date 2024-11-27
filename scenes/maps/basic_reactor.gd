@@ -26,20 +26,3 @@ func _ready() -> void:
 	# set enrichment atom settings 
 	Atom.keep_enriched = true
 	Atom.enrich_percent = 0.5
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	$Label.text = str(Neutron.neutrons_present)
-	
-	$Label2.text = str(Atom.enriched_present)
-	$Label3.text = str(Atom.unenriched_present)
-	
-func _input(event:InputEvent) -> void:
-
-	# click to put objects (test only)	
-	if event is InputEventMouseButton and not event.is_pressed():
-		match event.button_index:
-			MOUSE_BUTTON_LEFT:
-				var new_neutron:Node = neutron_scene.instantiate()
-				new_neutron.initialize(event.position) 
-				add_child(new_neutron) 

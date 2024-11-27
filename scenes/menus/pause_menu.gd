@@ -4,17 +4,38 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hide()
-	game_runner.connect("toggle_game_paused", _on_game_runner_toggle_game_paused)
 
+	game_runner.connect("toggle_game_paused", _on_game_runner_toggle_game_paused)
+	hide()
+	# add sounds to button
+	$UiButtonSound.connect_button_ui()
 
 func _on_game_runner_toggle_game_paused(is_paused:bool) -> void:
 	if is_paused:
 		show()
+		animate_in()
+		
 	else:
 		hide()
+		animate_out()
 
-
+func animate_in() -> void:
+	$fly_in_sound.play()
+	$".".position[1] = 450
+	# why the f does this not work
+	#var tween = get_tree().create_tween()
+	#tween.set_ease(Tween.EaseType.EASE_OUT)
+	#tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
+	# tween.tween_property($".", "position:y", 200, 0.8)
+	
+func animate_out() -> void:
+	$fly_in_sound.play()
+	$".".position[1] = 450
+	# var tween1 = get_tree().create_tween()
+	# tween1.set_ease(Tween.EaseType.EASE_OUT)
+	#tween1.set_trans(Tween.TransitionType.TRANS_CUBIC)
+	#tween1.tween_property($".", "position:y", -60, 0.8)
+	
 func _on_continue_pressed() -> void:
 	game_runner.game_paused = false	
 
