@@ -27,6 +27,8 @@ func animate_in() -> void:
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($MarginContainer, "position:y", 0, 0.8)
 	
+	
+	
 func animate_out(map_load, scene_file) -> void:
 	$fly_in_sound.play()
 	var tween = get_tree().create_tween()

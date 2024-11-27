@@ -3,7 +3,7 @@ extends Node
 class_name GameRunner
 
 static var map_to_load: String = "res://scenes/maps/basic_reactor.tscn"
-
+static var map_loaded = null
 # get fission objects
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 
@@ -38,17 +38,25 @@ func _ready() -> void:
 	var scene = load( self.map_to_load)
 	
 	# Instantiate the scene
-	var instance_current = scene.instantiate()
-	instance_current.position[1] = 600
+	map_loaded = scene.instantiate()
+	map_loaded.position[1] = 600
 	# Add the instance to the current scene
-	instance_current.PROCESS_MODE_PAUSABLE
-	add_child(instance_current)
+	map_loaded.PROCESS_MODE_PAUSABLE
+	add_child(map_loaded)
 	
 	# tween in map 
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	tween.tween_property(instance_current, "position:y", 0, 0.8)
+	tween.tween_property(map_loaded, "position:y", 0, 0.8)
+	
+	# tween in fade 
+	# TODO MAKE THIS IMPORTABLE
+	var tween2 = get_tree().create_tween()
+	tween2.set_ease(Tween.EaseType.EASE_OUT)
+	tween2.set_trans(Tween.TransitionType.TRANS_CUBIC)
+	tween2.tween_property($fader, "modulate", Color(255, 255, 255, 0), 0.8)
+
 	
 	
 	
