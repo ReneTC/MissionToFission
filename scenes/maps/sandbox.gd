@@ -13,7 +13,7 @@ func _ready() -> void:
 	# start debug 
 	DebugMenu.style = DebugMenu.Style.VISIBLE_DETAILED
 
-
+	GameRunner.neutron_on_click = false
 
 func _on_gui_input(event: InputEvent) -> void:
 	# click to put objects (test only)	
@@ -25,18 +25,15 @@ func _on_gui_input(event: InputEvent) -> void:
 				add_child(new_obj) 
 
 
-
-
-func _on_check_button_2_toggled(toggled_on: bool) -> void:
+func _on_check_button_2_toggled(_toggled_on: bool) -> void:
 	click_object = atom_scene
 
-func _on_check_button_3_toggled(toggled_on: bool) -> void:
+func _on_check_button_3_toggled(_toggled_on: bool) -> void:
 	click_object = controlRod_scene
 
 
-func _on_check_button_4_toggled(toggled_on: bool) -> void:
+func _on_check_button_4_toggled(_toggled_on: bool) -> void:
 	click_object = water_scene
 
-
-func _on_check_button_5_toggled(toggled_on: bool) -> void:
+func _on_check_button_5_toggled(_toggled_on: bool) -> void:
 	click_object = neutron_scene

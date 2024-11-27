@@ -22,22 +22,22 @@ func _ready() -> void:
 	# animate in
 func animate_in() -> void:
 	$fly_in_sound.play()
-	var tween = get_tree().create_tween()
+	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($MarginContainer, "position:y", 0, 0.8)
 	
 	
 	
-func animate_out(map_load, scene_file) -> void:
+func animate_out(map_load:String, scene_file:String) -> void:
 	$fly_in_sound.play()
-	var tween = get_tree().create_tween()
+	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($".", "position:y", -1200, 0.8)
 	tween.connect("finished", on_tween_finished.bind(map_load, scene_file))
 			
-func on_tween_finished(map_load, scene_file):
+func on_tween_finished(map_load:String, scene_file:String) -> void:
 	GameRunner.map_to_load = map_load
 	get_tree().change_scene_to_file(scene_file)
 	

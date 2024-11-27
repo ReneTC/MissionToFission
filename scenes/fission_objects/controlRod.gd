@@ -4,7 +4,7 @@ class_name ControlRod
 @export var height: float = 900
 @export var width: float = 10
 @export var color:Color = Color("444444")
-@export var speed: float = 10
+@export var speed: float = 1
 
 
 func _ready() -> void:
@@ -36,9 +36,9 @@ func _on_body_entered(body: Node2D) -> void:
 func get_input() -> void:
 	var direction:float = 0
 	if Input.is_action_pressed("q"):
-		direction = 1.
+		direction = speed
 	if Input.is_action_pressed("e"):
-		direction = -1.
+		direction = -speed
 
 	position.y = clamp(position.y+direction*speed, -420, 480)
 

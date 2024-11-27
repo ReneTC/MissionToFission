@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq7kk7ce0ad1t"]
+[gd_scene load_steps=4 format=3 uid="uid://cq7kk7ce0ad1t"]
 
 [ext_resource type="Script" path="res://scenes/fission_objects/controlRod.gd" id="1_to805"]
+[ext_resource type="PackedScene" uid="uid://c3842hkwfpgau" path="res://assets/control_rod_sound.tscn" id="2_sckkt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spc3x"]
 size = Vector2(15.34, 20)
@@ -12,5 +13,7 @@ script = ExtResource("1_to805")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_spc3x")
+
+[node name="control_rod_sound" parent="." instance=ExtResource("2_sckkt")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
