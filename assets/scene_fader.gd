@@ -1,6 +1,6 @@
 extends Node2D
 
-func fade_in():
+func fade_in() -> void:
 	$CanvasLayer/ColorRect.color = Color(1, 1, 1, 0)
 	$CanvasLayer/ColorRect.z_index = 10
 	# tween to opacity 1
@@ -10,7 +10,7 @@ func fade_in():
 	tween.tween_property($CanvasLayer/ColorRect, "color", Color(1, 1, 1, 1), 0.8)
 	
 	
-func fade_out():
+func fade_out() -> void:
 	$CanvasLayer/ColorRect.color = Color(1, 1, 1, 1)
 	$CanvasLayer/ColorRect.z_index = 10
 	# tween to opacity 1

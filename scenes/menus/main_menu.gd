@@ -37,8 +37,8 @@ func animate_out(map_load:String, scene_file:String) -> void:
 	tween.connect("finished", on_tween_finished.bind(map_load, scene_file))
 			
 func on_tween_finished(map_load:String, scene_file:String) -> void:
-	GameRunner.map_to_load = map_load
 	globals.reset_game_var()
+	GameRunner.map_to_load = map_load
 	get_tree().change_scene_to_file(scene_file)
 	
 func _on_button_quit_pressed() -> void:

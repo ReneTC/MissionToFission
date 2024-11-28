@@ -45,8 +45,9 @@ func _on_main_pressed() -> void:
 	tween2.set_ease(Tween.EaseType.EASE_OUT)
 	tween2.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween2.tween_property(game_runner.map_loaded.get_node("../Camera2D"), "offset:y", -1000, 0.8)
-	tween2.connect("finished", new_map)
 	$SceneFader.fade_in()
+	tween2.connect("finished", new_map)
+	
 
 func new_map() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")

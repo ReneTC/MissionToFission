@@ -10,6 +10,11 @@ var controlRod_scene:PackedScene = load("res://scenes/fission_objects/controlRod
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# set enrichment atom settings 
+	Atom.keep_enriched = true
+	Atom.enable_sponteniues_neutrons = false
+	Atom.enrich_percent = 0.95
+	
 	# set atoms and controlRods
 	for x in range(0,x_grid_range):
 		for y in range(0, y_grid_range): 
@@ -23,6 +28,3 @@ func _ready() -> void:
 			add_child(new_controlRod) 
 			
 	
-	# set enrichment atom settings 
-	Atom.keep_enriched = true
-	Atom.enrich_percent = 0.5
