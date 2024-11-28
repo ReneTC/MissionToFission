@@ -1,19 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3842hkwfpgau"]
+[gd_scene load_steps=2 format=3 uid="uid://cgakf86pda6cu"]
 
-[ext_resource type="Script" path="res://assets/control_rod_sound.gd" id="1_mis6n"]
-[ext_resource type="AudioStream" uid="uid://b3ha0ssq3nvq3" path="res://assets/sounds/loop_tet_h.mp3" id="2_i3i1s"]
-[ext_resource type="AudioStream" uid="uid://ds0uu75svhju7" path="res://assets/sounds/hydralic_stop.mp3" id="3_tq1yg"]
+[sub_resource type="GDScript" id="GDScript_yui54"]
+script/source = "extends Node2D
+"
 
 [node name="SoundTest2" type="Node2D"]
-script = ExtResource("1_mis6n")
-
-[node name="looper" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_i3i1s")
-volume_db = -31.886
-bus = &"SFX"
-parameters/looping = true
-
-[node name="sound_rod_end" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_tq1yg")
-volume_db = -29.471
-bus = &"SFX"
+script = SubResource("GDScript_yui54")

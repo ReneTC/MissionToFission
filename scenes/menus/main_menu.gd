@@ -5,7 +5,7 @@ var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 
 func _ready() -> void:
-	
+	globals.reset_game_var()
 	animate_in()
 	
 	$UiButtonSound.connect_button_ui()
@@ -15,30 +15,30 @@ func _ready() -> void:
 		new_atom.initialize(Vector2(DisplayServer.screen_get_size()[0] * randf(), DisplayServer.screen_get_size()[1] * randf()), randi_range(0, 1),) 
 		add_child(new_atom) 
 	
-	# add sounds to button
-
 	
 	
-	# animate in
 func animate_in() -> void:
 	$fly_in_sound.play()
+	$SceneFader.fade_out()
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($MarginContainer, "position:y", 0, 0.8)
 	
-	
+
 	
 func animate_out(map_load:String, scene_file:String) -> void:
 	$fly_in_sound.play()
+	$SceneFader.fade_in()
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	tween.tween_property($".", "position:y", -1200, 0.8)
+	tween.tween_property($Camera2D, "position:y", -1200, 0.8)
 	tween.connect("finished", on_tween_finished.bind(map_load, scene_file))
 			
 func on_tween_finished(map_load:String, scene_file:String) -> void:
 	GameRunner.map_to_load = map_load
+	globals.reset_game_var()
 	get_tree().change_scene_to_file(scene_file)
 	
 func _on_button_quit_pressed() -> void:

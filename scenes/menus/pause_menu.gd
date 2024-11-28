@@ -4,7 +4,6 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
 	game_runner.connect("toggle_game_paused", _on_game_runner_toggle_game_paused)
 	hide()
 	# add sounds to button
@@ -21,16 +20,16 @@ func _on_game_runner_toggle_game_paused(is_paused:bool) -> void:
 
 func animate_in() -> void:
 	$fly_in_sound.play()
-	$".".position[1] = 450
+	# $".".position[1] = 450
 	# why the f does this not work
 	#var tween = get_tree().create_tween()
 	#tween.set_ease(Tween.EaseType.EASE_OUT)
 	#tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	# tween.tween_property($".", "position:y", 200, 0.8)
+	#tween.tween_property($".", "position:y", 450, 0.8)
 	
 func animate_out() -> void:
 	$fly_in_sound.play()
-	$".".position[1] = 450
+	#$".".position[1] = 450
 	# var tween1 = get_tree().create_tween()
 	# tween1.set_ease(Tween.EaseType.EASE_OUT)
 	#tween1.set_trans(Tween.TransitionType.TRANS_CUBIC)
@@ -45,8 +44,9 @@ func _on_main_pressed() -> void:
 	var tween2:Tween = get_tree().create_tween()
 	tween2.set_ease(Tween.EaseType.EASE_OUT)
 	tween2.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	tween2.tween_property(game_runner.map_loaded, "position:y", 1000, 0.8)
+	tween2.tween_property(game_runner.map_loaded.get_node("../Camera2D"), "offset:y", -1000, 0.8)
 	tween2.connect("finished", new_map)
+	$SceneFader.fade_in()
 
 func new_map() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")

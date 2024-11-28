@@ -1,22 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://btg6pnsjf142h"]
+[gd_scene load_steps=6 format=3 uid="uid://btg6pnsjf142h"]
 
 [ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_1qkhw"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_upnrw"]
 [ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="3_ui6hq"]
 [ext_resource type="AudioStream" uid="uid://ctnc2iu4a0atj" path="res://assets/sounds/LittleSwoosh5.wav" id="4_ptn75"]
+[ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="5_03aqk"]
 
 [node name="pauseMenu" type="Control"]
 process_mode = 2
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -90.0
-offset_bottom = -90.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_upnrw")
 script = ExtResource("1_1qkhw")
 
@@ -27,10 +26,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -137.0
-offset_top = -147.805
-offset_right = 135.0
-offset_bottom = 182.14
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -39,8 +38,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_right = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -69,6 +66,8 @@ text = "Exit"
 [node name="fly_in_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ptn75")
 bus = &"SFX"
+
+[node name="SceneFader" parent="." instance=ExtResource("5_03aqk")]
 
 [connection signal="pressed" from="Panel/VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/main" to="." method="_on_main_pressed"]

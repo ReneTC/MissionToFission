@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu7kdn5dr5aor"]
+[gd_scene load_steps=5 format=3 uid="uid://bu7kdn5dr5aor"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
 [ext_resource type="PackedScene" uid="uid://btg6pnsjf142h" path="res://scenes/menus/pause_menu.tscn" id="3_vb0gl"]
+[ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="4_oxp31"]
 
 [node name="GameRunner" type="Node"]
 process_mode = 3
@@ -52,3 +53,9 @@ text = "Total Neutrons: "
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 text = "Enriched Uranium:"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -1000)
+anchor_mode = 0
+
+[node name="SceneFader" parent="." instance=ExtResource("4_oxp31")]

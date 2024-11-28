@@ -32,9 +32,17 @@ func _on_body_entered(body: Node2D) -> void:
 	Neutron.neutrons_present -= 1
 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("q") or Input.is_action_just_pressed("e"):
+		$looper.play()
+
+	if Input.is_action_just_released("q") or Input.is_action_just_released("e"):
+		$looper.stop()
+		$sound_rod_end.play()
+
 
 func get_input() -> void:
-	var direction:float = 0
+	var direction:float = 0.
 	if Input.is_action_pressed("q"):
 		direction = speed
 	if Input.is_action_pressed("e"):

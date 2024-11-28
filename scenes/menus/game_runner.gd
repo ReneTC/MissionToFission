@@ -5,6 +5,7 @@ class_name GameRunner
 static var map_to_load: String = "res://scenes/maps/basic_reactor.tscn"
 static var map_loaded:Node = null
 static var neutron_on_click: bool = true
+
 # get fission objects
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 
@@ -18,6 +19,7 @@ var game_paused: bool = false:
 		get_tree().paused = game_paused
 		emit_signal("toggle_game_paused", game_paused)
 		
+		
 func _input(event:InputEvent) -> void:
 	# close program on esc button
 	if event.is_action_pressed("ui_cancel"):
@@ -30,15 +32,14 @@ func _input(event:InputEvent) -> void:
 				new_neutron.initialize(event.position) 
 				add_child(new_neutron) 
 
+
 # load map on ready
 func _ready() -> void:
-	
 	# Load the scene
 	var scene:Resource = load(self.map_to_load)
 	
 	# Instantiate the scene
 	map_loaded = scene.instantiate()
-	map_loaded.position[1] = 600
 	# Add the instance to the current scene
 	add_child(map_loaded)
 	
@@ -46,8 +47,8 @@ func _ready() -> void:
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	tween.tween_property(map_loaded, "position:y", 0, 0.8)
-	
+	tween.tween_property($Camera2D, "offset:y", 0, 0.8)
+	$SceneFader.fade_out()	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
