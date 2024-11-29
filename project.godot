@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Mission To Fission"
 config/version="1.0.0"
-run/main_scene="res://scenes/menus/main_menu.tscn"
+run/main_scene="res://scenes/maps/tutorial.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 boot_splash/show_image=false
@@ -21,6 +21,7 @@ boot_splash/show_image=false
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 globals="*res://assets/globals.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [debug]
 
@@ -42,7 +43,7 @@ movie_writer/movie_file="/home/rene/Videos/godot_movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/maaacks_credits_scene/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/maaacks_credits_scene/plugin.cfg")
 
 [input]
 
@@ -56,6 +57,10 @@ e={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://scenes/maps/tut_dialogue/tutorial.dialogue")
 
 [maaacks_credits_scene]
 
