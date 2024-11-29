@@ -12,6 +12,7 @@ var absorb_chance: float = 0.05
 
 var temp: float = 0.
 
+
 func _ready() -> void:
 	# set collisohape to set varables
 	var rectangle_shape:RectangleShape2D =  $CollisionShape2D.shape as RectangleShape2D
@@ -20,6 +21,8 @@ func _ready() -> void:
 	# enable collison check w neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 	set_collision_mask_value(globals.moderator_neutron_slot, true)
+	
+
 
 func _draw() -> void:
 	var color_draw:Color = self.gone_color
@@ -36,6 +39,7 @@ func initialize(pos_to_set:Vector2) -> void:
 func _process(_delta:float) -> void:
 	if Engine.get_process_frames() % 30 == 0:
 		self.temp = clampf(self.temp - 1, 0, 100000000)
+		# consider only redraw on temot change 
 		queue_redraw()
 		
 

@@ -32,6 +32,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 42.43
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
