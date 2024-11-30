@@ -63,6 +63,4 @@ func _process(_delta: float) -> void:
 		total_temp+=water.temp
 	var avg_temp = total_temp / float(count_water)
 	# nice looking 
-	$MarginContainer/VBoxContainer/ProgressBar.value = avg_temp
-	avg_temp = "%0.5f" % avg_temp
-	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button2.text = str(avg_temp)
+	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/ProgressBar.value = avg_temp

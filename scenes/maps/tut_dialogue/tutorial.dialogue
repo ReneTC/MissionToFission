@@ -1,11 +1,9 @@
 ~ this_is_a_node_title
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => this_is_a_node_title
-- End the conversation => END
-Nathan: For more information see the online documentation.
+# disable mouse click for neutron
+Dr. Splitz: Ah, another aspiring genius. Fantastic. Tell me, do you know the first thing about nuclear physics, or are you here because you couldn’t figure out how to work a toaster?
+Dr. Splitz:  Well, welcome to Mission to Fission, where we split atoms for a living—and sometimes for sport. Don’t touch anything unless I say so, or you might evaporate half the lab. 
+Dr. Splitz: Let’s get started before I lose the will to teach.
+# appear uranium235
+Dr. Splitz: This is Uranium-235, the rock star of radioactive elements. It’s unstable, cranky, and dangerous—basically my spirit animal. Hit it with a neutron, and it splits into smaller nuclei, releasing energy and more neutrons. That’s fission, the phenomenon that powers everything from reactors to regrettable explosions.
+
 => END

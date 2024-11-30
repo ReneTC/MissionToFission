@@ -8,6 +8,8 @@
 
 [node name="pauseMenu" type="Control"]
 process_mode = 2
+z_index = 100
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

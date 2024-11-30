@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scenes/maps/tutorial.gd" id="1_322t5"]
 
 [node name="Tutorial" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_322t5")

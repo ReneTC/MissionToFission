@@ -13,8 +13,6 @@ var water_scene:PackedScene = load("res://scenes/fission_objects/water.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
-	print("Profiler started")
-
 	# set enrichment atom settings 
 	Atom.keep_enriched = false
 	Atom.enable_sponteniues_neutrons = false
