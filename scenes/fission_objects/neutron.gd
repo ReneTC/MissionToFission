@@ -37,12 +37,15 @@ func _draw() -> void:
 	if is_fast:
 		draw_circle(Vector2(0, 0), self.radius*0.5, Color("FFFFFF"))
 
+
+func get_random_direction() -> Vector2:
+	var movement_direction:Vector2 = Vector2(randf() - 0.5, randf() - 0.5).normalized()
+	return movement_direction
 	
-func initialize(pos_to_set:Vector2) -> void:
+
+func initialize(pos_to_set:Vector2, movement_direction:Vector2 = get_random_direction()) -> void:
 	position = pos_to_set
 
-	var movement_direction:Vector2 = Vector2(randf() - 0.5, randf() - 0.5)
-	movement_direction /= movement_direction.length()
 	if enable_moderation:
 		self.current_speed = self.fast_speed
 	linear_velocity = self.current_speed * movement_direction

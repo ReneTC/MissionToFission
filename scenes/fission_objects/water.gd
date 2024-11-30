@@ -8,7 +8,7 @@ var hot_color:Color = Color("FF4949")
 var gone_color:Color = Color("FFFFFF")
 var speed: float = 10
 
-var absorb_chance: float = 0.05
+static var water_absorb_chance: float = 0.05
 
 var temp: float = 0.
 
@@ -32,20 +32,19 @@ func _draw() -> void:
 
 
 func initialize(pos_to_set:Vector2) -> void:
-	
 	position = Vector2(pos_to_set[0], pos_to_set[1])
 	
-	
+
 func _process(_delta:float) -> void:
 	if Engine.get_process_frames() % 30 == 0:
 		self.temp = clampf(self.temp - 1, 0, 100000000)
 		# consider only redraw on temot change 
 		queue_redraw()
-		
+
 
 func _on_body_entered(body: Node2D) -> void:
 	self.temp += 1
-	if randf() < self.absorb_chance:
+	if randf() < water_absorb_chance:
 		body.queue_free()
 		Neutron.neutrons_present -= 1
 	

@@ -59,7 +59,7 @@ text = "Main Menu"
 
 [node name="exit" type="Button" parent="Panel/VBoxContainer" groups=["button_ui"]]
 layout_mode = 2
-text = "Exit"
+text = "Exit game"
 
 [node name="UiButtonSound" parent="." instance=ExtResource("3_ui6hq")]
 

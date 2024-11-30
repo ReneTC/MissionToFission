@@ -26,13 +26,17 @@ This game is made with Godot 4.3, and scripted width GDScript. Probably it shoul
 - make screen responsive.
 - Optimize performance.
 - Make actual game with objective. Currently, there is no goal. Just a simulator.
+- add pop notifications (i.e. water warning 50% evaporated)
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)
-- fix issue with neutrons count not resetting when switching map
-- Some mind of static var reset button..
 - fix end screen pop up 
 - fix contribute link credits. and chance to about instead
+- Neutrons are sometimes double counted
+- Add scene test for performance evaluation
+- add Xenoon Gui 
+- fix error water cools on pause 
+- all game setttings should be in an enum type
 
 <!---
 ## Higgsino notes. Ideas for game:

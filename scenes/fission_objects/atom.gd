@@ -91,8 +91,8 @@ func on_body_entered(body: Node) -> void:
 		
 func decay() -> void:
 	# check if random atom should enrich
-	
 	if keep_enriched:
+		$Timer_enrich_wait.start()
 		enrich_check()
 		
 	if not self.is_xenon and Atom.enable_xenon:
@@ -100,10 +100,7 @@ func decay() -> void:
 		if randf() < self.become_xenon_later_chance:
 			$Timer_Xenon.start(randf() * self.xenon_time_rand_multiplier)
 	
-	self.enirch_timer = false
-	
-	$Timer_enrich_wait.start()
-	
+	self.enirch_timer = false	
 	self.is_enriched = false
 
 	if enable_sponteniues_neutrons:
@@ -152,6 +149,7 @@ func emit_neutrons(neutrons_to_emit:int) -> void:
 
 # on timout, atoms will be able to be selected for enrichement at random
 func _on_timer_enrich_wait_timeout() -> void:
+
 	enirch_timer = true
 	enrich_check()
 

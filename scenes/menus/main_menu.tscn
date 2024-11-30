@@ -68,6 +68,16 @@ layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "Maps:"
+
+[node name="Button_tutorial" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
+layout_mode = 2
+size_flags_stretch_ratio = 11.05
+localize_numeral_system = false
+text = "Tutorial"
+
 [node name="Button_basicReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
 size_flags_stretch_ratio = 11.05
@@ -83,6 +93,14 @@ custom_minimum_size = Vector2(3.315, 0)
 layout_mode = 2
 text = "Sandbox"
 
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "More:"
+
+[node name="Button_performances" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
+layout_mode = 2
+text = "Performance test"
+
 [node name="Button_credits" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
 text = "Credits"
@@ -90,6 +108,10 @@ text = "Credits"
 [node name="Button_quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
 text = "Quit"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "Version: 0.21"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bmfp5")
@@ -110,9 +132,11 @@ bus = &"SFX"
 anchor_mode = 0
 
 [connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" to="." method="_on_buttons_v_box_child_entered_tree"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_tutorial" to="." method="_on_button_tutorial_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_rbmkReactor" to="." method="_on_button_rbmk_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_performances" to="." method="_on_button_performances_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_credits" to="." method="_on_button_credits_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_quit" to="." method="_on_button_quit_pressed"]

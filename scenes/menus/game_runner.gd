@@ -56,10 +56,6 @@ func _process(_delta: float) -> void:
 	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button2.text = "Uranium235: " + str(Atom.enriched_present)
 	
 	# water bar test
-	# make it fit other size GUI 
-	# add Xenoon Gui 
-	# fix error water cools on pause 
-	# add pop notificatiomn as lisa said 
 	var all_water = get_tree().get_nodes_in_group("waters")
 	var count_water = len(all_water)
 	var total_temp: float = 0. 
