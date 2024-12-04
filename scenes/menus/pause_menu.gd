@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export var game_runner: GameRunner
 
