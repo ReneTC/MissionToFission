@@ -1,13 +1,11 @@
 ## Introduction Scene: The Research Facility
-Ah, another aspiring genius. Fantastic. Tell me, do you know the first thing about nuclear physics, or are you here because you couldn’t figure out how to work a toaster? Well, welcome to Mission to Fission, where we split atoms for a living—and sometimes for sport. Don’t touch anything unless I say so, or you might evaporate half the lab. Let’s get started before I lose the will to teach.
+Welcome to Mission to Fission lab, where we split atoms for a living—and sometimes for sport. Don’t touch anything unless I say so, or you might evaporate half the lab. Let’s get started with this fission business before my body decides to undergo its own half-life. Trust me, I don’t have time to turn into isotopes.
 
 ### Stage 1: Neutron-Uranium Fission
 
 "This is Uranium-235, the rock star of radioactive elements. It’s unstable, cranky, and dangerous—basically my spirit animal. Hit it with a neutron, and it splits into smaller nuclei, releasing energy and more neutrons. That’s fission, the phenomenon that powers everything from reactors to regrettable explosions.
 
-
-"Boom! Beautiful, isn’t it? And by ‘beautiful,’ I mean terrifyingly powerful. Now YOU try it. Fire this neutron."
-
+"Boom! Beautiful, isn’t it? And by ‘beautiful,’ I mean terrifyingly powerful. Now YOU try it. Fire some neutrons and make them split the Uranium."
 
 "Congratulations, you’ve just unleashed nuclear energy. If you’re feeling a warm glow, don’t worry—it’s either pride or radiation poisoning."
 
