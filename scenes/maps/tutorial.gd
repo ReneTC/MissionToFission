@@ -38,13 +38,14 @@ func DialogicSignal(argument:String) -> void:
 		add_child(new_neutron) 
 		
 	if argument == "you_try_split":
-		$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)
 		tut_state = "you_try_split"
 		GameRunner.neutron_on_click = true
 		atoms[0].is_enriched = true 
 		atoms[0].queue_redraw()
+		$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)
 		
 
+# neutron collide with urnium atom center
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if tut_state == "play_neutron":
 		# disable more neutrons checks 
@@ -52,5 +53,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		Dialogic.start("chap2", "neutron_hit")
 		
 	if tut_state == "you_try_split":
-		
 		$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, false)
+		Dialogic.start("chap2", "manual_neutron")

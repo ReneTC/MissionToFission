@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/maps/tutorial.gd" id="1_322t5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksrq1"]
-size = Vector2(50, 50)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bxto"]
+radius = 20.0
 
 [node name="Tutorial" type="Node2D"]
 process_mode = 1
@@ -12,6 +12,6 @@ script = ExtResource("1_322t5")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_ksrq1")
+shape = SubResource("CircleShape2D_1bxto")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
