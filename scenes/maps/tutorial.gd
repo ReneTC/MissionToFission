@@ -61,6 +61,7 @@ func DialogicSignal(argument:String) -> void:
 		get_parent().get_node("MarginContainer").show()
 		GameRunner.neutron_on_click = true
 		tut_state = "first_chain_reaction"
+		$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)    
 		$Area2D/CollisionShape2D2.shape.radius = 1000
 		# make grid 
 
@@ -99,11 +100,13 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	
 	elif tut_state == "first_chain_reaction":
 		if Atom.enriched_present == 0:
+			print("timer started")
 			$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, false)
 			$Timer.start()
 	
 
 # timout call such that 3 calls wont happen
 func _on_timer_timeout() -> void:
+	print("timer called")
 	if tut_state == "first_chain_reaction":
 		Dialogic.start("chap3", "chain_complete")

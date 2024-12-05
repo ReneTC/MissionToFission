@@ -33,8 +33,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -800.0
-offset_bottom = -1071.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
@@ -68,10 +67,6 @@ layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
-layout_mode = 2
-text = "Maps:"
-
 [node name="Button_tutorial" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
 size_flags_stretch_ratio = 11.05
@@ -82,7 +77,27 @@ text = "Tutorial"
 layout_mode = 2
 size_flags_stretch_ratio = 11.05
 localize_numeral_system = false
-text = "Basic Reactor"
+text = "Simplified Reactor"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor"]
+visible = false
+layout_mode = 0
+offset_left = 239.875
+offset_top = -70.44
+offset_right = 402.875
+offset_bottom = 113.56
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor/VBoxContainer"]
+layout_mode = 2
+text = "Free mode"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor/VBoxContainer"]
+layout_mode = 2
+text = "Survive mode"
 
 [node name="Button_rbmkReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 layout_mode = 2
@@ -93,11 +108,8 @@ custom_minimum_size = Vector2(3.315, 0)
 layout_mode = 2
 text = "Sandbox"
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
-layout_mode = 2
-text = "More:"
-
 [node name="Button_performances" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
+visible = false
 layout_mode = 2
 text = "Performance test"
 
