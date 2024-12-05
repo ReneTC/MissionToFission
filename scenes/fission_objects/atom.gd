@@ -77,16 +77,14 @@ func on_body_entered(body: Node) -> void:
 			queue_redraw()
 			
 			# delete neutron
-			Neutron.neutrons_present -= 1
-			body.queue_free()
+			body.kill_self()
 
 		if is_enriched == true and not body.is_fast:
 			decay()
 			emit_neutrons(self.number_neutrons_emitted)
 		
 			# delete neutron
-			Neutron.neutrons_present -= 1
-			body.queue_free()
+			body.kill_self()
 		
 		
 func decay() -> void:

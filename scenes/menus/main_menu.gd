@@ -64,3 +64,8 @@ func _on_button_performances_pressed() -> void:
 
 func _on_button_tutorial_pressed() -> void:
 	animate_out("res://scenes/maps/tutorial.tscn", "res://scenes/menus/game_runner.tscn")
+
+# escape on exit
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.is_action_pressed("ui_cancel"):
+		get_tree().quit()

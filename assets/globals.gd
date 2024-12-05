@@ -19,3 +19,4 @@ func reset_game_var() -> void:
 	Water.water_absorb_chance = 0.00
 
 	DebugMenu.style = DebugMenu.Style.HIDDEN
+	

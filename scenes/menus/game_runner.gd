@@ -54,13 +54,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button.text = "Neutrons: " + str(Neutron.neutrons_present)
 	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button2.text = "Uranium235: " + str(Atom.enriched_present)
-	
-	# water bar test
-	var all_water = get_tree().get_nodes_in_group("waters")
-	var count_water = len(all_water)
-	var total_temp: float = 0. 
-	for water in all_water:
-		total_temp+=water.temp
-	var avg_temp = total_temp / float(count_water)
-	# nice looking 
-	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/ProgressBar.value = avg_temp
+
+
+func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
+	Atom.keep_enriched = toggled_on
+
+func _on_check_box_sne_toggled(toggled_on: bool) -> void:
+	Atom.enable_sponteniues_neutrons = toggled_on

@@ -9,4 +9,5 @@ Now YOU try it. Fire some neutrons and make them split the Uranium.
 [end_timeline]
 label manual_neutron
 Congratulations, you’ve just unleashed nuclear energy.
- If you’re feeling a warm glow, don’t worry—it’s either pride or radiation poisoning.
+If you’re feeling a warm glow, don’t worry—it’s either pride or radiation poisoning.
+[signal arg="chap2Done"]

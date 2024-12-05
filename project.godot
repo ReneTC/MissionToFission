@@ -36,7 +36,9 @@ gdscript/warnings/untyped_declaration=1
 directories/dch_directory={}
 directories/dtl_directory={
 "chap1": "res://assets/tutorial_dialogic/chap1.dtl",
-"chap2": "res://assets/tutorial_dialogic/chap2.dtl"
+"chap2": "res://assets/tutorial_dialogic/chap2.dtl",
+"chap3": "res://assets/tutorial_dialogic/chap3.dtl",
+"chap4": "res://assets/tutorial_dialogic/chap4.dtl"
 }
 variables={}
 glossary/default_case_sensitive=true

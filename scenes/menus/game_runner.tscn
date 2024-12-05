@@ -71,4 +71,47 @@ anchor_mode = 0
 [node name="SceneFader" parent="." instance=ExtResource("4_oxp31")]
 
 [node name="pauseMenu" parent="." node_paths=PackedStringArray("game_runner") instance=ExtResource("3_vb0gl")]
+visible = false
 game_runner = NodePath("..")
+
+[node name="Control" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 200.0
+grow_vertical = 2
+theme = ExtResource("3_4kpoj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+localize_numeral_system = false
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="CheckBox_enrich" type="CheckBox" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Auto enrich"
+
+[node name="CheckBox_SNE" type="CheckBox" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sponteniues Neutron Emission"
+
+[node name="State" type="MarginContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/CheckBox_enrich" to="." method="_on_check_box_enrich_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/CheckBox_SNE" to="." method="_on_check_box_sne_toggled"]
