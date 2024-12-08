@@ -1,8 +1,8 @@
-Now here’s where things get wild. Those neutrons we just released from fission? They can hit more U-235 atoms and start a chain reaction. 
+Now here’s where things get wild. Those neutrons we just released from fission? They can hit more U-235 atoms and start a chain reaction.
 If managed properly, this produces controlled energy. If not, it produces a crater where your lab used to be.
 Your job will be to keep the reaction going without it spiraling into a fireworks show.
 Balance is key—too slow, and nothing happens. Too fast, and you’ll be vaporized. Think of it like babysitting\: you want chaos, but manageable chaos.
- But for now just set of a chain reaction.
+But for now just set off a chain reaction.
 [signal arg="first_chain"]
 [end_timeline]
 label chain_complete

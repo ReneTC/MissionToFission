@@ -167,3 +167,11 @@ func _on_timer_spontenius_neutron_emission_timeout() -> void:
 	var new_neutron:Node = neutron_scene.instantiate()
 	new_neutron.initialize(position) 
 	parent.call_deferred("add_child", new_neutron)
+	
+
+func set_auto_enrich(value):
+	# set the value 
+	keep_enriched = value 
+	
+	# call for a check 
+	# somehow fix static and call this enrich_check() function

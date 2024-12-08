@@ -52,12 +52,11 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button.text = "Neutrons: " + str(Neutron.neutrons_present)
-	$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button2.text = "Uranium235: " + str(Atom.enriched_present)
+	
+	if $State.is_visible_in_tree():
+		$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button.text = "Neutrons: " + str(Neutron.neutrons_present)
+		$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button2.text = "Uranium235: " + str(Atom.enriched_present)
 
 
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Atom.keep_enriched = toggled_on
-
-func _on_check_box_sne_toggled(toggled_on: bool) -> void:
-	Atom.enable_sponteniues_neutrons = toggled_on

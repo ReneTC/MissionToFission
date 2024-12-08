@@ -1,9 +1,10 @@
-Alright,. Time to run an oversimplfied basic reactor. 
-Let's add control rods. Your job is now to use U-235, control rods, and neutrons to generate steady power. 
+Alright,. Time to run an oversimplfied basic reactor.
+Let's add control rods. Your job is now to use U-235, control rods, and neutrons to generate steady power.
 [signal arg="add_control_rods"]
 It’s like juggling chainsaws—but one wrong move, and you don’t get a circus. You get a crater.
-Don’t let it overheat. Don’t let it fizzle out. Keep the reactor stable. 
-If you see a strong flash of blue light, congratulations\: you’re now part of the reactor core.
-You managed to power a kettle without annihilating the lab. Mark the calendar—it’s a miracle.
- That's the simplest form of a nuclear reactor, It's really oversimplified. Let's make it more realstic.
-... We will do that next time ....
+Don’t let it overheat. Don’t let it fizzle out. Keep the reactor stable.
+If you see a strong flash of blue light, congratulations\: you’re now part of the reactor core. Let's alsso give you some more control
+[signal arg="more_control"]
+Keep the reactor at GOAL, until GOAL2.
+ONSUCCESS\: You managed to power a kettle without annihilating the lab. Mark the calendar—it’s a miracle.
+That's the simplest form of a nuclear reactor, It's really extremely oversimplified. But next time we  make it more realstic.

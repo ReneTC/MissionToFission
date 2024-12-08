@@ -85,6 +85,10 @@ func DialogicSignal(argument:String) -> void:
 					margin/2.0 + margin*x +0.5*margin - margin, 0)) 
 				add_child(new_controlRod) 
 				
+	elif argument == "more_control":
+		get_parent().get_node("Control").show()
+		
+				
 			
 # neutron collide with urnium atom center
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -100,13 +104,14 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	
 	elif tut_state == "first_chain_reaction":
 		if Atom.enriched_present == 0:
-			print("timer started")
 			$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, false)
 			$Timer.start()
 	
 
 # timout call such that 3 calls wont happen
 func _on_timer_timeout() -> void:
-	print("timer called")
 	if tut_state == "first_chain_reaction":
+		
 		Dialogic.start("chap3", "chain_complete")
+
+	
