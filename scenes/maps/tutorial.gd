@@ -107,6 +107,8 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 			$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, false)
 			$Timer.start()
 	
+	elif tut_state == "more_control":
+		get_parent().get_node("Control").show()
 
 # timout call such that 3 calls wont happen
 func _on_timer_timeout() -> void:

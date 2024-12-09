@@ -115,7 +115,7 @@ func decay() -> void:
 	queue_redraw()
 	
 
-func enrich_check() -> void:
+static func enrich_check() -> void:
 	if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
 		# keep looping until unenriched atom is enriched 
 			var random_atom:Node = get_tree().get_nodes_in_group("atoms").pick_random() 
@@ -169,9 +169,9 @@ func _on_timer_spontenius_neutron_emission_timeout() -> void:
 	parent.call_deferred("add_child", new_neutron)
 	
 
-func set_auto_enrich(value):
+static func set_auto_enrich(value):
 	# set the value 
 	keep_enriched = value 
-	
 	# call for a check 
+	
 	# somehow fix static and call this enrich_check() function

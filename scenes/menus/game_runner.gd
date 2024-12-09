@@ -50,13 +50,15 @@ func _ready() -> void:
 	tween.tween_property($Camera2D, "offset:y", 0, 0.8)
 	$SceneFader.fade_out()	
 	
+	# get input of bottoms 
+	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.button_pressed = Atom.keep_enriched
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
-	if $State.is_visible_in_tree():
-		$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button.text = "Neutrons: " + str(Neutron.neutrons_present)
-		$MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button2.text = "Uranium235: " + str(Atom.enriched_present)
+	if $State/State.is_visible_in_tree():
+		$State/State/MarginContainer/VBoxContainer/HBoxContainer/Button.text = "Neutrons: " + str(Neutron.neutrons_present)
+		$State/State/MarginContainer/VBoxContainer/HBoxContainer/Button2.text = "Uranium235: " + str(Atom.enriched_present)
 
 
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
-	Atom.keep_enriched = toggled_on
+	Atom.set_auto_enrich(toggled_on)

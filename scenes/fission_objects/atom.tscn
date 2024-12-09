@@ -9,6 +9,10 @@ radius = 0.2
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_1umod")
+number_neutrons_emitted = null
+radius = null
+is_enriched = null
+is_xenon = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n34k7")
