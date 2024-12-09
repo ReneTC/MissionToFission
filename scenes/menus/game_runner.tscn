@@ -117,4 +117,8 @@ size_flags_horizontal = 3
 disabled = true
 text = "Uranium:"
 
+[node name="enrich_timer" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich" to="." method="_on_check_box_enrich_toggled"]
+[connection signal="timeout" from="enrich_timer" to="." method="_on_enrich_timer_timeout"]

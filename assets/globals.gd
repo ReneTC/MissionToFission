@@ -19,4 +19,11 @@ func reset_game_var() -> void:
 	Water.water_absorb_chance = 0.00
 
 	DebugMenu.style = DebugMenu.Style.HIDDEN
+
+func get_all_atoms():
+	var atoms = get_tree().get_nodes_in_group("atoms")
+	return atoms
 	
+func get_random_atom() -> Node:
+	var atoms = get_all_atoms()
+	return atoms.pick_random() if atoms.size() > 0 else null

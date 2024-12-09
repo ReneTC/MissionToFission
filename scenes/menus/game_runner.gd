@@ -62,3 +62,11 @@ func _process(_delta: float) -> void:
 
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Atom.set_auto_enrich(toggled_on)
+	if toggled_on:
+		$enrich_timer.start()
+	else:
+		$enrich_timer.stop()
+		
+		
+func _on_enrich_timer_timeout() -> void:
+	Atom.enrich_check()

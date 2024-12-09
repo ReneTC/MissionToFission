@@ -14,12 +14,14 @@ var margin: int = 60
 
 
 func _ready() -> void:
+	
 	# disable spawn click with mouse
 	GameRunner.neutron_on_click = false
 	$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)
 	$Area2D.position = get_viewport_rect().size / 2
 	# disable neutron counter 
-	get_parent().get_node("MarginContainer").hide()
+	get_parent().get_node("Control").hide()
+	get_parent().get_node("State").hide()
 	
 	# start from start 
 	# tut_state = "chap3" # skip for debug DElete ME 

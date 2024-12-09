@@ -13,7 +13,7 @@ func _ready() -> void:
 	get_parent().get_node("Control").show()
 	get_parent().get_node("State").show()
 	# set enrichment atom settings 
-	Atom.keep_enriched = true
+	Atom.keep_enriched = false
 	# Atom.enable_sponteniues_neutrons = false
 	# Atom.enrich_percent = 0.95
 	
@@ -24,10 +24,7 @@ func _ready() -> void:
 			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), true) 
 			add_child(new_atom) 
 
-		
 		if x % 3 == 0:
 			var new_controlRod:Node = controlRod_scene.instantiate()
 			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 			add_child(new_controlRod) 
-			
-	

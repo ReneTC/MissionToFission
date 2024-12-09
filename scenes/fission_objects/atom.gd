@@ -11,8 +11,8 @@ var color_xenon:Color = Color("444444")
 @export var is_xenon: bool = false
 var become_xenon_later_chance: float = 0.5 
 var xenon_time_rand_multiplier:float = 10
-# timer to not allow enrichment right away after fission
 
+# timer to not allow enrichment right away after fission
 var enirch_timer:bool = true
 
 var neutron_scene: PackedScene
@@ -114,13 +114,16 @@ func decay() -> void:
 		set_collision_mask_value(globals.moderator_neutron_slot, false)
 	queue_redraw()
 	
-
+	
 static func enrich_check() -> void:
 	if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
 		# keep looping until unenriched atom is enriched 
-			var random_atom:Node = get_tree().get_nodes_in_group("atoms").pick_random() 
-			if not random_atom.is_enriched and random_atom.enirch_timer:
+		var random_atom:Node = globals.get_random_atom()
+		if not random_atom.is_enriched:
+			if random_atom.enirch_timer:
 				random_atom.enrich()
+			else:
+				random_atom.get_node("Timer_enrich_wait").start()
 
 
 func enrich() -> void:
@@ -172,6 +175,3 @@ func _on_timer_spontenius_neutron_emission_timeout() -> void:
 static func set_auto_enrich(value):
 	# set the value 
 	keep_enriched = value 
-	# call for a check 
-	
-	# somehow fix static and call this enrich_check() function
