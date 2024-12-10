@@ -117,6 +117,30 @@ size_flags_horizontal = 3
 disabled = true
 text = "Uranium:"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="State/State/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="State/State/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Neutrons:"
+
+[node name="HSlider_neutrons" type="HSlider" parent="State/State/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 7.1
+value = 50.0
+editable = false
+scrollable = false
+tick_count = 1
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="State/State/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enrichment:"
+
+[node name="ProgressBar" type="ProgressBar" parent="State/State/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="enrich_timer" type="Timer" parent="."]
 wait_time = 0.3
 

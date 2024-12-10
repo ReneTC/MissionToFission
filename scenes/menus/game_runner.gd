@@ -52,14 +52,19 @@ func _ready() -> void:
 	
 	# get input of bottoms 
 	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.button_pressed = Atom.keep_enriched
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
 	if $State/State.is_visible_in_tree():
 		$State/State/MarginContainer/VBoxContainer/HBoxContainer/Button.text = "Neutrons: " + str(Neutron.neutrons_present)
 		$State/State/MarginContainer/VBoxContainer/HBoxContainer/Button2.text = "Uranium235: " + str(Atom.enriched_present)
-
-
+		
+		$State/State/MarginContainer/VBoxContainer/VBoxContainer/HSlider_neutrons.value = Neutron.neutrons_present
+		
+		$State/State/MarginContainer/VBoxContainer/VBoxContainer/ProgressBar.value = (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
+		
+	
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Atom.set_auto_enrich(toggled_on)
 	if toggled_on:
