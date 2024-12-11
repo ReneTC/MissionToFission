@@ -172,6 +172,6 @@ func _on_timer_spontenius_neutron_emission_timeout() -> void:
 	parent.call_deferred("add_child", new_neutron)
 	
 
-static func set_auto_enrich(value):
+static func set_auto_enrich(value) -> void:
 	# set the value 
 	keep_enriched = value 

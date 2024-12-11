@@ -57,13 +57,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	if $State/State.is_visible_in_tree():
-		$State/State/MarginContainer/VBoxContainer/HBoxContainer/Button.text = "Neutrons: " + str(Neutron.neutrons_present)
-		$State/State/MarginContainer/VBoxContainer/HBoxContainer/Button2.text = "Uranium235: " + str(Atom.enriched_present)
+		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons.value = Neutron.neutrons_present
+		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/Label2.text = "Neutrons: " + str(Neutron.neutrons_present)
 		
-		$State/State/MarginContainer/VBoxContainer/VBoxContainer/HSlider_neutrons.value = Neutron.neutrons_present
 		
-		$State/State/MarginContainer/VBoxContainer/VBoxContainer/ProgressBar.value = (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
-		
+		var percent: float =  (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
+		$State/State/MarginContainer/VBoxContainer2/ProgressBar.value = percent
+		$State/State/MarginContainer/VBoxContainer2/ProgressBar/Label.text = "Enrichment: " + str("%.1f" %percent) + "%"
 	
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Atom.set_auto_enrich(toggled_on)
