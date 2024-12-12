@@ -55,13 +55,47 @@ text = "Mission to Fission"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(300, 270)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+disabled = true
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2"]
+layout_mode = 2
+disabled = true
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 0
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_direction = 1
 layout_mode = 2
 theme_override_constants/separation = 20
