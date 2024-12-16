@@ -14,7 +14,8 @@ func _ready() -> void:
 	for x in range(0, 30):
 		var new_atom:Node = atom_scene.instantiate()
 		new_atom.initialize(Vector2(DisplayServer.screen_get_size()[0] * randf(), DisplayServer.screen_get_size()[1] * randf()), randi_range(0, 1),) 
-		add_child(new_atom) 
+		# add_child(new_atom) 
+	Atom.enable_sponteniues_neutrons = true
 	
 	
 	

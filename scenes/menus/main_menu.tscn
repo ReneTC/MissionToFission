@@ -63,7 +63,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(300, 270)
+custom_minimum_size = Vector2(300, 280)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
@@ -71,20 +71,91 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 250)
+custom_minimum_size = Vector2(260, 260)
 layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer"]
 layout_mode = 2
-disabled = true
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+toggle_mode = true
+button_mask = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -119.5
+offset_right = 106.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.244776, 0.244776, 0.244776, 1)
+theme_override_font_sizes/font_size = 25
+text = "Simpified Reactor"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+layout_mode = 2
+text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+layout_mode = 2
+text = "Simulate mode"
 
 [node name="AspectRatioContainer2" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 250)
+custom_minimum_size = Vector2(260, 260)
 layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2"]
 layout_mode = 2
-disabled = true
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -119.5
+offset_right = 106.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.136826, 0.136826, 0.136826, 1)
+theme_override_font_sizes/font_size = 25
+text = "R.B.M.K Reactor"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+layout_mode = 2
+text = " ̶T̶u̶t̶o̶r̶i̶a̶l̶"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+layout_mode = 2
+text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+layout_mode = 2
+text = "Simulate mode"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -102,38 +173,21 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Button_tutorial" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
+visible = false
 layout_mode = 2
 size_flags_stretch_ratio = 11.05
 localize_numeral_system = false
 text = "Tutorial"
 
 [node name="Button_basicReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
+visible = false
 layout_mode = 2
 size_flags_stretch_ratio = 11.05
 localize_numeral_system = false
 text = "Simplified Reactor"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor"]
-visible = false
-layout_mode = 0
-offset_left = 239.875
-offset_top = -70.44
-offset_right = 402.875
-offset_bottom = 113.56
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor/VBoxContainer"]
-layout_mode = 2
-text = "Tutorial"
-
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor/VBoxContainer"]
-layout_mode = 2
-text = "Free mode"
-
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor/VBoxContainer"]
-layout_mode = 2
-text = "Survive mode"
-
 [node name="Button_rbmkReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
+visible = false
 layout_mode = 2
 text = "R.B.M.K Reactor"
 
