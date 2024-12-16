@@ -14,10 +14,13 @@ func _ready() -> void:
 	for x in range(0, 30):
 		var new_atom:Node = atom_scene.instantiate()
 		new_atom.initialize(Vector2(DisplayServer.screen_get_size()[0] * randf(), DisplayServer.screen_get_size()[1] * randf()), randi_range(0, 1),) 
-		# add_child(new_atom) 
+		add_child(new_atom) 
 	Atom.enable_sponteniues_neutrons = true
 	
-	
+	# connect not implimented buttons
+	var buttons_404: Array = get_tree().get_nodes_in_group("404")
+	for button in buttons_404:
+		button.pressed.connect(_on_404_pressed)
 	
 func animate_in() -> void:
 	$fly_in_sound.play()
@@ -50,11 +53,6 @@ func _on_button_quit_pressed() -> void:
 func _on_button_sandbox_pressed() -> void:
 	animate_out("res://scenes/maps/sandbox.tscn", "res://scenes/menus/game_runner.tscn")
 
-func _on_button_basic_reactor_pressed() -> void:
-	animate_out("res://scenes/maps/basic_reactor.tscn", "res://scenes/menus/game_runner.tscn")
-
-func _on_button_rbmk_reactor_pressed() -> void:
-	animate_out("res://scenes/maps/rbmk_reactor.tscn", "res://scenes/menus/game_runner.tscn")
 
 func _on_button_credits_pressed() -> void:
 	animate_out("res://scenes/maps/rbmk_reactor.tscn", "res://addons/maaacks_credits_scene/examples/scenes/end_credits/end_credits.tscn")
@@ -64,8 +62,17 @@ func _on_button_performances_pressed() -> void:
 	animate_out("res://scenes/maps/performance_test.tscn", "res://scenes/menus/game_runner.tscn")
 
 
-func _on_button_tutorial_pressed() -> void:
+func _on_button_pressed() -> void:
 	animate_out("res://scenes/maps/tutorial.tscn", "res://scenes/menus/game_runner.tscn")
+
+func _on_button_3_pressed() -> void:
+	animate_out("res://scenes/maps/basic_reactor.tscn", "res://scenes/menus/game_runner.tscn")
+
+func _on_404_pressed() -> void:
+	animate_out("res://scenes/menus/404.tscn", "res://scenes/menus/game_runner.tscn")
+
+func _on_simulate_mode_rbmk_pressed() -> void:
+	animate_out("res://scenes/maps/rbmk_reactor.tscn", "res://scenes/menus/game_runner.tscn")
 
 # escape on exit
 func _input(event: InputEvent) -> void:

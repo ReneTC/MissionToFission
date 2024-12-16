@@ -70,18 +70,18 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
+[node name="simplified_reactor" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(260, 260)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor"]
 layout_mode = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 toggle_mode = true
 button_mask = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -96,34 +96,34 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.244776, 0.244776, 0.244776, 1)
 theme_override_font_sizes/font_size = 25
 text = "Simpified Reactor"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer" groups=["button_ui"]]
 layout_mode = 2
 text = "Tutorial"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer" groups=["404"]]
 layout_mode = 2
 text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer/Button/VBoxContainer"]
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer" groups=["button_ui"]]
 layout_mode = 2
 text = "Simulate mode"
 
-[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
+[node name="rbmk_reactor" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(260, 260)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -138,22 +138,22 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.136826, 0.136826, 0.136826, 1)
 theme_override_font_sizes/font_size = 25
 text = "R.B.M.K Reactor"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["404"]]
 layout_mode = 2
 text = " ̶T̶u̶t̶o̶r̶i̶a̶l̶"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["404"]]
 layout_mode = 2
 text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/AspectRatioContainer2/Button/VBoxContainer2"]
+[node name="simulate_mode_rbmk" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["button_ui"]]
 layout_mode = 2
 text = "Simulate mode"
 
@@ -171,25 +171,6 @@ layout_direction = 1
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
-
-[node name="Button_tutorial" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
-visible = false
-layout_mode = 2
-size_flags_stretch_ratio = 11.05
-localize_numeral_system = false
-text = "Tutorial"
-
-[node name="Button_basicReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
-visible = false
-layout_mode = 2
-size_flags_stretch_ratio = 11.05
-localize_numeral_system = false
-text = "Simplified Reactor"
-
-[node name="Button_rbmkReactor" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
-visible = false
-layout_mode = 2
-text = "R.B.M.K Reactor"
 
 [node name="Button_sandbox" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" groups=["button_ui"]]
 custom_minimum_size = Vector2(3.315, 0)
@@ -231,10 +212,10 @@ bus = &"SFX"
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2/simulate_mode_rbmk" to="." method="_on_simulate_mode_rbmk_pressed"]
 [connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" to="." method="_on_buttons_v_box_child_entered_tree"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_tutorial" to="." method="_on_button_tutorial_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_basicReactor" to="." method="_on_button_basic_reactor_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_rbmkReactor" to="." method="_on_button_rbmk_reactor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_performances" to="." method="_on_button_performances_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_credits" to="." method="_on_button_credits_pressed"]

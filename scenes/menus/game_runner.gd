@@ -20,12 +20,12 @@ var game_paused: bool = false:
 		emit_signal("toggle_game_paused", game_paused)
 		
 		
-func _input(event:InputEvent) -> void:
+func _unhandled_input(event:InputEvent) -> void:
 	# close program on esc button
 	if event.is_action_pressed("ui_cancel"):
 		game_paused = !game_paused
 	
-	if event is InputEventMouseButton and not event.is_pressed() and not game_paused and neutron_on_click:
+	if event is InputEventMouseButton and not event.is_pressed() and not game_paused and neutron_on_click:		
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				var new_neutron:Node = neutron_scene.instantiate()
@@ -69,9 +69,19 @@ func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Atom.set_auto_enrich(toggled_on)
 	if toggled_on:
 		$enrich_timer.start()
+		Atom.enrich_check()
 	else:
 		$enrich_timer.stop()
 		
 		
 func _on_enrich_timer_timeout() -> void:
 	Atom.enrich_check()
+
+
+func _on_check_box_spontain_neutron_emis_toggled(toggled_on: bool) -> void:
+	Atom.enable_sponteniues_neutrons = toggled_on
+	if toggled_on:
+		var atoms: Array = get_tree().get_nodes_in_group("atoms")
+		for atom in atoms:
+			if not atom.is_enriched:
+				atom.start_spont_neutron_emission()

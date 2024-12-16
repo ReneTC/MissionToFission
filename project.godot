@@ -67,6 +67,10 @@ movie_writer/movie_file="/home/rene/Videos/godot_movie.avi"
 
 enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/maaacks_credits_scene/plugin.cfg")
 
+[global_group]
+
+404=""
+
 [input]
 
 q={

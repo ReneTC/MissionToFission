@@ -43,9 +43,8 @@ func _ready() -> void:
 	if self.is_enriched:
 		set_collision_mask_value(globals.neutrol_collide_slot, true)
 	else:
-		if self.enable_sponteniues_neutrons:
-			$Timer_spontenius_neutron_emission.start(get_random_decay_time())
-			$Timer_spontenius_neutron_emission.paused = false
+		self.start_spont_neutron_emission()
+
 	# look for fast nuetrons 
 	if self.enable_moderation and self.is_enriched:
 		set_collision_mask_value(globals.moderator_neutron_slot, true)
@@ -148,6 +147,12 @@ func emit_neutrons(neutrons_to_emit:int) -> void:
 		new_neutron.initialize(position) 
 		parent.call_deferred("add_child", new_neutron)
 
+
+func start_spont_neutron_emission() -> void:
+	if self.enable_sponteniues_neutrons:
+		$Timer_spontenius_neutron_emission.start(get_random_decay_time())
+		$Timer_spontenius_neutron_emission.paused = false
+
 # on timout, atoms will be able to be selected for enrichement at random
 func _on_timer_enrich_wait_timeout() -> void:
 
@@ -166,12 +171,13 @@ func _on_timer_xenon_timeout() -> void:
 
 
 func _on_timer_spontenius_neutron_emission_timeout() -> void:
-	$Timer_spontenius_neutron_emission.wait_time = get_random_decay_time()
-	var new_neutron:Node = neutron_scene.instantiate()
-	new_neutron.initialize(position) 
-	parent.call_deferred("add_child", new_neutron)
+	if self.enable_sponteniues_neutrons:
+		$Timer_spontenius_neutron_emission.wait_time = get_random_decay_time()
+		var new_neutron:Node = neutron_scene.instantiate()
+		new_neutron.initialize(position) 
+		parent.call_deferred("add_child", new_neutron)
 	
 
-static func set_auto_enrich(value) -> void:
+static func set_auto_enrich(value:bool) -> void:
 	# set the value 
 	keep_enriched = value 

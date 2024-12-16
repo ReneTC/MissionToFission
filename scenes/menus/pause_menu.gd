@@ -20,20 +20,11 @@ func _on_game_runner_toggle_game_paused(is_paused:bool) -> void:
 
 func animate_in() -> void:
 	$fly_in_sound.play()
-	# $".".position[1] = 450
-	# why the f does this not work
-	#var tween = get_tree().create_tween()
-	#tween.set_ease(Tween.EaseType.EASE_OUT)
-	#tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	#tween.tween_property($".", "position:y", 450, 0.8)
+
 	
 func animate_out() -> void:
 	$fly_in_sound.play()
-	#$".".position[1] = 450
-	# var tween1 = get_tree().create_tween()
-	# tween1.set_ease(Tween.EaseType.EASE_OUT)
-	#tween1.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	#tween1.tween_property($".", "position:y", -60, 0.8)
+
 	
 func _on_continue_pressed() -> void:
 	game_runner.game_paused = false	
