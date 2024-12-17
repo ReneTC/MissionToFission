@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu7kdn5dr5aor"]
+[gd_scene load_steps=6 format=3 uid="uid://bu7kdn5dr5aor"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
 [ext_resource type="PackedScene" uid="uid://btg6pnsjf142h" path="res://scenes/menus/pause_menu.tscn" id="3_vb0gl"]
 [ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="4_oxp31"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byxlp"]
+bg_color = Color(0.468293, 1, 0.405834, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="GameRunner" type="Node"]
 process_mode = 3
@@ -128,23 +135,104 @@ custom_minimum_size = Vector2(0, 30.17)
 layout_mode = 2
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.0
+theme_override_constants/grabber_offset = -100
 max_value = 1000.0
 editable = false
 scrollable = false
 tick_count = 10
 ticks_on_borders = true
 
-[node name="Label2" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
+[node name="accepted_range" type="Button" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
+show_behind_parent = true
+custom_minimum_size = Vector2(1, 20)
+layout_mode = 0
+offset_left = 73.0
+offset_top = 1.0
+offset_right = 135.54
+offset_bottom = 29.0
+mouse_filter = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_byxlp")
+disabled = true
+
+[node name="value" type="Button" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
+layout_mode = 0
+offset_left = 335.215
+offset_top = -41.0
+offset_right = 373.215
+offset_bottom = -7.0
+mouse_filter = 2
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 10
+text = "900"
+
+[node name="min_accept" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.172
+anchor_bottom = 0.5
+offset_left = 62.0
+offset_top = -7.08502
+offset_right = 18.08
+offset_bottom = 6.91498
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(8.685, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "300"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="max_accept" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 125.0
+offset_top = 8.00001
+offset_right = -212.0
+offset_bottom = -8.16999
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(9.77, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "600	"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="min_bar" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 3.06
-offset_bottom = 1.31
+offset_left = -8.0
+offset_top = 7.8
+offset_right = -362.0
+offset_bottom = -8.37
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Neutrons: 34"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="max_bar" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 357.0
+offset_top = 7.8
+offset_right = 20.0
+offset_bottom = -8.37
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "1000"
 horizontal_alignment = 1
 vertical_alignment = 3
 
