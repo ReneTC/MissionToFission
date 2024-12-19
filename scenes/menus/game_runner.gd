@@ -57,28 +57,31 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	if $State/State.is_visible_in_tree():
-		# hslider
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons.value = Neutron.neutrons_present
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value.text = str(Neutron.neutrons_present)
-		# range is 0 - 360
-		var pix_value = lerp(0.0, 360.0, float(Neutron.neutrons_present)/1000)
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value.position[0] = pix_value - 20
-		var min_accept_number = 301
-		var min_accept_value = lerp(0.0, 360.0, float(min_accept_number)/1000)
-		var max_accept_number = 602
-		var max_accept_value = lerp(0.0, 360.0, float(max_accept_number)/1000)
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/min_accept.text = str(min_accept_number)
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/min_accept.position[0] = float(min_accept_value) - 10
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/max_accept.text = str(max_accept_number)
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/max_accept.position[0] = float(max_accept_value) - 10
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/accepted_range.position[0] = float(min_accept_value)
-		$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/accepted_range.size[0] = float(max_accept_value) - float(min_accept_value)
+		# only calc every 30 frame
+		if Engine.get_physics_frames() % 15 == 1:
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons.value = Neutron.neutrons_present
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value.text = str(Neutron.neutrons_present)
+
+			var get_min_size = 370.0
+			var get_slide_max_value = $State/State/MarginContainer/VBoxContainer2/HSlider_neutrons.max_value
+			var pix_value = lerp(0.0, get_min_size, float(Neutron.neutrons_present)/get_slide_max_value)
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value.position[0] = pix_value - 20
+			var min_accept_number = 300
+			var min_accept_value = lerp(0.0, get_min_size, float(min_accept_number)/get_slide_max_value)
+			var max_accept_number = 600
+			var max_accept_value = lerp(0.0, get_min_size, float(max_accept_number)/get_slide_max_value)
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/min_accept.text = str(min_accept_number)
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/min_accept.position[0] = float(min_accept_value) - 10
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/max_accept.text = str(max_accept_number)
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/max_accept.position[0] = float(max_accept_value) - 10
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/accepted_range.position[0] = float(min_accept_value)
+			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/accepted_range.size[0] = float(max_accept_value) - float(min_accept_value) 
+			
+			# percent enrich shower
+			var percent: float =  (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
+			$State/State/MarginContainer/VBoxContainer2/ProgressBar.value = percent
+			$State/State/MarginContainer/VBoxContainer2/ProgressBar/Label.text = "Enrichment: " + str("%.1f" %percent) + "%"
 		
-		# percent enrich shower
-		var percent: float =  (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
-		$State/State/MarginContainer/VBoxContainer2/ProgressBar.value = percent
-		$State/State/MarginContainer/VBoxContainer2/ProgressBar/Label.text = "Enrichment: " + str("%.1f" %percent) + "%"
-	
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Atom.set_auto_enrich(toggled_on)
 	if toggled_on:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bu7kdn5dr5aor"]
+[gd_scene load_steps=7 format=3 uid="uid://bu7kdn5dr5aor"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
@@ -7,6 +7,13 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byxlp"]
 bg_color = Color(0.468293, 1, 0.405834, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18bsh"]
+bg_color = Color(0.854902, 0.854902, 0.854902, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -131,25 +138,24 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="HSlider_neutrons" type="HSlider" parent="State/State/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 30.17)
 layout_mode = 2
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.0
-theme_override_constants/grabber_offset = -100
+theme_override_constants/grabber_offset = 1000
 max_value = 1000.0
 editable = false
 scrollable = false
-tick_count = 10
+tick_count = 11
 ticks_on_borders = true
 
 [node name="accepted_range" type="Button" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
 show_behind_parent = true
-custom_minimum_size = Vector2(1, 20)
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 0
-offset_left = 73.0
-offset_top = 1.0
-offset_right = 135.54
-offset_bottom = 29.0
+offset_left = 84.0
+offset_top = 4.0
+offset_right = 147.0
+offset_bottom = 12.0
 mouse_filter = 2
 theme_override_styles/disabled = SubResource("StyleBoxFlat_byxlp")
 disabled = true
@@ -163,7 +169,18 @@ offset_bottom = -7.0
 mouse_filter = 2
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_18bsh")
 text = "900"
+
+[node name="ColorRect" type="ColorRect" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value"]
+z_index = -1
+layout_mode = 0
+offset_left = 18.785
+offset_top = 14.0
+offset_right = 38.785
+offset_bottom = 34.0
+rotation = 0.785397
+color = Color(0.854902, 0.854902, 0.854902, 1)
 
 [node name="min_accept" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
 layout_mode = 1
@@ -172,9 +189,9 @@ anchor_top = 0.5
 anchor_right = 0.172
 anchor_bottom = 0.5
 offset_left = 62.0
-offset_top = -7.08502
+offset_top = 4.015
 offset_right = 18.08
-offset_bottom = 6.91498
+offset_bottom = 18.015
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(8.685, 0)
@@ -190,9 +207,9 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 125.0
-offset_top = 8.00001
+offset_top = 12.015
 offset_right = -212.0
-offset_bottom = -8.16999
+offset_bottom = 10.015
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(9.77, 0)
@@ -207,10 +224,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = 7.8
-offset_right = -362.0
-offset_bottom = -8.37
+offset_left = -4.19501
+offset_top = 12.015
+offset_right = -358.195
+offset_bottom = 10.015
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -224,10 +241,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 357.0
-offset_top = 7.8
-offset_right = 20.0
-offset_bottom = -8.37
+offset_left = 346.535
+offset_top = 12.015
+offset_right = 9.535
+offset_bottom = 10.015
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

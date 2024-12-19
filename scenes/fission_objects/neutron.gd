@@ -52,7 +52,7 @@ func initialize(pos_to_set:Vector2, movement_direction:Vector2 = get_random_dire
 
 
 func kill_self() -> void:
-	neutrons_present -= 1
+	neutrons_present -= 1 
 	queue_free()
 	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
