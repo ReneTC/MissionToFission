@@ -33,19 +33,19 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("q") or Input.is_action_just_pressed("e"):
+	if Input.is_action_just_pressed("w") or Input.is_action_just_pressed("s"):
 		$looper.play()
 
-	if Input.is_action_just_released("q") or Input.is_action_just_released("e"):
+	if Input.is_action_just_released("w") or Input.is_action_just_released("s"):
 		$looper.stop()
 		$sound_rod_end.play()
 
 
 func get_input() -> void:
 	var direction:float = 0.
-	if Input.is_action_pressed("q"):
+	if Input.is_action_pressed("s"):
 		direction = speed
-	if Input.is_action_pressed("e"):
+	if Input.is_action_pressed("w"):
 		direction = -speed
 
 	position.y = clamp(position.y+direction*speed, -420, 480)

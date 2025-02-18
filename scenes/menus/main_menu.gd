@@ -40,7 +40,8 @@ func animate_out(map_load:String, scene_file:String) -> void:
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($Camera2D, "position:y", -1200, 0.8)
 	tween.connect("finished", on_tween_finished.bind(map_load, scene_file))
-			
+	
+	
 func on_tween_finished(map_load:String, scene_file:String) -> void:
 	globals.reset_game_var()
 	GameRunner.map_to_load = map_load
@@ -71,6 +72,9 @@ func _on_button_3_pressed() -> void:
 func _on_404_pressed() -> void:
 	animate_out("res://scenes/menus/404.tscn", "res://scenes/menus/game_runner.tscn")
 
+func _on_button_2_pressed() -> void:
+	animate_out("res://scenes/maps/basic_reactor_game.tscn", "res://scenes/menus/game_runner.tscn")
+	
 func _on_simulate_mode_rbmk_pressed() -> void:
 	animate_out("res://scenes/maps/rbmk_reactor.tscn", "res://scenes/menus/game_runner.tscn")
 

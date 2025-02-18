@@ -23,17 +23,23 @@ This game is made with Godot 4.3, and scripted width GDScript. Probably it shoul
 - Make tutorial for game. Maybe a "map" that explains everything.
 - Add "options" settings.
 - make screen responsive.
-- Optimize performance. - make deterministac stable test
+- Optimize performance.
 - Make actual game with objective. Currently, there is no goal. Just a simulator.
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)
-- fix end screen pop up 
 - fix contribute link credits. and chance to about instead
 - Neutrons are sometimes double counted removed
 - add Xenoon Gui 
 - add dialouge manager cretids
 
+
+## Working on:
+	- make goal, and spread in gui. Once you are in spread timer starts when you get out. You loose after. 
+	- make tutorial work with this 
+	- then impliment that in "game mode"
+	- make game save record
+	
 
 <!---
 ## Higgsino notes. Ideas for game:

@@ -28,3 +28,5 @@ func _ready() -> void:
 			var new_controlRod:Node = controlRod_scene.instantiate()
 			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 			add_child(new_controlRod) 
+			
+	GameRunner.

@@ -20,11 +20,13 @@ func _ready() -> void:
 	$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)
 	$Area2D.position = get_viewport_rect().size / 2
 	# disable neutron counter 
+	get_parent().goal = 100
+	get_parent().margin_error = 20
 	get_parent().get_node("Control").hide()
 	get_parent().get_node("State").hide()
 	
 	# start from start 
-	# tut_state = "chap3" # skip for debug DElete ME 
+	# tut_state = "first_chain_reaction" # skip for debug DElete ME 
 	Dialogic.start(tut_state)
 	Dialogic.signal_event.connect(DialogicSignal)
 
@@ -89,9 +91,8 @@ func DialogicSignal(argument:String) -> void:
 				
 	elif argument == "more_control":
 		get_parent().get_node("Control").show()
+		get_parent().get_node("State").show()
 		
-				
-			
 # neutron collide with urnium atom center
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if tut_state == "play_neutron":
@@ -110,7 +111,9 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 			$Timer.start()
 	
 	elif tut_state == "more_control":
+		get_parent().get_node("State").show()
 		get_parent().get_node("Control").show()
+
 
 # timout call such that 3 calls wont happen
 func _on_timer_timeout() -> void:

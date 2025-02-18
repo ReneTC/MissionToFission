@@ -107,7 +107,7 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Tutorial"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer" groups=["404"]]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer" groups=["button_ui"]]
 layout_mode = 2
 text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
 
@@ -213,6 +213,7 @@ bus = &"SFX"
 anchor_mode = 0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2/simulate_mode_rbmk" to="." method="_on_simulate_mode_rbmk_pressed"]
 [connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" to="." method="_on_buttons_v_box_child_entered_tree"]
