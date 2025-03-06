@@ -13,7 +13,7 @@ config_version=5
 config/name="Mission To Fission"
 config/version="1.0.0"
 run/main_scene="res://scenes/menus/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 boot_splash/show_image=false
 
@@ -99,9 +99,10 @@ disable_plugin_dialogues=true
 
 [physics]
 
+2d/physics_engine="GodotPhysics2D"
 2d/default_gravity=0.0
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(1, 1, 1, 1)
 anti_aliasing/quality/msaa_2d=2
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)

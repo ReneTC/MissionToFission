@@ -1,23 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu7kdn5dr5aor"]
+[gd_scene load_steps=6 format=3 uid="uid://bu7kdn5dr5aor"]
 
-[ext_resource type="Script" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
+[ext_resource type="Script" uid="uid://cmagfu3k1wtwr" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
 [ext_resource type="PackedScene" uid="uid://btg6pnsjf142h" path="res://scenes/menus/pause_menu.tscn" id="3_vb0gl"]
 [ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="4_oxp31"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byxlp"]
-bg_color = Color(0.468293, 1, 0.405834, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18bsh"]
-bg_color = Color(0.854902, 0.854902, 0.854902, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[ext_resource type="Script" uid="uid://cuhga5ms3gvhb" path="res://scenes/menus/h_slider_neutrons.gd" id="5_mvdwj"]
 
 [node name="GameRunner" type="Node"]
 process_mode = 3
@@ -97,170 +84,21 @@ layout_mode = 2
 [node name="CheckBox_enrich" type="CheckBox" parent="Control/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "Auto enrich"
+text = "Auto enrich 20%"
 
 [node name="CheckBox_spontain_neutron_emis" type="CheckBox" parent="Control/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Spontaneous Neutron Emission"
 
-[node name="State" type="CanvasLayer" parent="."]
-
-[node name="State" type="MarginContainer" parent="State"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -400.0
-offset_top = -118.0
-offset_bottom = 24.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme = ExtResource("3_4kpoj")
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="MarginContainer" type="MarginContainer" parent="State/State"]
-layout_mode = 2
-localize_numeral_system = false
-theme = ExtResource("3_4kpoj")
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="State/State/MarginContainer"]
-layout_mode = 2
-
-[node name="HSlider_neutrons" type="HSlider" parent="State/State/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.0
-theme_override_constants/grabber_offset = 1000
-max_value = 1000.0
-editable = false
-scrollable = false
-tick_count = 11
-ticks_on_borders = true
-
-[node name="accepted_range" type="Button" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
-show_behind_parent = true
-custom_minimum_size = Vector2(1, 0)
-layout_mode = 0
-offset_left = 84.0
-offset_top = 4.0
-offset_right = 147.0
-offset_bottom = 12.0
-mouse_filter = 2
-theme_override_styles/disabled = SubResource("StyleBoxFlat_byxlp")
-disabled = true
-
-[node name="value" type="Button" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
-layout_mode = 0
-offset_left = 335.215
-offset_top = -41.0
-offset_right = 373.215
-offset_bottom = -7.0
-mouse_filter = 2
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxFlat_18bsh")
-text = "900"
-
-[node name="ColorRect" type="ColorRect" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value"]
-z_index = -1
-layout_mode = 0
-offset_left = 18.785
-offset_top = 14.0
-offset_right = 38.785
-offset_bottom = 34.0
-rotation = 0.785397
-color = Color(0.854902, 0.854902, 0.854902, 1)
-
-[node name="min_accept" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 0.172
-anchor_bottom = 0.5
-offset_left = 62.0
-offset_top = 4.015
-offset_right = 18.08
-offset_bottom = 18.015
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(8.685, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "300"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="max_accept" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 125.0
-offset_top = 12.015
-offset_right = -212.0
-offset_bottom = 10.015
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(9.77, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "600	"
-horizontal_alignment = 1
-vertical_alignment = 3
-
-[node name="min_bar" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -4.19501
-offset_top = 12.015
-offset_right = -358.195
-offset_bottom = 10.015
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 3
-
-[node name="max_bar" type="Label" parent="State/State/MarginContainer/VBoxContainer2/HSlider_neutrons"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 346.535
-offset_top = 12.015
-offset_right = 9.535
-offset_bottom = 10.015
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "1000"
-horizontal_alignment = 1
-vertical_alignment = 3
-
-[node name="ProgressBar" type="ProgressBar" parent="State/State/MarginContainer/VBoxContainer2"]
+[node name="ProgressBar" type="ProgressBar" parent="Control/Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 1
 value = 30.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="State/State/MarginContainer/VBoxContainer2/ProgressBar"]
+[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/ProgressBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -274,8 +112,131 @@ text = "Percent"
 horizontal_alignment = 1
 vertical_alignment = 3
 
+[node name="GameScore" type="CanvasLayer" parent="."]
+
+[node name="GameScore" type="MarginContainer" parent="GameScore"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -188.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("3_4kpoj")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="GameScore/GameScore"]
+layout_mode = 2
+localize_numeral_system = false
+theme = ExtResource("3_4kpoj")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameScore/GameScore/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="GameScore/GameScore/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+disabled = true
+text = "Score: 0.0"
+
+[node name="upgrade-bar" type="ProgressBar" parent="GameScore/GameScore/MarginContainer/VBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.705
+offset_bottom = 2.145
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Upgrade timer"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="loose-bar" type="ProgressBar" parent="GameScore/GameScore/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="GameScore/GameScore/MarginContainer/VBoxContainer2/loose-bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.705
+offset_bottom = 2.145
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Loose timer"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="State" type="CanvasLayer" parent="."]
+
+[node name="State" type="MarginContainer" parent="State"]
+custom_minimum_size = Vector2(1000, 20)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -56.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_4kpoj")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HSlider_neutrons" type="HSlider" parent="State/State"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+max_value = 1000.0
+value = 300.0
+rounded = true
+script = ExtResource("5_mvdwj")
+accepted_range = Vector2(100, 600)
+current_value = 300.0
+
+[node name="Label" type="Label" parent="State/State"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "200"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="enrich_timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 60.0
+
+[node name="loss_timer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 30.0
+
+[node name="upgrade_timer" type="Timer" parent="."]
+process_mode = 1
 
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich" to="." method="_on_check_box_enrich_toggled"]
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/CheckBox_spontain_neutron_emis" to="." method="_on_check_box_spontain_neutron_emis_toggled"]

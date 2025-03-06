@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_credits_scene/base/scenes/credits/credits.tscn" id="1_n45le"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="2_ld1ex"]
-[ext_resource type="Script" path="res://addons/maaacks_credits_scene/examples/scenes/credits/credits.gd" id="2_q7msw"]
+[ext_resource type="Script" uid="uid://b614k7knidd7h" path="res://addons/maaacks_credits_scene/examples/scenes/credits/credits.gd" id="2_q7msw"]
 
 [node name="Credits" instance=ExtResource("1_n45le")]
 theme = ExtResource("2_ld1ex")

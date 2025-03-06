@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://87hdy61vf57a"]
+
+[ext_resource type="Script" uid="uid://t04u8cbyhle4" path="res://scenes/menus/pause_menu.gd" id="1_rbfas"]
+[ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="2_48y8x"]
+[ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="3_8u8gq"]
+[ext_resource type="AudioStream" uid="uid://ctnc2iu4a0atj" path="res://assets/sounds/LittleSwoosh5.wav" id="4_bb52t"]
+[ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="5_d3js7"]
+
+[node name="pauseMenu" type="CanvasLayer"]
+process_mode = 2
+layer = 2
+script = ExtResource("1_rbfas")
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+top_level = true
+z_index = 100
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 350.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_48y8x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Upgrade"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Opt1" type="Button" parent="Panel/VBoxContainer/VBoxContainer" groups=["button_ui"]]
+layout_mode = 2
+text = "Opt1"
+
+[node name="Opt2" type="Button" parent="Panel/VBoxContainer/VBoxContainer" groups=["button_ui"]]
+layout_mode = 2
+text = "Opt2"
+
+[node name="exit" type="Button" parent="Panel/VBoxContainer/VBoxContainer" groups=["button_ui"]]
+layout_mode = 2
+text = "Opt3"
+
+[node name="UiButtonSound" parent="." instance=ExtResource("3_8u8gq")]
+
+[node name="fly_in_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bb52t")
+bus = &"SFX"
+
+[node name="SceneFader" parent="." instance=ExtResource("5_d3js7")]

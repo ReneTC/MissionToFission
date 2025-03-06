@@ -28,7 +28,7 @@ static var enrich_percent: float = 0.80
 static var keep_enriched: bool = false
 static var enable_moderation:bool = false
 static var enable_xenon:bool = false
-static var enable_sponteniues_neutrons:bool = false
+static var enable_sponteniues_neutrons:bool = true
 
 func get_random_decay_time() -> float:
 	return 50. * randf() + 2.

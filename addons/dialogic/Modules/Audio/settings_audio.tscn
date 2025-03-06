@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2qgetjc3mfo3"]
 
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Audio/settings_audio.gd" id="1_2iyyr"]
+[ext_resource type="Script" uid="uid://caq2q8hma5oog" path="res://addons/dialogic/Modules/Audio/settings_audio.gd" id="1_2iyyr"]
 [ext_resource type="PackedScene" uid="uid://dbpkta2tjsqim" path="res://addons/dialogic/Editor/Common/hint_tooltip_icon.tscn" id="2_o1ban"]
 
 [node name="Audio" type="VBoxContainer"]

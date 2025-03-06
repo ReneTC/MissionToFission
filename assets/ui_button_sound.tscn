@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjqvkbkt7yhvl"]
 
-[ext_resource type="Script" path="res://assets/ui_button_sound.gd" id="1_rep2r"]
+[ext_resource type="Script" uid="uid://dbwx2slgvwvnd" path="res://assets/ui_button_sound.gd" id="1_rep2r"]
 [ext_resource type="AudioStream" uid="uid://7ugi3d0mc6xk" path="res://assets/sounds/SciFiNotification2.wav" id="2_q2k3g"]
 [ext_resource type="AudioStream" uid="uid://bdylakknn516y" path="res://assets/sounds/SciFiNotification1.wav" id="3_arxmi"]
 

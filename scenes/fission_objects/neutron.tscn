@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://biw1q2eoojc7i"]
 
-[ext_resource type="Script" path="res://scenes/fission_objects/neutron.gd" id="1_q8b54"]
+[ext_resource type="Script" uid="uid://bokbwc1l3l7pw" path="res://scenes/fission_objects/neutron.gd" id="1_q8b54"]
 [ext_resource type="AudioStream" uid="uid://cdxujixqqccnt" path="res://assets/sounds/geig_short.mp3" id="2_f1fve"]
 [ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="3_xy1x8"]
 

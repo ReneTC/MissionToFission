@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://t2dui8ppm3a4"]
 
-[ext_resource type="Script" path="res://addons/maaacks_credits_scene/base/scenes/credits/credits.gd" id="1_0jkpu"]
+[ext_resource type="Script" uid="uid://btvdcylg387ma" path="res://addons/maaacks_credits_scene/base/scenes/credits/credits.gd" id="1_0jkpu"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3

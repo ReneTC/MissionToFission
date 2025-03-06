@@ -5,8 +5,7 @@ class_name GameRunner
 static var map_to_load: String = "res://scenes/maps/basic_reactor.tscn"
 static var map_loaded:Node = null
 static var neutron_on_click: bool = true
-var goal:float = 400
-var margin_error:float = 100
+
 # get fission objects
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
@@ -19,7 +18,15 @@ var x_row_build:int = 0
 var y_row_build:int = 0 
 var margin: int = 60
 
+# game settings
+var game_mode_enabled: bool = false
+var goal:float = 400
+var margin_error:float = 100
+var countdown_till_loss:int = 30 
+var countdown_till_upgrade:int = 10 # 1 minutes
+var score_timer:float = 0.
 var game_paused: bool = false:
+	
 	get:
 		return game_paused
 	set(value): 
@@ -61,40 +68,66 @@ func _ready() -> void:
 	# get input of bottoms 
 	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.button_pressed = Atom.keep_enriched
 	
+	# set timers 
+	$loss_timer.wait_time = countdown_till_loss
+	$upgrade_timer.wait_time = countdown_till_upgrade
+
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	game_logic(_delta)
 	update_hud()
 	
-	
+
+
+func game_logic(dt:float) -> void:
+	# check if game should start
+	if !game_mode_enabled:
+		if Neutron.neutrons_present >= goal - margin_error:
+			game_mode_enabled = true
+			$upgrade_timer.start()
+			
+	# if game is running, add score
+	if game_mode_enabled and !game_paused:
+		score_timer += dt
+		
+		# check if you are out of bounds, then start loose timer
+		var out_of_bounds_neutrons: bool = Neutron.neutrons_present <= goal - margin_error or Neutron.neutrons_present >= goal + margin_error
+		if out_of_bounds_neutrons and $loss_timer.is_stopped():
+			$loss_timer.start()
+		# stop loose timer if you recovered neutrons activity
+		if !$loss_timer.is_stopped() and !out_of_bounds_neutrons:
+				$loss_timer.stop()
+				
 func update_hud() -> void:
 	'''
-	This function updates the game HUD. Such as erichiment percent, the goal and so on.
+	This function updates the game HUD / visuals. Such as erichiment percent, the goal and so on.
 	'''
-	if $State/State.is_visible_in_tree():
-		# only calc every 30 frame
-		if Engine.get_physics_frames() % 15 == 1:
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons.value = Neutron.neutrons_present
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value.text = str(Neutron.neutrons_present)
+	if Engine.get_physics_frames() % 15 == 1:
+		
+		# update game counter (score and such)
+		if game_mode_enabled and $GameScore/GameScore.is_visible_in_tree():
+			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button.text = "Survive: %.1f" % score_timer
+			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button2.text = "Upgrade: %d" % $upgrade_timer.time_left
+			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button3.text = "Loose: %d" % $loss_timer.time_left
 
-			var get_min_size:float = 370.0
-			var get_slide_max_value:float = $State/State/MarginContainer/VBoxContainer2/HSlider_neutrons.max_value
-			var pix_value:float = lerp(0.0, get_min_size, float(Neutron.neutrons_present)/get_slide_max_value)
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/value.position[0] = pix_value - 20
-			var min_accept_value:float = lerp(0.0, get_min_size, float(goal - margin_error)/get_slide_max_value)
-			var max_accept_value:float = lerp(0.0, get_min_size, float(goal +  margin_error)/get_slide_max_value)
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/min_accept.text = str(goal - margin_error)
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/min_accept.position[0] = float(min_accept_value) - 10
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/max_accept.text = str(goal + margin_error)
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/max_accept.position[0] = float(max_accept_value) - 10
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/accepted_range.position[0] = float(min_accept_value)
-			$State/State/MarginContainer/VBoxContainer2/HSlider_neutrons/accepted_range.size[0] = float(max_accept_value) - float(min_accept_value)
-			# adjust size
-			# var max_accept_number = 300 # test
+			$"GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar".max_value = countdown_till_upgrade
+			$"GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar".value = $upgrade_timer.time_left
+			$"GameScore/GameScore/MarginContainer/VBoxContainer2/loose-bar".max_value = countdown_till_loss
+			$"GameScore/GameScore/MarginContainer/VBoxContainer2/loose-bar".value = $loss_timer.time_left
 	
-			# percent enrich shower
+		# update neutron bar
+		if $State/State.is_visible_in_tree():
+			$State/State/Label.text =  str(Neutron.neutrons_present)
+			$State/State/HSlider_neutrons.accepted_range = Vector2(goal - margin_error, goal + margin_error)
+			$State/State/HSlider_neutrons.set_current_value(Neutron.neutrons_present)
+		
+
+		# Update enrich percent shower 
+		if $Control/Control.is_visible_in_tree():
 			var percent: float =  (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
-			$State/State/MarginContainer/VBoxContainer2/ProgressBar.value = percent
-			$State/State/MarginContainer/VBoxContainer2/ProgressBar/Label.text = "Enrichment: " + str("%.1f" %percent) + "%"
+			$Control/Control/MarginContainer/VBoxContainer/ProgressBar.value = percent
+			$Control/Control/MarginContainer/VBoxContainer/ProgressBar/Label.text = "Enrichment: " + str("%.1f" %percent) + "%"
 			
 		
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
@@ -102,6 +135,9 @@ func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Starts auomatic enrichment of atoms
 	'''
 	Atom.set_auto_enrich(toggled_on)
+	# Update text
+	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.text = "Auto enrich " + str((1 - Atom.enrich_percent) * 100) + "%"
+	
 	if toggled_on:
 		$enrich_timer.start()
 		Atom.enrich_check()
@@ -126,8 +162,6 @@ func build_grid_and_center(x_grid, y_grid) -> void:
 	'''
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
-	# store 
-	
 	# add atoms 
 	for x in range(0,x_grid):
 		for y in range(0, y_grid): 
@@ -137,7 +171,7 @@ func build_grid_and_center(x_grid, y_grid) -> void:
 
 		if x % 3 == 0:
 			var new_controlRod:Node = controlRod_scene.instantiate()
-			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
+			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -300)) 
 			add_child(new_controlRod)
 			
 	# tween camera to center newly build grids of atoms. Only x position at the moment
@@ -149,4 +183,4 @@ func build_grid_and_center(x_grid, y_grid) -> void:
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	tween.tween_property($Camera2D, "position", Vector2(center_x, 0), 2)
+	tween.tween_property($Camera2D, "position", Vector2(center_x, 0), 1)

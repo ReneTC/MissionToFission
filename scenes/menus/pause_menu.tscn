@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://btg6pnsjf142h"]
 
-[ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_1qkhw"]
+[ext_resource type="Script" uid="uid://t04u8cbyhle4" path="res://scenes/menus/pause_menu.gd" id="1_1qkhw"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_upnrw"]
 [ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="3_ui6hq"]
 [ext_resource type="AudioStream" uid="uid://ctnc2iu4a0atj" path="res://assets/sounds/LittleSwoosh5.wav" id="4_ptn75"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://uw7j7tx3ve6x"]
 
-[ext_resource type="Script" path="res://scenes/fission_objects/water.gd" id="1_1rrdm"]
+[ext_resource type="Script" uid="uid://dsao1ad1linuu" path="res://scenes/fission_objects/water.gd" id="1_1rrdm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjm0m"]
 size = Vector2(15.34, 20)

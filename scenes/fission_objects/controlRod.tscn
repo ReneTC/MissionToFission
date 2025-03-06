@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cq7kk7ce0ad1t"]
 
-[ext_resource type="Script" path="res://scenes/fission_objects/controlRod.gd" id="1_to805"]
+[ext_resource type="Script" uid="uid://2bemiutpreon" path="res://scenes/fission_objects/controlRod.gd" id="1_to805"]
 [ext_resource type="PackedScene" uid="uid://cgakf86pda6cu" path="res://assets/control_rod_sound.tscn" id="2_sckkt"]
 [ext_resource type="AudioStream" uid="uid://b3ha0ssq3nvq3" path="res://assets/sounds/loop_tet_h.mp3" id="3_x2umj"]
 [ext_resource type="AudioStream" uid="uid://ds0uu75svhju7" path="res://assets/sounds/hydralic_stop.mp3" id="4_8wfnx"]

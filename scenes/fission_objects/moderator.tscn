@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btjianbxv3h1x"]
 
-[ext_resource type="Script" path="res://scenes/fission_objects/moderator.gd" id="1_7d0g8"]
+[ext_resource type="Script" uid="uid://bj7nmrshwudl0" path="res://scenes/fission_objects/moderator.gd" id="1_7d0g8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vij6s"]
 size = Vector2(15.34, 20)
