@@ -19,9 +19,10 @@ var y_row_build:int = 0
 var margin: int = 60
 
 # game settings
-var game_mode_enabled: bool = false
-var goal:float = 400
-var margin_error:float = 100
+static var game_mode_enabled: bool = false
+static var game_not_started: bool = true
+static var goal:float = 400
+static var margin_error:float = 100
 var countdown_till_loss:int = 30 
 var countdown_till_upgrade:int = 10 # 1 minutes
 var score_timer:float = 0.
@@ -71,7 +72,11 @@ func _ready() -> void:
 	# set timers 
 	$loss_timer.wait_time = countdown_till_loss
 	$upgrade_timer.wait_time = countdown_till_upgrade
-
+	
+	if game_mode_enabled:
+		get_node("GameScore").show()
+	else:
+		get_node("GameScore").hide()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -82,13 +87,14 @@ func _process(_delta: float) -> void:
 
 func game_logic(dt:float) -> void:
 	# check if game should start
-	if !game_mode_enabled:
+	if game_mode_enabled and game_not_started:
 		if Neutron.neutrons_present >= goal - margin_error:
 			game_mode_enabled = true
+			game_not_started = false
 			$upgrade_timer.start()
 			
 	# if game is running, add score
-	if game_mode_enabled and !game_paused:
+	if game_mode_enabled and !game_paused and !game_not_started:
 		score_timer += dt
 		
 		# check if you are out of bounds, then start loose timer

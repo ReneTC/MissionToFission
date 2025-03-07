@@ -10,7 +10,5 @@ var controlRod_scene:PackedScene = load("res://scenes/fission_objects/controlRod
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_parent().get_node("Control").show()
-	get_parent().get_node("State").show()
-	get_parent().get_node("GameScore").hide()
+	GameRunner.game_mode_enabled = false
 	get_parent().build_grid_and_center(x_grid_range, y_grid_range)

@@ -12,6 +12,7 @@ var x_grid_range: int = 10
 var y_grid_range: int = 6
 var margin: int = 60
 
+var game_runner_instant: Node = null
 
 func _ready() -> void:
 	
@@ -22,6 +23,8 @@ func _ready() -> void:
 	# disable neutron counter 
 	get_parent().goal = 100
 	get_parent().margin_error = 20
+	game_runner_instant = get_parent()
+	game_runner_instant.game_mode_enabled = false
 	get_parent().get_node("Control").hide()
 	get_parent().get_node("State").hide()
 	get_parent().get_node("GameScore").hide()

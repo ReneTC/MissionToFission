@@ -50,7 +50,7 @@ offset = Vector2(0, -1000)
 anchor_mode = 0
 
 [node name="SceneFader" parent="." instance=ExtResource("4_oxp31")]
-position = Vector2(568, 86)
+position = Vector2(842, 260)
 
 [node name="pauseMenu" parent="." node_paths=PackedStringArray("game_runner") instance=ExtResource("3_vb0gl")]
 visible = false
@@ -208,9 +208,16 @@ script = ExtResource("5_tngng")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="State/State"]
 layout_mode = 2
-value = 50.0
+max_value = 1000.0
+value = 500.0
 fill_mode = 4
+radial_initial_angle = 315.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 83.27)
 texture_under = ExtResource("5_rngj5")
+texture_progress = ExtResource("5_rngj5")
+tint_over = Color(0.471143, 0.402246, 0.723374, 1)
+tint_progress = Color(0.495881, 0.998768, 0, 1)
 
 [node name="Indi" type="Sprite2D" parent="State/State/TextureProgressBar"]
 position = Vector2(167, 161)
