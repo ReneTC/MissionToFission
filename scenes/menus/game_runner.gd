@@ -108,9 +108,7 @@ func update_hud() -> void:
 		# update game counter (score and such)
 		if game_mode_enabled and $GameScore/GameScore.is_visible_in_tree():
 			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button.text = "Survive: %.1f" % score_timer
-			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button2.text = "Upgrade: %d" % $upgrade_timer.time_left
-			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button3.text = "Loose: %d" % $loss_timer.time_left
-
+	
 			$"GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar".max_value = countdown_till_upgrade
 			$"GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar".value = $upgrade_timer.time_left
 			$"GameScore/GameScore/MarginContainer/VBoxContainer2/loose-bar".max_value = countdown_till_loss
@@ -118,9 +116,7 @@ func update_hud() -> void:
 	
 		# update neutron bar
 		if $State/State.is_visible_in_tree():
-			$State/State/Label.text =  str(Neutron.neutrons_present)
-			$State/State/HSlider_neutrons.accepted_range = Vector2(goal - margin_error, goal + margin_error)
-			$State/State/HSlider_neutrons.set_current_value(Neutron.neutrons_present)
+			$State/State.set_current_value(Neutron.neutrons_present)
 		
 
 		# Update enrich percent shower 
@@ -152,13 +148,13 @@ func _on_enrich_timer_timeout() -> void:
 func _on_check_box_spontain_neutron_emis_toggled(toggled_on: bool) -> void:
 	Atom.enable_sponteniues_neutrons = toggled_on
 	if toggled_on:
-		var atoms: Array = get_tree().get_nodes_in_group("atoms")
+		var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
 		for atom in atoms:
 			if not atom.is_enriched:
 				atom.start_spont_neutron_emission()
 
 
-func build_grid_and_center(x_grid, y_grid) -> void:
+func build_grid_and_center(x_grid:int, y_grid:int) -> void:
 	'''
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
@@ -175,11 +171,11 @@ func build_grid_and_center(x_grid, y_grid) -> void:
 			add_child(new_controlRod)
 			
 	# tween camera to center newly build grids of atoms. Only x position at the moment
-	var atoms: Array = get_tree().get_nodes_in_group("atoms")
-	var atom_x_positons = []
+	var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
+	var atom_x_positons: Array = []
 	for atom in atoms:
 		atom_x_positons.append(atom.global_position[0])
-	var center_x = (atom_x_positons.min() + atom_x_positons.max())/2 - $Camera2D.get_screen_center_position()[0]
+	var center_x: float = (atom_x_positons.min() + atom_x_positons.max())/2 - $Camera2D.get_screen_center_position()[0]
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)

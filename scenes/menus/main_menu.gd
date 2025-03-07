@@ -18,7 +18,7 @@ func _ready() -> void:
 	Atom.enable_sponteniues_neutrons = true
 	
 	# connect not implimented buttons
-	var buttons_404: Array = get_tree().get_nodes_in_group("404")
+	var buttons_404: Array[Node] = get_tree().get_nodes_in_group("404")
 	for button in buttons_404:
 		button.pressed.connect(_on_404_pressed)
 	

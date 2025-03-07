@@ -12,4 +12,5 @@ var controlRod_scene:PackedScene = load("res://scenes/fission_objects/controlRod
 func _ready() -> void:
 	get_parent().get_node("Control").show()
 	get_parent().get_node("State").show()
+	get_parent().get_node("GameScore").hide()
 	get_parent().build_grid_and_center(x_grid_range, y_grid_range)

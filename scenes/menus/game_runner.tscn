@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bu7kdn5dr5aor"]
+[gd_scene load_steps=8 format=3 uid="uid://bu7kdn5dr5aor"]
 
 [ext_resource type="Script" uid="uid://cmagfu3k1wtwr" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
 [ext_resource type="PackedScene" uid="uid://btg6pnsjf142h" path="res://scenes/menus/pause_menu.tscn" id="3_vb0gl"]
 [ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="4_oxp31"]
-[ext_resource type="Script" uid="uid://cuhga5ms3gvhb" path="res://scenes/menus/h_slider_neutrons.gd" id="5_mvdwj"]
+[ext_resource type="Texture2D" uid="uid://dej04prvvqbi3" path="res://assets/bg.png" id="5_rngj5"]
+[ext_resource type="Script" uid="uid://b718qs4uwc73e" path="res://scenes/menus/speedometer.gd" id="5_tngng"]
+[ext_resource type="Texture2D" uid="uid://bp80li7irhnuy" path="res://assets/indi.png" id="7_tngng"]
 
 [node name="GameRunner" type="Node"]
 process_mode = 3
@@ -48,7 +50,7 @@ offset = Vector2(0, -1000)
 anchor_mode = 0
 
 [node name="SceneFader" parent="." instance=ExtResource("4_oxp31")]
-position = Vector2(522, 64)
+position = Vector2(568, 86)
 
 [node name="pauseMenu" parent="." node_paths=PackedStringArray("game_runner") instance=ExtResource("3_vb0gl")]
 visible = false
@@ -115,15 +117,12 @@ vertical_alignment = 3
 [node name="GameScore" type="CanvasLayer" parent="."]
 
 [node name="GameScore" type="MarginContainer" parent="GameScore"]
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -400.0
-offset_top = -188.0
+offset_bottom = 188.0
 grow_horizontal = 0
-grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("3_4kpoj")
@@ -150,7 +149,6 @@ disabled = true
 text = "Score: 0.0"
 
 [node name="upgrade-bar" type="ProgressBar" parent="GameScore/GameScore/MarginContainer/VBoxContainer2"]
-visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 show_percentage = false
@@ -191,42 +189,62 @@ vertical_alignment = 3
 [node name="State" type="CanvasLayer" parent="."]
 
 [node name="State" type="MarginContainer" parent="State"]
-custom_minimum_size = Vector2(1000, 20)
-anchors_preset = 7
-anchor_left = 0.5
+custom_minimum_size = Vector2(200, 230)
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -500.0
-offset_top = -56.0
-offset_right = 500.0
-grow_horizontal = 2
+offset_left = -354.0
+offset_top = -200.0
+grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("3_4kpoj")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+script = ExtResource("5_tngng")
 
-[node name="HSlider_neutrons" type="HSlider" parent="State/State"]
-custom_minimum_size = Vector2(0, 20)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="State/State"]
 layout_mode = 2
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.0
-max_value = 1000.0
-value = 300.0
-rounded = true
-script = ExtResource("5_mvdwj")
-accepted_range = Vector2(100, 600)
-current_value = 300.0
+value = 50.0
+fill_mode = 4
+texture_under = ExtResource("5_rngj5")
 
-[node name="Label" type="Label" parent="State/State"]
-visible = false
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "200"
+[node name="Indi" type="Sprite2D" parent="State/State/TextureProgressBar"]
+position = Vector2(167, 161)
+rotation = -2.61799
+scale = Vector2(0.928771, 0.950855)
+texture = ExtResource("7_tngng")
+offset = Vector2(48.7641, -19.0051)
+
+[node name="min" type="Label" parent="State/State/TextureProgressBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 160.0
+offset_right = 42.0
+offset_bottom = 183.0
+text = "0"
+
+[node name="max" type="Label" parent="State/State/TextureProgressBar"]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 160.0
+offset_right = 334.0
+offset_bottom = 183.0
+text = "1000"
+
+[node name="currentVal" type="Label" parent="State/State/TextureProgressBar"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 140.0
+offset_right = 202.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 30
+text = "400"
 horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="enrich_timer" type="Timer" parent="."]
 wait_time = 60.0

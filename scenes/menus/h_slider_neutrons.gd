@@ -27,11 +27,13 @@ func _draw() -> void:
 	draw_circle(marker_max_pos, 15.0, Color.GRAY)
 	draw_string(ThemeDB.fallback_font, marker_max_pos + offset, str(int(accepted_range.y)), HORIZONTAL_ALIGNMENT_CENTER, -1, 12, Color.BLACK)
 	
-	const marker_size := Vector2(30.0, 20.0)
-	const marker_offset := Vector2(0.0, -18.0)
-	# draw_rect(Rect2(marker_curr_pos - marker_size/2.0 + marker_offset, marker_size), Color.GRAY)
+	const marker_size := Vector2(8.0, 30.0)
+	const marker_offset := Vector2(-10.0, -30.0)
+	draw_rect(Rect2(marker_curr_pos - marker_size/2.0 + marker_offset, marker_size), Color.GRAY)
 	# draw_circle(marker_curr_pos + Vector2.UP * 8.0, 4.0, Color.GRAY)
-	draw_string(ThemeDB.fallback_font, marker_curr_pos + offset + Vector2.UP * (-marker_offset.y), str(int(current_value)), HORIZONTAL_ALIGNMENT_CENTER, -1, 40, Color.BLACK)
+	var w:float = ThemeDB.fallback_font.get_string_size(str(int(current_value))).x
+	draw_string(ThemeDB.fallback_font, marker_curr_pos - Vector2(w, -10) + offset + Vector2.UP * (-marker_offset.y), str(int(current_value)), HORIZONTAL_ALIGNMENT_CENTER, -1, 40, Color.BLACK)
 	
 	self.value = current_value
-	
+	# https://www.shutterstock.com/search/barom%C3%A8tre-design 
+	# THIS IS WHAT WE NEED 

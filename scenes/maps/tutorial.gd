@@ -24,6 +24,8 @@ func _ready() -> void:
 	get_parent().margin_error = 20
 	get_parent().get_node("Control").hide()
 	get_parent().get_node("State").hide()
+	get_parent().get_node("GameScore").hide()
+	
 	
 	# start from start 
 	# tut_state = "first_chain_reaction" # skip for debug DElete ME 
