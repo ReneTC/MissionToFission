@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://87hdy61vf57a"]
 
-[ext_resource type="Script" uid="uid://t04u8cbyhle4" path="res://scenes/menus/pause_menu.gd" id="1_rbfas"]
+[ext_resource type="Script" uid="uid://bl25whxhsgf3a" path="res://scenes/menus/game_helpers/upgrade_menu.gd" id="1_5xgmy"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="2_48y8x"]
 [ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="3_8u8gq"]
 [ext_resource type="AudioStream" uid="uid://ctnc2iu4a0atj" path="res://assets/sounds/LittleSwoosh5.wav" id="4_bb52t"]
 [ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="5_d3js7"]
 
-[node name="pauseMenu" type="CanvasLayer"]
+[node name="upgradeMenu" type="CanvasLayer"]
 process_mode = 2
 layer = 2
-script = ExtResource("1_rbfas")
+script = ExtResource("1_5xgmy")
 
 [node name="Panel" type="Panel" parent="."]
 show_behind_parent = true
@@ -41,7 +41,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
-text = "Upgrade"
+text = "Choose wisely"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]

@@ -24,14 +24,19 @@ var neutron_scene: PackedScene
 static var enriched_present: int = 0
 static var unenriched_present: int = 0
 static var enrich_percent: float = 0.80
+static var enrich_speed:float = 1.0 # sec #TODO not done
+static var keep_enriched: bool = true
 
-static var keep_enriched: bool = false
+# spont emission neutron / delayed neutrons settings
+static var enable_sponteniues_neutrons:bool = true
+static var spont_emis_time:float = 1.0 # 1 is normalized
+
+# other settings 
 static var enable_moderation:bool = false
 static var enable_xenon:bool = false
-static var enable_sponteniues_neutrons:bool = true
 
 func get_random_decay_time() -> float:
-	return 50. * randf() + 2.
+	return (50. * randf() + 2.) * spont_emis_time
 
 func _ready() -> void:
 	neutron_scene = load("res://scenes/fission_objects/neutron.tscn")

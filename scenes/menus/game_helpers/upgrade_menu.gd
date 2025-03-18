@@ -6,21 +6,18 @@ extends CanvasLayer
 func _ready() -> void:
 	# add sounds to button
 	$UiButtonSound.connect_button_ui()
-
-func _on_game_runner_toggle_game_paused(is_paused:bool) -> void:
-	if is_paused:
-		show()
-		animate_in()
-		
-	else:
-		hide()
-		animate_out()
-
-func animate_in() -> void:
-	$fly_in_sound.play()
-
+	hide()
 	
-func animate_out() -> void:
-	$fly_in_sound.play()
+func pop_in_select_actions() -> void:
+	'''
+	- generate 3 random actions
+	- pause game 
+	- pop in
+	 
+	'''
+	print("pop in select actions")
+	show()
+
+
 
 	

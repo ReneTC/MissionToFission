@@ -39,7 +39,8 @@ var game_paused: bool = false:
 func _unhandled_input(event:InputEvent) -> void:
 	# close program on esc button
 	if event.is_action_pressed("ui_cancel"):
-		game_paused = !game_paused
+		if $pauseMenu.can_pause:
+			game_paused = !game_paused
 	
 	if event is InputEventMouseButton and not event.is_pressed() and not game_paused and neutron_on_click:		
 		match event.button_index:
@@ -54,9 +55,8 @@ func _ready() -> void:
 	# Load the scene
 	var scene:Resource = load(self.map_to_load)
 	
-	# Instantiate the scene
+	# Instantiate the scene and Add the instance to the current scene
 	map_loaded = scene.instantiate()
-	# Add the instance to the current scene
 	add_child(map_loaded)
 	
 	# tween in map 
@@ -69,9 +69,12 @@ func _ready() -> void:
 	# get input of bottoms 
 	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.button_pressed = Atom.keep_enriched
 	
-	# set timers 
+	# set timers and settings
 	$loss_timer.wait_time = countdown_till_loss
 	$upgrade_timer.wait_time = countdown_till_upgrade
+	_on_check_box_enrich_toggled(true)
+	_on_check_box_spontain_neutron_emis_toggled(true)
+
 	
 	if game_mode_enabled:
 		get_node("GameScore").show()
@@ -82,7 +85,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	game_logic(_delta)
 	update_hud()
-	
 
 
 func game_logic(dt:float) -> void:
@@ -137,6 +139,7 @@ func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	Starts auomatic enrichment of atoms
 	'''
 	Atom.set_auto_enrich(toggled_on)
+	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.button_pressed = toggled_on
 	# Update text
 	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.text = "Auto enrich " + str((1 - Atom.enrich_percent) * 100) + "%"
 	
@@ -153,6 +156,7 @@ func _on_enrich_timer_timeout() -> void:
 
 func _on_check_box_spontain_neutron_emis_toggled(toggled_on: bool) -> void:
 	Atom.enable_sponteniues_neutrons = toggled_on
+	$Control/Control/MarginContainer/VBoxContainer/CheckBox_spontain_neutron_emis.button_pressed = toggled_on
 	if toggled_on:
 		var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
 		for atom in atoms:
@@ -186,3 +190,21 @@ func build_grid_and_center(x_grid:int, y_grid:int) -> void:
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($Camera2D, "position", Vector2(center_x, 0), 1)
+	
+func lost() -> void:
+	''' 
+	Pop up message, save score, exit game. 
+	'''
+	print("GAME LOST")
+	
+	pass 
+
+
+func _on_loss_timer_timeout() -> void:
+	game_paused = true
+	lost()
+
+
+func _on_upgrade_timer_timeout() -> void:
+	game_paused = true
+	$pauseMenu.upgrade_game_mode()

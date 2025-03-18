@@ -83,14 +83,18 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Control/MarginContainer"]
 layout_mode = 2
 
-[node name="CheckBox_enrich" type="CheckBox" parent="Control/Control/MarginContainer/VBoxContainer"]
+[node name="CheckBox_enrich" type="CheckButton" parent="Control/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4kpoj")
 theme_override_font_sizes/font_size = 10
+button_pressed = true
 text = "Auto enrich 20%"
 
-[node name="CheckBox_spontain_neutron_emis" type="CheckBox" parent="Control/Control/MarginContainer/VBoxContainer"]
+[node name="CheckBox_spontain_neutron_emis" type="CheckButton" parent="Control/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4kpoj")
 theme_override_font_sizes/font_size = 10
+button_pressed = true
 text = "Spontaneous Neutron Emission"
 
 [node name="ProgressBar" type="ProgressBar" parent="Control/Control/MarginContainer/VBoxContainer"]
@@ -266,3 +270,5 @@ process_mode = 1
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich" to="." method="_on_check_box_enrich_toggled"]
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/CheckBox_spontain_neutron_emis" to="." method="_on_check_box_spontain_neutron_emis_toggled"]
 [connection signal="timeout" from="enrich_timer" to="." method="_on_enrich_timer_timeout"]
+[connection signal="timeout" from="loss_timer" to="." method="_on_loss_timer_timeout"]
+[connection signal="timeout" from="upgrade_timer" to="." method="_on_upgrade_timer_timeout"]

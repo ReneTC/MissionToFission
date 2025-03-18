@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://cn5xuu2uvf5w3"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://cn5xuu2uvf5w3"]
 
 [ext_resource type="StyleBox" uid="uid://bjyv5lg5wj1jp" path="res://assets/themes/style/hover_pressed.tres" id="1_mt7qf"]
 
@@ -9,6 +9,26 @@ content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0.823529, 0.823529, 0.823529, 0.745098)
 border_color = Color(0, 0.234856, 0.106971, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7egdk"]
+bg_color = Color(0.588235, 0.588235, 0.588235, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0u25"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdjgs"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.351563, 0.351563, 0.351563, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -114,9 +134,12 @@ Button/styles/focus = ExtResource("1_mt7qf")
 Button/styles/hover = ExtResource("1_mt7qf")
 Button/styles/normal = SubResource("StyleBoxFlat_kjpiw")
 Button/styles/pressed = ExtResource("1_mt7qf")
-CheckButton/styles/focus = ExtResource("1_mt7qf")
-CheckButton/styles/hover = ExtResource("1_mt7qf")
-CheckButton/styles/pressed = ExtResource("1_mt7qf")
+CheckButton/colors/font_hover_color = Color(1, 1, 1, 1)
+CheckButton/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+CheckButton/styles/focus = null
+CheckButton/styles/hover = SubResource("StyleBoxFlat_7egdk")
+CheckButton/styles/hover_mirrored = SubResource("StyleBoxFlat_p0u25")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_pdjgs")
 HSlider/constants/center_grabber = 0
 HSlider/constants/grabber_offset = 0
 HSlider/icons/grabber = SubResource("ImageTexture_rw3pn")
