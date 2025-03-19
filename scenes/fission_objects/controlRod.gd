@@ -1,10 +1,10 @@
 extends Area2D
 class_name ControlRod
 
-@export var height: float = 900
-@export var width: float = 10
-@export var color:Color = Color("444444")
-@export var speed: float = 1
+var height: float = 900
+var width: float = 10
+var color:Color = Color("444444")
+static var speed: float = 1
 
 
 func _ready() -> void:
@@ -33,6 +33,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _process(_delta: float) -> void:
+	# automatic control here 
 	if Input.is_action_just_pressed("w") or Input.is_action_just_pressed("s"):
 		$looper.play()
 
@@ -50,5 +51,9 @@ func get_input() -> void:
 
 	position.y = clamp(position.y+direction*speed, -420, 480)
 
+func move_ctrl_rods() -> void:
+	# code to move every seond ctrl rod here
+	pass 
+	
 func _physics_process(_delta:float) -> void:
 	get_input()

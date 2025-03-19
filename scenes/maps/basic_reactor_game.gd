@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 	GameRunner.game_mode_enabled = true
 	GameRunner.goal = 500
-	GameRunner.margin_error = 250
+	GameRunner.margin_error = 400
 	
 	get_parent().get_node("Control").show()
 	get_parent().get_node("State").show()

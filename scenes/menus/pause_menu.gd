@@ -9,6 +9,11 @@ func _ready() -> void:
 	hide()
 	# add sounds to button
 	$UiButtonSound.connect_button_ui()
+	
+	# listen for upgrade buttons 
+	for button in $Panel/upgradeMenu/upgradeContainer.get_children():
+		if button is Button:
+			button.pressed.connect(_on_button_pressed.bind(button))
 
 func _on_game_runner_toggle_game_paused(is_paused:bool) -> void:
 	if is_paused:
@@ -48,23 +53,23 @@ func new_map() -> void:
 func _on_exit_pressed() -> void:
 	get_tree().quit()
 
-func upgrade_game_mode() -> void:
+func upgrade_game_mode(random_keys:Array) -> void:
 	# lock such that user dont esc pause 
 	can_pause = false
-	# listen to buttons 
-	for button in $Panel/upgradeMenu/upgradeContainer.get_children():
-		if button is Button:
-			button.pressed.connect(_on_button_pressed.bind(button))
+
 			
+	# generate 3 options - maybe they should be sent by arg
+	$Panel/upgradeMenu/upgradeContainer/Opt1.text = random_keys[0]
+	$Panel/upgradeMenu/upgradeContainer/Opt2.text = random_keys[1]
+	$Panel/upgradeMenu/upgradeContainer/Opt3.text = random_keys[2]
+	
 	# show correct menu
 	$Panel/pauseMenu.hide()
 	$Panel/upgradeMenu.show()
-	# generate 3 options - maybe they should be sent by arg
 	
 func _on_button_pressed(button: Button) -> void:
 	# nlock pause lock
 	can_pause = true
-	game_runner.game_paused = false
 	
 	# convert to normal pause box
 	$Panel/pauseMenu.show()
@@ -72,4 +77,5 @@ func _on_button_pressed(button: Button) -> void:
 	
 
 	# return choice of upgrade
-	print("Button pressed:", button.name)
+	game_runner.game_paused = false
+	game_runner.call_upgrade(button.text)

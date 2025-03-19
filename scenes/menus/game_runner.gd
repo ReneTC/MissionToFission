@@ -86,6 +86,9 @@ func _process(_delta: float) -> void:
 	game_logic(_delta)
 	update_hud()
 
+	# TODO delete me:
+	if Input.is_action_just_pressed("w"):
+		make_bigger_reactor()
 
 func game_logic(dt:float) -> void:
 	# check if game should start
@@ -169,8 +172,8 @@ func build_grid_and_center(x_grid:int, y_grid:int) -> void:
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
 	# add atoms 
-	for x in range(0,x_grid):
-		for y in range(0, y_grid): 
+	for x in range(x_row_build, x_grid):
+		for y in range(y_row_build, y_grid): 
 			var new_atom:Node = atom_scene.instantiate()
 			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), true) 
 			add_child(new_atom) 
@@ -179,7 +182,9 @@ func build_grid_and_center(x_grid:int, y_grid:int) -> void:
 			var new_controlRod:Node = controlRod_scene.instantiate()
 			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -300)) 
 			add_child(new_controlRod)
-			
+	# store what has been build:
+	x_row_build = x_grid
+	y_row_build = y_grid 
 	# tween camera to center newly build grids of atoms. Only x position at the moment
 	var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
 	var atom_x_positons: Array = []
@@ -204,7 +209,41 @@ func _on_loss_timer_timeout() -> void:
 	game_paused = true
 	lost()
 
+# dict of possbilites for upgrades:
+var upgrade_dict:Dictionary = {
+	"Bigger reactor": make_bigger_reactor,
+	"Faster Delayed Neutrons": faster_delaed_neutrons,
+	"Slower moving Control rods": slower_moving_control_rods,
+	"Higher neutron activity goal": higher_neutron_goal,
+	"Smaller neutron margin": smaller_neutron_margin,
+}
 
 func _on_upgrade_timer_timeout() -> void:
 	game_paused = true
-	$pauseMenu.upgrade_game_mode()
+
+	var keys = upgrade_dict.keys()
+	keys.shuffle()
+	var random_keys = keys.slice(0, 3) 
+	$pauseMenu.upgrade_game_mode(random_keys)
+	
+
+func call_upgrade(key:String) -> void:
+	print(upgrade_dict[key])
+	upgrade_dict[key].call()
+
+
+
+func make_bigger_reactor() -> void:
+	build_grid_and_center(x_row_build+1, y_row_build+1)
+
+func faster_delaed_neutrons() -> void: 
+	Atom.spont_emis_time *= 0.75 
+
+func slower_moving_control_rods() -> void:
+	ControlRod.speed *= 0.75
+	
+func smaller_neutron_margin() -> void:
+	self.margin_error *= 0.75
+	
+func higher_neutron_goal() -> void:
+	self.goal += 100

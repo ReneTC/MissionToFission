@@ -86,6 +86,7 @@ layout_mode = 2
 text = "+ 25 % faster enrichment"
 
 [node name="Opt3" type="Button" parent="Panel/upgradeMenu/upgradeContainer" groups=["button_ui"]]
+visible = false
 layout_mode = 2
 text = "+ 25 % more delayed neutrons"
 
