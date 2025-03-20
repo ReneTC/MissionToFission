@@ -43,35 +43,36 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 alignment = 1
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+layout_mode = 2
+text = "Object to put:"
+
 [node name="CheckButton5" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 theme = ExtResource("2_xshqi")
+button_pressed = true
 button_group = ExtResource("2_2bgpg")
 text = "Neutron"
+flat = true
 
 [node name="CheckButton2" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 button_group = ExtResource("2_2bgpg")
 text = "Atom"
+flat = true
 
 [node name="CheckButton3" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 button_group = ExtResource("2_2bgpg")
 text = "Control Rod
 "
+flat = true
 
 [node name="CheckButton4" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 button_group = ExtResource("2_2bgpg")
 text = "Water"
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
-layout_mode = 2
-text = "Settings: 2"
-
-[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
-layout_mode = 2
-text = "Keep enriched"
+flat = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/CheckButton5" to="." method="_on_check_button_5_toggled"]

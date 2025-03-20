@@ -90,6 +90,42 @@ visible = false
 layout_mode = 2
 text = "+ 25 % more delayed neutrons"
 
+[node name="gameoverMenu" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_top = -8.0
+offset_right = 300.0
+offset_bottom = 309.0
+
+[node name="heading" type="Label" parent="Panel/gameoverMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="reason" type="Label" parent="Panel/gameoverMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "You didn't stay within the power limit. "
+horizontal_alignment = 1
+
+[node name="score" type="Label" parent="Panel/gameoverMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Your score is:"
+horizontal_alignment = 1
+
+[node name="main" type="Button" parent="Panel/gameoverMenu" groups=["button_ui"]]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="exit" type="Button" parent="Panel/gameoverMenu" groups=["button_ui"]]
+layout_mode = 2
+text = "Exit game"
+
 [node name="UiButtonSound" parent="." instance=ExtResource("3_ui6hq")]
 
 [node name="fly_in_sound" type="AudioStreamPlayer" parent="."]
@@ -97,7 +133,10 @@ stream = ExtResource("4_ptn75")
 bus = &"SFX"
 
 [node name="SceneFader" parent="." instance=ExtResource("5_03aqk")]
+position = Vector2(-4, -68)
 
 [connection signal="pressed" from="Panel/pauseMenu/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Panel/pauseMenu/main" to="." method="_on_main_pressed"]
 [connection signal="pressed" from="Panel/pauseMenu/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Panel/gameoverMenu/main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="Panel/gameoverMenu/exit" to="." method="_on_exit_pressed"]

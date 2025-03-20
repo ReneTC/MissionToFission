@@ -86,10 +86,6 @@ func _process(_delta: float) -> void:
 	game_logic(_delta)
 	update_hud()
 
-	# TODO delete me:
-	if Input.is_action_just_pressed("w"):
-		make_bigger_reactor()
-
 func game_logic(dt:float) -> void:
 	# check if game should start
 	if game_mode_enabled and game_not_started:
@@ -175,7 +171,7 @@ func build_grid_and_center(x_grid:int, y_grid:int) -> void:
 	for x in range(x_row_build, x_grid):
 		for y in range(y_row_build, y_grid): 
 			var new_atom:Node = atom_scene.instantiate()
-			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), true) 
+			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), true, true) 
 			add_child(new_atom) 
 
 		if x % 3 == 0:
@@ -186,23 +182,26 @@ func build_grid_and_center(x_grid:int, y_grid:int) -> void:
 	x_row_build = x_grid
 	y_row_build = y_grid 
 	# tween camera to center newly build grids of atoms. Only x position at the moment
+	center_cam_atoms()
+	
+
+	
+func center_cam_atoms() -> void:
 	var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
 	var atom_x_positons: Array = []
 	for atom in atoms:
 		atom_x_positons.append(atom.global_position[0])
-	var center_x: float = (atom_x_positons.min() + atom_x_positons.max())/2 - $Camera2D.get_screen_center_position()[0]
+	var center_x: float = (atom_x_positons.min() + atom_x_positons.max())/2
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	tween.tween_property($Camera2D, "position", Vector2(center_x, 0), 1)
+	tween.tween_property($Camera2D, "position", Vector2(center_x - DisplayServer.screen_get_size()[0]/2., 0), 1)
 	
 func lost() -> void:
 	''' 
 	Pop up message, save score, exit game. 
 	'''
-	print("GAME LOST")
-	
-	pass 
+	$pauseMenu.game_over_display(score_timer)
 
 
 func _on_loss_timer_timeout() -> void:
@@ -219,23 +218,52 @@ var upgrade_dict:Dictionary = {
 }
 
 func _on_upgrade_timer_timeout() -> void:
+	'''
+	generates 3 random upgrades and calls the pop up to ask whcih one user want
+	'''
 	game_paused = true
-
-	var keys = upgrade_dict.keys()
+	var keys:Array = upgrade_dict.keys()
 	keys.shuffle()
-	var random_keys = keys.slice(0, 3) 
+	var random_keys:Array = keys.slice(0, 3) 
 	$pauseMenu.upgrade_game_mode(random_keys)
 	
 
 func call_upgrade(key:String) -> void:
-	print(upgrade_dict[key])
+	'''
+	thsi function is called from the pop up, it will call the function to activate the user choice
+	'''
 	upgrade_dict[key].call()
 
 
 
 func make_bigger_reactor() -> void:
-	build_grid_and_center(x_row_build+1, y_row_build+1)
+	'''
+	expands the reactor size with one row and one coloumn and centers it
+	'''
+	for x in range(0, x_row_build):
+		var new_atom:Node = atom_scene.instantiate()
+		new_atom.initialize(Vector2(margin + margin*x, margin + margin*y_row_build), true) 
+		add_child(new_atom) 
 
+		if x % 3 == 0:
+			var new_controlRod:Node = controlRod_scene.instantiate()
+			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -300)) 
+			add_child(new_controlRod)
+			
+	for y in range(0, y_row_build):
+		var new_atom:Node = atom_scene.instantiate()
+		new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y), true) 
+		add_child(new_atom) 
+
+	var new_atom:Node = atom_scene.instantiate()
+	new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y_row_build), true) 
+	add_child(new_atom) 
+	
+	center_cam_atoms()
+	
+	x_row_build += 1
+	y_row_build += 1
+	
 func faster_delaed_neutrons() -> void: 
 	Atom.spont_emis_time *= 0.75 
 

@@ -11,7 +11,7 @@ var click_object:PackedScene = neutron_scene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# start debug 
-	DebugMenu.style = DebugMenu.Style.VISIBLE_DETAILED
+	# DebugMenu.style = DebugMenu.Style.VISIBLE_DETAILED
 
 	GameRunner.neutron_on_click = false
 

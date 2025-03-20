@@ -118,6 +118,53 @@ text = "Percent"
 horizontal_alignment = 1
 vertical_alignment = 3
 
+[node name="GodControl" type="VBoxContainer" parent="Control/Control/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HScrollBar2" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar2"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 356.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Enrich speed 1s"
+horizontal_alignment = 1
+
+[node name="HScrollBar" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 356.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Enrich Percent NOTDONE%"
+horizontal_alignment = 1
+
+[node name="HScrollBar3" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 5.0
+
+[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar3"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 356.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Spont emission speed 1s"
+horizontal_alignment = 1
+
 [node name="GameScore" type="CanvasLayer" parent="."]
 
 [node name="GameScore" type="MarginContainer" parent="GameScore"]

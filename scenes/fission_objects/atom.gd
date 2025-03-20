@@ -62,9 +62,17 @@ func _ready() -> void:
 	add_to_group("atoms")
 	
 	
-func initialize(pos_to_set:Vector2, encriched:bool = true) -> void:
+func initialize(pos_to_set:Vector2, encriched:bool = true, keep_enrich_percent: bool = false) -> void:
 	position = pos_to_set
 	is_enriched = encriched
+	
+	# overwride if atom should try and keep percentage of enrichment
+	if keep_enrich_percent:
+		if randf() > enrich_percent:
+			is_enriched = true
+		else:
+			is_enriched = false
+	
 
 
 func _draw() -> void:

@@ -79,3 +79,11 @@ func _on_button_pressed(button: Button) -> void:
 	# return choice of upgrade
 	game_runner.game_paused = false
 	game_runner.call_upgrade(button.text)
+	
+func game_over_display(score:float) -> void:
+	can_pause = false
+	
+	# show correct menu
+	$Panel/pauseMenu.hide()
+	$Panel/gameoverMenu.show()
+	$Panel/gameoverMenu/score.text = "Your score is: " + str(score)
