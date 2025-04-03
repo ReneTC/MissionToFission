@@ -119,14 +119,15 @@ horizontal_alignment = 1
 vertical_alignment = 3
 
 [node name="GodControl" type="VBoxContainer" parent="Control/Control/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 
-[node name="HScrollBar2" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
+[node name="HScrollBar_enrich_speed" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+max_value = 5.0
+value = 1.0
 
-[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar2"]
+[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_speed"]
 layout_mode = 2
 offset_left = 4.0
 offset_top = 2.0
@@ -136,26 +137,28 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Enrich speed 1s"
 horizontal_alignment = 1
 
-[node name="HScrollBar" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
+[node name="HScrollBar_enrich_percent" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+value = 20.0
 
-[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar"]
+[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent"]
 layout_mode = 2
 offset_left = 4.0
 offset_top = 2.0
 offset_right = 356.0
 offset_bottom = 30.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Enrich Percent NOTDONE%"
+text = "Enrich Percent 20"
 horizontal_alignment = 1
 
-[node name="HScrollBar3" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
+[node name="HScrollBar_spont_speed" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 max_value = 5.0
+value = 1.0
 
-[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar3"]
+[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_spont_speed"]
 layout_mode = 2
 offset_left = 4.0
 offset_top = 2.0
@@ -316,6 +319,10 @@ process_mode = 1
 
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich" to="." method="_on_check_box_enrich_toggled"]
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/CheckBox_spontain_neutron_emis" to="." method="_on_check_box_spontain_neutron_emis_toggled"]
+[connection signal="value_changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_speed" to="." method="_on_h_scroll_bar_enrich_speed_value_changed"]
+[connection signal="changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent" to="." method="_on_h_scroll_bar_enrich_percent_changed"]
+[connection signal="value_changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent" to="." method="_on_h_scroll_bar_enrich_percent_value_changed"]
+[connection signal="value_changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_spont_speed" to="." method="_on_h_scroll_bar_spont_speed_value_changed"]
 [connection signal="timeout" from="enrich_timer" to="." method="_on_enrich_timer_timeout"]
 [connection signal="timeout" from="loss_timer" to="." method="_on_loss_timer_timeout"]
 [connection signal="timeout" from="upgrade_timer" to="." method="_on_upgrade_timer_timeout"]

@@ -130,7 +130,7 @@ func update_hud() -> void:
 		if $Control/Control.is_visible_in_tree():
 			var percent: float =  (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
 			$Control/Control/MarginContainer/VBoxContainer/ProgressBar.value = percent
-			$Control/Control/MarginContainer/VBoxContainer/ProgressBar/Label.text = "Enrichment: " + str("%.1f" %percent) + "%"
+			$Control/Control/MarginContainer/VBoxContainer/ProgressBar/Label.text = "Enrichment: " + '%.1f' % percent + "%"
 			
 		
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
@@ -275,3 +275,18 @@ func smaller_neutron_margin() -> void:
 	
 func higher_neutron_goal() -> void:
 	self.goal += 100
+
+# DEBUG TODO deleete me 
+func _on_h_scroll_bar_spont_speed_value_changed(value: float) -> void:
+	Atom.spont_emis_time = value
+	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_spont_speed/Label.text = "Spont emission speed: " + str(value)
+
+func _on_h_scroll_bar_enrich_percent_value_changed(value: float) -> void:
+	Atom.enrich_percent = (100-value)/100
+	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.text = "Auto enrich " + str((1 - Atom.enrich_percent) * 100) + "%"
+	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent/Label.text = "Enrich Percent: " + str(value)
+
+func _on_h_scroll_bar_enrich_speed_value_changed(value: float) -> void:
+	Atom.enrich_speed = value
+	
+	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_speed/Label.text = "Enrich Speed: " + str(value)
