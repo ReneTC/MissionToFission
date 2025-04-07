@@ -12,9 +12,6 @@ var color_xenon:Color = Color("444444")
 var become_xenon_later_chance: float = 0.5 
 var xenon_time_rand_multiplier:float = 10
 
-# timer to not allow enrichment right away after fission
-var enirch_timer:bool = true
-
 var neutron_scene: PackedScene
 
 @onready var parent:Node = self.get_parent()
@@ -24,19 +21,21 @@ var neutron_scene: PackedScene
 static var enriched_present: int = 0
 static var unenriched_present: int = 0
 static var enrich_percent: float = 0.80
-static var enrich_speed:float = 1.0 # sec #TODO not done
-static var keep_enriched: bool = true
+
+static var enable_instant_enrich: bool = true
+static var instant_enrich_chance:float = 0.25
 
 # spont emission neutron / delayed neutrons settings
 static var enable_sponteniues_neutrons:bool = true
-static var spont_emis_time:float = 1.0 # 1 is normalized
+static var spont_emis_time:float = 5.0 # 1 is normalized
 
 # other settings 
 static var enable_moderation:bool = false
 static var enable_xenon:bool = false
+static var enrich_speed:float = 1.0
 
 func get_random_decay_time() -> float:
-	return (50. * randf() + 2.) * spont_emis_time
+	return (50. * randf()) * spont_emis_time
 
 func _ready() -> void:
 	neutron_scene = load("res://scenes/fission_objects/neutron.tscn")
@@ -84,38 +83,33 @@ func _draw() -> void:
 
 func on_body_entered(body: Node) -> void:
 	if body is Neutron:
-		if self.is_xenon and Atom.enable_xenon:	
-			self.is_xenon = false 
-			queue_redraw()
-			
-			# delete neutron
-			body.kill_self()
-
 		if is_enriched == true and not body.is_fast:
 			decay()
 			emit_neutrons(self.number_neutrons_emitted)
-		
-			# delete neutron
 			body.kill_self()
-		
-		
+			
+		elif self.is_xenon and Atom.enable_xenon:
+			self.is_xenon = false 
+			queue_redraw()
+			body.kill_self()
+
+
 func decay() -> void:
-	# check if random atom should enrich
-	if keep_enriched:
-		$Timer_enrich_wait.start()
-		enrich_check()
-		
+	
+	# chance for enriching instant atom 
+	if enable_instant_enrich:
+		if randf() < instant_enrich_chance:
+			var random_atom:Node = globals.get_random_uninrched_atom()
+			random_atom.enrich()
+
 	if not self.is_xenon and Atom.enable_xenon:
 		# not all should become xenon
 		if randf() < self.become_xenon_later_chance:
 			$Timer_Xenon.start(randf() * self.xenon_time_rand_multiplier)
-	
-	self.enirch_timer = false	
-	self.is_enriched = false
 
+	self.is_enriched = false
 	if enable_sponteniues_neutrons:
 		$Timer_spontenius_neutron_emission.start(get_random_decay_time())
-
 
 	unenriched_present += 1
 	enriched_present -= 1
@@ -129,13 +123,9 @@ func decay() -> void:
 	
 static func enrich_check() -> void:
 	if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
-		# keep looping until unenriched atom is enriched 
-		var random_atom:Node = globals.get_random_atom()
-		if not random_atom.is_enriched:
-			if random_atom.enirch_timer:
-				random_atom.enrich()
-			else:
-				random_atom.get_node("Timer_enrich_wait").start()
+		# just pick random and hope it's nopt enriched already
+		var random_atom:Node = globals.get_random_uninrched_atom()
+		random_atom.enrich()
 
 
 func enrich() -> void:
@@ -166,12 +156,6 @@ func start_spont_neutron_emission() -> void:
 		$Timer_spontenius_neutron_emission.start(get_random_decay_time())
 		$Timer_spontenius_neutron_emission.paused = false
 
-# on timout, atoms will be able to be selected for enrichement at random
-func _on_timer_enrich_wait_timeout() -> void:
-
-	enirch_timer = true
-	enrich_check()
-
 
 # becomes xenon
 func _on_timer_xenon_timeout() -> void:
@@ -189,8 +173,5 @@ func _on_timer_spontenius_neutron_emission_timeout() -> void:
 		var new_neutron:Node = neutron_scene.instantiate()
 		new_neutron.initialize(position) 
 		parent.call_deferred("add_child", new_neutron)
-	
-
-static func set_auto_enrich(value:bool) -> void:
-	# set the value 
-	keep_enriched = value 
+	else:
+		$Timer_spontenius_neutron_emission.stop()

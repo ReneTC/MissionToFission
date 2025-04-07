@@ -54,10 +54,3 @@ You managed to power a kettle without annihilating the lab. Mark the calendar—
 
 
 "Burn it off by temporarily increasing the reaction rate—or wait for it to decay naturally.  Either way, it’s a constant pain in the isotopes. Handle it.
-
-
-<!-- https://www.fiverr.com/issalazar/give-an-authentic-voice-to-your-video-game-character?context_referrer=search_gigs&source=drop_down_filters&ref_ctx_id=bcd48a0c1fc04f92b202d21eae143d54&pckg_id=1&pos=4&ad_key=9f4ab24f-c77c-45d7-a62d-51e43d003ed8&calc=100&filtered_price=0.00%2C10.06&context_type=auto&funnel=bcd48a0c1fc04f92b202d21eae143d54&ref=language%3Aenglish%7Cgender%3Afemale%7Cseller_location%3AGB%7Cgig_price_range%3A0%2C10&imp_id=bb38d421-0abc-4f9e-83e4-3271e1848232 -->
-
-
-https://img.freepik.com/free-vector/gradient-sliders-collection_23-2149203474.jpg 
-SLIDer

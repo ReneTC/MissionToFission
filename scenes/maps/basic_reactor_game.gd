@@ -9,15 +9,13 @@ func _ready() -> void:
 	# send game settings 
 	
 	GameRunner.game_mode_enabled = true
-	GameRunner.goal = 500
-	GameRunner.margin_error = 400
+	GameRunner.goal = 150
+	GameRunner.margin_error = 140
 	
 	get_parent().get_node("Control").show()
 	get_parent().get_node("State").show()
 	get_parent().get_node("GameScore").show()
 
-
-	Atom.keep_enriched = false
  
 	# tween in center caamera
 	var game_runner_instant: Node = get_parent()

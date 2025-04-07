@@ -14,15 +14,16 @@ var controlRod_scene:PackedScene = load("res://scenes/fission_objects/controlRod
 signal toggle_game_paused(is_paused: bool)
 
 # keep track on what grid has been build
-var x_row_build:int = 0 
-var y_row_build:int = 0 
-var margin: int = 60
+static var x_row_build:int = 0 
+static var y_row_build:int = 0 
+static var margin: int = 60
 
 # game settings
 static var game_mode_enabled: bool = false
 static var game_not_started: bool = true
-static var goal:float = 400
-static var margin_error:float = 100
+static var goal:int = 400
+static var margin_error:int = 100
+static var neutron_counter: int = 0
 var countdown_till_loss:int = 30 
 var countdown_till_upgrade:int = 10 # 1 minutes
 var score_timer:float = 0.
@@ -65,9 +66,7 @@ func _ready() -> void:
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($Camera2D, "offset:y", 0, 0.8)
 	$SceneFader.fade_out()	
-	
-	# get input of bottoms 
-	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.button_pressed = Atom.keep_enriched
+
 	
 	# set timers and settings
 	$loss_timer.wait_time = countdown_till_loss
@@ -87,9 +86,12 @@ func _process(_delta: float) -> void:
 	update_hud()
 
 func game_logic(dt:float) -> void:
+	
+	# count neutrons 
+	neutron_counter = len(get_tree().get_nodes_in_group("neutrons"))
 	# check if game should start
 	if game_mode_enabled and game_not_started:
-		if Neutron.neutrons_present >= goal - margin_error:
+		if neutron_counter >= goal - margin_error:
 			game_mode_enabled = true
 			game_not_started = false
 			$upgrade_timer.start()
@@ -99,7 +101,7 @@ func game_logic(dt:float) -> void:
 		score_timer += dt
 		
 		# check if you are out of bounds, then start loose timer
-		var out_of_bounds_neutrons: bool = Neutron.neutrons_present <= goal - margin_error or Neutron.neutrons_present >= goal + margin_error
+		var out_of_bounds_neutrons: bool = neutron_counter <= goal - margin_error or neutron_counter >= goal + margin_error
 		if out_of_bounds_neutrons and $loss_timer.is_stopped():
 			$loss_timer.start()
 		# stop loose timer if you recovered neutrons activity
@@ -111,7 +113,7 @@ func update_hud() -> void:
 	This function updates the game HUD / visuals. Such as erichiment percent, the goal and so on.
 	'''
 	if Engine.get_physics_frames() % 15 == 1:
-		
+
 		# update game counter (score and such)
 		if game_mode_enabled and $GameScore/GameScore.is_visible_in_tree():
 			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button.text = "Survive: %.1f" % score_timer
@@ -123,26 +125,26 @@ func update_hud() -> void:
 	
 		# update neutron bar
 		if $State/State.is_visible_in_tree():
-			$State/State.set_current_value(Neutron.neutrons_present)
+			$State/State.set_current_value(neutron_counter)
 		
 
 		# Update enrich percent shower 
 		if $Control/Control.is_visible_in_tree():
 			var percent: float =  (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
-			$Control/Control/MarginContainer/VBoxContainer/ProgressBar.value = percent
-			$Control/Control/MarginContainer/VBoxContainer/ProgressBar/Label.text = "Enrichment: " + '%.1f' % percent + "%"
+			$Control/Control/MarginContainer/VBoxContainer/Layer1/Enrich_bar.value = percent
+			$Control/Control/MarginContainer/VBoxContainer/Layer1/Enrich_bar/Label.text = "Enrichment: " + '%.1f' % percent + "%"
 			
-		
+			$Control/Control/MarginContainer/VBoxContainer/Layer1/enable_ctrl_rods.button_pressed = ControlRod.enable_auomatic
+			$Control/Control/MarginContainer/VBoxContainer/Layer2/CheckBox_enrich.text = "Auto enrich " + str((1 - Atom.enrich_percent) * 100) + "%"
+			$Control/Control/MarginContainer/VBoxContainer/Layer2/CheckBox_spontain_neutron_emis.button_pressed = Atom.enable_sponteniues_neutrons
+			
 func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 	'''
 	Starts auomatic enrichment of atoms
 	'''
-	Atom.set_auto_enrich(toggled_on)
-	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.button_pressed = toggled_on
-	# Update text
-	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.text = "Auto enrich " + str((1 - Atom.enrich_percent) * 100) + "%"
-	
+	$Control/Control/MarginContainer/VBoxContainer/Layer2/CheckBox_enrich.button_pressed = toggled_on
 	if toggled_on:
+		$enrich_timer.wait_time = Atom.enrich_speed
 		$enrich_timer.start()
 		Atom.enrich_check()
 	else:
@@ -155,7 +157,7 @@ func _on_enrich_timer_timeout() -> void:
 
 func _on_check_box_spontain_neutron_emis_toggled(toggled_on: bool) -> void:
 	Atom.enable_sponteniues_neutrons = toggled_on
-	$Control/Control/MarginContainer/VBoxContainer/CheckBox_spontain_neutron_emis.button_pressed = toggled_on
+	$Control/Control/MarginContainer/VBoxContainer/Layer2/CheckBox_spontain_neutron_emis.button_pressed = toggled_on
 	if toggled_on:
 		var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
 		for atom in atoms:
@@ -210,17 +212,21 @@ func _on_loss_timer_timeout() -> void:
 
 # dict of possbilites for upgrades:
 var upgrade_dict:Dictionary = {
-	"Bigger reactor": make_bigger_reactor,
-	"Faster Delayed Neutrons": faster_delaed_neutrons,
-	"Slower moving Control rods": slower_moving_control_rods,
-	"Higher neutron activity goal": higher_neutron_goal,
-	"Smaller neutron margin": smaller_neutron_margin,
+	# "↑ Reactor Size": make_bigger_reactor,
+	"↑ Delayed Neutrons": faster_delaed_neutrons,
+	"↑ Speed Enrichment": faster_uranium_enrichment,
+	"↓ Control Rods Speed ": slower_moving_control_rods,
+	"↑ Activity Goal": higher_neutron_goal,
+	"↓ Activity Error Margin": smaller_neutron_margin,
+	"↑ Enrichment Percent": higher_enrichment_percent,
+	"↑ Enrichment Chance": higher_enrichment_chance,
 }
 
 func _on_upgrade_timer_timeout() -> void:
 	'''
 	generates 3 random upgrades and calls the pop up to ask whcih one user want
 	'''
+	make_bigger_reactor()
 	game_paused = true
 	var keys:Array = upgrade_dict.keys()
 	keys.shuffle()
@@ -240,32 +246,45 @@ func make_bigger_reactor() -> void:
 	'''
 	expands the reactor size with one row and one coloumn and centers it
 	'''
-	for x in range(0, x_row_build):
-		var new_atom:Node = atom_scene.instantiate()
-		new_atom.initialize(Vector2(margin + margin*x, margin + margin*y_row_build), true) 
-		add_child(new_atom) 
+	if x_row_build / y_row_build < 1.3: # add only either row or colm
+		for x in range(0, x_row_build):
+			var new_atom:Node = atom_scene.instantiate()
+			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y_row_build), true) 
+			add_child(new_atom) 
 
-		if x % 3 == 0:
-			var new_controlRod:Node = controlRod_scene.instantiate()
-			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -300)) 
-			add_child(new_controlRod)
-			
-	for y in range(0, y_row_build):
-		var new_atom:Node = atom_scene.instantiate()
-		new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y), true) 
-		add_child(new_atom) 
-
-	var new_atom:Node = atom_scene.instantiate()
-	new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y_row_build), true) 
-	add_child(new_atom) 
+			if x % 3 == 0:
+				var new_controlRod:Node = controlRod_scene.instantiate()
+				new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -300)) 
+				add_child(new_controlRod)
+		x_row_build += 1
+		# var new_atom:Node = atom_scene.instantiate()
+		# new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y_row_build), true) 
+		# add_child(new_atom) 
+	else:
+		for y in range(0, y_row_build):
+			var new_atom:Node = atom_scene.instantiate()
+			new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y), true) 
+			add_child(new_atom) 
+		y_row_build += 1
 	
 	center_cam_atoms()
 	
-	x_row_build += 1
-	y_row_build += 1
+	
+	
+
+func higher_enrichment_percent() -> void:
+	Atom.enrich_percent *= 0.75
+	
+func higher_enrichment_chance() -> void:
+	Atom.instant_enrich_chance *= 1.4
 	
 func faster_delaed_neutrons() -> void: 
 	Atom.spont_emis_time *= 0.75 
+	if Atom.enable_sponteniues_neutrons:
+		var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
+		for atom in atoms:
+			if not atom.is_enriched:
+				atom.start_spont_neutron_emission()
 
 func slower_moving_control_rods() -> void:
 	ControlRod.speed *= 0.75
@@ -273,14 +292,23 @@ func slower_moving_control_rods() -> void:
 func smaller_neutron_margin() -> void:
 	self.margin_error *= 0.75
 	
+func faster_uranium_enrichment() -> void:
+	Atom.enrich_speed *= 0.5
+	$enrich_timer.wait_time = Atom.enrich_speed
+
+	
 func higher_neutron_goal() -> void:
 	self.goal += 100
 
-# DEBUG TODO deleete me 
 func _on_h_scroll_bar_spont_speed_value_changed(value: float) -> void:
 	Atom.spont_emis_time = value
 	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_spont_speed/Label.text = "Spont emission speed: " + str(value)
-
+	if Atom.enable_sponteniues_neutrons:
+		var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
+		for atom in atoms:
+			if not atom.is_enriched:
+				atom.start_spont_neutron_emission()
+			
 func _on_h_scroll_bar_enrich_percent_value_changed(value: float) -> void:
 	Atom.enrich_percent = (100-value)/100
 	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.text = "Auto enrich " + str((1 - Atom.enrich_percent) * 100) + "%"
@@ -288,5 +316,9 @@ func _on_h_scroll_bar_enrich_percent_value_changed(value: float) -> void:
 
 func _on_h_scroll_bar_enrich_speed_value_changed(value: float) -> void:
 	Atom.enrich_speed = value
-	
+	$enrich_timer.wait_time = Atom.enrich_speed
 	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_speed/Label.text = "Enrich Speed: " + str(value)
+
+
+func _on_check_box_enrich_2_toggled(toggled_on: bool) -> void:
+	ControlRod.enable_auomatic = toggled_on

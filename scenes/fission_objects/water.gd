@@ -46,5 +46,4 @@ func _on_body_entered(body: Node2D) -> void:
 	self.temp += 1
 	if randf() < water_absorb_chance:
 		body.queue_free()
-		Neutron.neutrons_present -= 1
 	

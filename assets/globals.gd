@@ -12,18 +12,14 @@ func reset_game_var() -> void:
 	Atom.enable_moderation = false
 	Atom.enable_xenon = false
 	Atom.enable_sponteniues_neutrons = false
-	Atom.keep_enriched = false
 	
 	Neutron.enable_moderation = false
-	Neutron.neutrons_present = 0
 	Water.water_absorb_chance = 0.00
 
 	DebugMenu.style = DebugMenu.Style.HIDDEN
 
-func get_all_atoms() -> Array:
+
+func get_random_uninrched_atom() -> Node:
 	var atoms: Array = get_tree().get_nodes_in_group("atoms")
-	return atoms
-	
-func get_random_atom() -> Node:
-	var atoms: Array = get_all_atoms()
-	return atoms.pick_random() if atoms.size() > 0 else null
+	var filtered: Array = atoms.filter(func(x): return not x.is_enriched and not x.is_xenon)
+	return filtered.pick_random() if filtered.size() > 0 else null

@@ -109,7 +109,7 @@ text = "Tutorial"
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer" groups=["button_ui"]]
 layout_mode = 2
-text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
+text = "Game Mode"
 
 [node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer" groups=["button_ui"]]
 layout_mode = 2
@@ -153,9 +153,9 @@ text = " ̶T̶u̶t̶o̶r̶i̶a̶l̶"
 layout_mode = 2
 text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
 
-[node name="simulate_mode_rbmk" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["button_ui"]]
+[node name="simulate_mode_rbmk" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["404", "button_ui"]]
 layout_mode = 2
-text = "Simulate mode"
+text = "S̶i̶m̶u̶l̶a̶t̶e̶ m̶o̶d̶e̶"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -215,7 +215,6 @@ anchor_mode = 0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2/simulate_mode_rbmk" to="." method="_on_simulate_mode_rbmk_pressed"]
 [connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" to="." method="_on_buttons_v_box_child_entered_tree"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_performances" to="." method="_on_button_performances_pressed"]

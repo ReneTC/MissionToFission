@@ -7,10 +7,10 @@ var thermal_speed:float = 100
 var current_speed:float = thermal_speed
 var fast_speed:float = 200
 var is_fast:bool = false
-static var neutrons_present:int = 0
+
+
 
 static var enable_moderation:bool = false
-
 
 func _ready() -> void:
 	# set collsion size
@@ -22,7 +22,9 @@ func _ready() -> void:
 	# set collide settings 
 	set_collision_layer_value(globals.neutrol_collide_slot, true)
 	
-	neutrons_present += 1
+
+	
+	add_to_group("neutrons")
 	
 	if enable_moderation:
 		set_collision_layer_value(globals.moderator_neutron_slot, true)
@@ -52,7 +54,6 @@ func initialize(pos_to_set:Vector2, movement_direction:Vector2 = get_random_dire
 
 
 func kill_self() -> void:
-	neutrons_present -= 1 
 	queue_free()
 	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

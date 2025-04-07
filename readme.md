@@ -15,37 +15,20 @@ This game is made with Godot 4.3, and scripted width GDScript. Probably it shoul
 
 ## Known Issues: 
 - Only runs on 1920*1080 screen
-- Will crash at around 2000 neutrons
-- UI looks so bad
-- No actual game so far, only simulation (no goal or story currently)
+- Game stops at 1000 neutrons
 
 ## Todo's:
-- Make tutorial for game. Maybe a "map" that explains everything.
+- Finish tutorial
 - Add "options" settings.
 - make screen responsive.
 - Optimize performance.
-- Make actual game with objective. Currently, there is no goal. Just a simulator.
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)
 - fix contribute link credits. and chance to about instead
-- Neutrons are sometimes double counted removed
-- add Xenoon Gui 
 - add dialouge manager cretids
 
-
-## Working on:
-	- make goal, and spread in gui. Once you are in spread timer starts when you get out. You loose after. 
-	- make tutorial work with this 
-	- then impliment that in "game mode"
-	- make game save record
-	
-
-<!---
-## Higgsino notes. Ideas for game:
-- modifiers:
-	- Shorten control rods
-	- make control rods move faster or slower 
-	- higher enrichment / lower 
-	- more uranium nuclei
--->
+## Todo now
+- disable manual control of control rods
+- move every second control rod
+- don't let contr rod move when paued

@@ -22,5 +22,7 @@ func _draw() -> void:
 		# calc shift
 		green_angles_hift = remap(GameRunner.goal - GameRunner.margin_error, 0, 1000, 0, 180)
 		$TextureProgressBar.radial_initial_angle = 270+green_angles_hift
+		# $TextureProgressBar/Label.rotation_degrees = 270+green_angles_hift+23
+		$TextureProgressBar/Label.text = "Goal: "+str(GameRunner.goal)+" ± " + str(GameRunner.margin_error)
 	else:
 		$TextureProgressBar.value = 0.0
