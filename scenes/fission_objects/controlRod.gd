@@ -49,8 +49,7 @@ func _process(delta: float) -> void:
 				direction = -1
 			
 			# move down
-
-		# TODO move every second 
+		# TODO these should be static variables and only be changed upon CTRL rod creation
 		var min_height = -420
 		var max_height = GameRunner.y_row_build * GameRunner.margin + min_height
 		position.y = clampf(position.y+direction*delta*speed, min_height, max_height)

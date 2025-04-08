@@ -29,6 +29,5 @@ This game is made with Godot 4.3, and scripted width GDScript. Probably it shoul
 - add dialouge manager cretids
 
 ## Todo now
-- disable manual control of control rods
-- move every second control rod
-- don't let contr rod move when paued
+- make tooltip for upgrades
+- make tree for simualtion mode

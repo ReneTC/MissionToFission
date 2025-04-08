@@ -9,10 +9,10 @@ func _ready() -> void:
 	# send game settings 
 	
 	GameRunner.game_mode_enabled = true
-	GameRunner.goal = 150
-	GameRunner.margin_error = 140
-	
+	GameRunner.goal = 100
+	GameRunner.margin_error = 100
 	get_parent().get_node("Control").show()
+	get_parent().get_node("Control/Control/MarginContainer/VBoxContainer/Layer2").hide()
 	get_parent().get_node("State").show()
 	get_parent().get_node("GameScore").show()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://olef6xbr1hf4"]
+[gd_scene load_steps=9 format=3 uid="uid://olef6xbr1hf4"]
 
 [ext_resource type="Script" uid="uid://cqrmntgywpido" path="res://scenes/menus/main_menu.gd" id="1_oa2uj"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_uci5c"]
@@ -6,6 +6,20 @@
 [ext_resource type="AudioStream" uid="uid://dn3b3m42gcfak" path="res://assets/sounds/start_music.mp3" id="3_bmfp5"]
 [ext_resource type="PackedScene" uid="uid://cjqvkbkt7yhvl" path="res://assets/ui_button_sound.tscn" id="4_t1nab"]
 [ext_resource type="AudioStream" uid="uid://bhwate8k0p16q" path="res://assets/sounds/LittleSwoosh2a.wav" id="5_8ibjq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ng0o5"]
+bg_color = Color(0.960351, 0.960351, 0.960351, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r73w"]
+bg_color = Color(0.960784, 0.960784, 0.960784, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -78,6 +92,21 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+theme_override_colors/font_disabled_color = Color(0.986752, 0.986752, 0.986752, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.98101, 0.914681, 0.980882, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(0.986752, 0.986752, 0.986752, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ng0o5")
+disabled = true
 toggle_mode = true
 button_mask = 0
 
@@ -94,6 +123,7 @@ offset_right = 106.5
 offset_bottom = 119.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_uci5c")
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer"]
@@ -122,6 +152,8 @@ layout_mode = 2
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8r73w")
+disabled = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button"]
 layout_mode = 1
@@ -192,7 +224,7 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
-text = "Version: 0.21"
+text = "Version: 0.01"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bmfp5")

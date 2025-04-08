@@ -15,7 +15,6 @@ var moderator_scene:PackedScene = load("res://scenes/fission_objects/moderator.t
 
 func _ready() -> void:
 	# set map settings 
-	Atom.keep_enriched = true
 	Atom.enrich_percent = 0.5
 	Atom.enable_moderation = true
 	Atom.enable_xenon = true

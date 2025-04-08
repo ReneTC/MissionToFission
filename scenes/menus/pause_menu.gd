@@ -55,15 +55,17 @@ func new_map() -> void:
 func _on_exit_pressed() -> void:
 	get_tree().quit()
 
-func upgrade_game_mode(random_keys:Array) -> void:
+func upgrade_game_mode(random_keys:Array, upgrade_dict:Dictionary) -> void:
 	# lock such that user dont esc pause 
 	can_pause = false
 
 			
-	# generate 3 options - maybe they should be sent by arg
+	# generate 2 options
 	$Panel/upgradeMenu/upgradeContainer/Opt1.text = random_keys[0]
 	$Panel/upgradeMenu/upgradeContainer/Opt2.text = random_keys[1]
-	$Panel/upgradeMenu/upgradeContainer/Opt3.text = random_keys[2]
+	
+	$Panel/upgradeMenu/upgradeContainer/Opt1.tooltip_text = upgrade_dict[random_keys[0]][1]
+	$Panel/upgradeMenu/upgradeContainer/Opt2.tooltip_text = upgrade_dict[random_keys[1]][1]
 	
 	# show correct menu
 	$Panel/pauseMenu.hide()

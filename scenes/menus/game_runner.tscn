@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu7kdn5dr5aor"]
+[gd_scene load_steps=10 format=3 uid="uid://bu7kdn5dr5aor"]
 
 [ext_resource type="Script" uid="uid://cmagfu3k1wtwr" path="res://scenes/menus/game_runner.gd" id="1_3sh3x"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="4_oxp31"]
 [ext_resource type="Texture2D" uid="uid://bpreyncu2xvly" path="res://assets/bg.png" id="5_rngj5"]
 [ext_resource type="Script" uid="uid://b718qs4uwc73e" path="res://scenes/menus/speedometer.gd" id="5_tngng"]
+[ext_resource type="PackedScene" uid="uid://dllddnf7rpmox" path="res://scenes/menus/property_change.tscn" id="6_hifqd"]
 [ext_resource type="Texture2D" uid="uid://ifasjtrtmmh2" path="res://assets/indi.png" id="7_tngng"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rngj5"]
@@ -90,7 +91,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CheckBox_enrich" type="CheckButton" parent="Control/Control/MarginContainer/VBoxContainer/Layer2"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("3_4kpoj")
 theme_override_font_sizes/font_size = 15
@@ -98,7 +99,7 @@ button_pressed = true
 text = "Auto enrich 20%"
 
 [node name="CheckBox_spontain_neutron_emis" type="CheckButton" parent="Control/Control/MarginContainer/VBoxContainer/Layer2"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("3_4kpoj")
 theme_override_font_sizes/font_size = 15
@@ -106,65 +107,11 @@ button_pressed = true
 text = "Delayed Neutrons
 "
 
-[node name="GodControl" type="VBoxContainer" parent="Control/Control/MarginContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-
-[node name="HScrollBar_enrich_speed" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-min_value = 0.01
-max_value = 5.0
-value = 1.0
-
-[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_speed"]
-layout_mode = 2
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 356.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Enrich speed 1s"
-horizontal_alignment = 1
-
-[node name="HScrollBar_enrich_percent" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-value = 20.0
-
-[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent"]
-layout_mode = 2
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 356.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Enrich Percent 20"
-horizontal_alignment = 1
-
-[node name="HScrollBar_spont_speed" type="HScrollBar" parent="Control/Control/MarginContainer/VBoxContainer/GodControl"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-min_value = 0.01
-max_value = 20.0
-value = 1.0
-
-[node name="Label" type="Label" parent="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_spont_speed"]
-layout_mode = 2
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 356.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Spont emission speed 1s"
-horizontal_alignment = 1
-
 [node name="Layer1" type="HBoxContainer" parent="Control/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Enrich_bar" type="ProgressBar" parent="Control/Control/MarginContainer/VBoxContainer/Layer1"]
-custom_minimum_size = Vector2(200, 30)
+custom_minimum_size = Vector2(250, 30)
 layout_mode = 2
 size_flags_vertical = 1
 value = 30.0
@@ -189,12 +136,15 @@ horizontal_alignment = 1
 vertical_alignment = 3
 
 [node name="enable_ctrl_rods" type="CheckButton" parent="Control/Control/MarginContainer/VBoxContainer/Layer1"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("3_4kpoj")
 theme_override_font_sizes/font_size = 15
 button_pressed = true
 text = "Enable Auto Ctrl Rods"
+
+[node name="Tree" parent="Control/Control/MarginContainer/VBoxContainer" instance=ExtResource("6_hifqd")]
+layout_mode = 2
 
 [node name="GameScore" type="CanvasLayer" parent="."]
 
@@ -345,7 +295,7 @@ offset_top = -25.0
 offset_right = 219.0
 offset_bottom = -2.0
 pivot_offset = Vector2(53, 184)
-text = "Goal: 150 ± 50"
+text = " "
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -362,11 +312,8 @@ process_mode = 1
 
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/Layer2/CheckBox_enrich" to="." method="_on_check_box_enrich_toggled"]
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/Layer2/CheckBox_spontain_neutron_emis" to="." method="_on_check_box_spontain_neutron_emis_toggled"]
-[connection signal="value_changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_speed" to="." method="_on_h_scroll_bar_enrich_speed_value_changed"]
-[connection signal="changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent" to="." method="_on_h_scroll_bar_enrich_percent_changed"]
-[connection signal="value_changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent" to="." method="_on_h_scroll_bar_enrich_percent_value_changed"]
-[connection signal="value_changed" from="Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_spont_speed" to="." method="_on_h_scroll_bar_spont_speed_value_changed"]
 [connection signal="toggled" from="Control/Control/MarginContainer/VBoxContainer/Layer1/enable_ctrl_rods" to="." method="_on_check_box_enrich_2_toggled"]
+[connection signal="item_edited" from="Control/Control/MarginContainer/VBoxContainer/Tree" to="." method="_on_tree_item_edited"]
 [connection signal="timeout" from="enrich_timer" to="." method="_on_enrich_timer_timeout"]
 [connection signal="timeout" from="loss_timer" to="." method="_on_loss_timer_timeout"]
 [connection signal="timeout" from="upgrade_timer" to="." method="_on_upgrade_timer_timeout"]

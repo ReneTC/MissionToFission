@@ -69,7 +69,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
-text = "Choose wisely"
+text = "Pick an upgrade"
 horizontal_alignment = 1
 
 [node name="upgradeContainer" type="HBoxContainer" parent="Panel/upgradeMenu"]
@@ -79,16 +79,24 @@ theme_override_constants/separation = 20
 
 [node name="Opt1" type="Button" parent="Panel/upgradeMenu/upgradeContainer" groups=["button_ui"]]
 layout_mode = 2
+tooltip_text = "ooooiii"
 text = "+1 Row of uranium"
 
 [node name="Opt2" type="Button" parent="Panel/upgradeMenu/upgradeContainer" groups=["button_ui"]]
 layout_mode = 2
-text = "+ 25 % faster enrichment"
+text = "25 % faster enrichment"
 
 [node name="Opt3" type="Button" parent="Panel/upgradeMenu/upgradeContainer" groups=["button_ui"]]
 visible = false
 layout_mode = 2
-text = "+ 25 % more delayed neutrons"
+text = "25 % more delayed neutrons"
+
+[node name="Upgrade2" type="Label" parent="Panel/upgradeMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "( Mouse hover the button for help )"
+horizontal_alignment = 1
 
 [node name="gameoverMenu" type="VBoxContainer" parent="Panel"]
 visible = false
@@ -133,7 +141,7 @@ stream = ExtResource("4_ptn75")
 bus = &"SFX"
 
 [node name="SceneFader" parent="." instance=ExtResource("5_03aqk")]
-position = Vector2(-4, -68)
+position = Vector2(148, 23)
 
 [connection signal="pressed" from="Panel/pauseMenu/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Panel/pauseMenu/main" to="." method="_on_main_pressed"]

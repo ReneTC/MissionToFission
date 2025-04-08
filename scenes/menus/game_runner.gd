@@ -80,6 +80,7 @@ func _ready() -> void:
 	else:
 		get_node("GameScore").hide()
 	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	game_logic(_delta)
@@ -213,13 +214,34 @@ func _on_loss_timer_timeout() -> void:
 # dict of possbilites for upgrades:
 var upgrade_dict:Dictionary = {
 	# "↑ Reactor Size": make_bigger_reactor,
-	"↑ Delayed Neutrons": faster_delaed_neutrons,
-	"↑ Speed Enrichment": faster_uranium_enrichment,
-	"↓ Control Rods Speed ": slower_moving_control_rods,
-	"↑ Activity Goal": higher_neutron_goal,
-	"↓ Activity Error Margin": smaller_neutron_margin,
-	"↑ Enrichment Percent": higher_enrichment_percent,
-	"↑ Enrichment Chance": higher_enrichment_chance,
+	"↑ Delayed Neutrons": [
+		faster_delaed_neutrons,
+		"Increases the speed of random neutrons releaed by waste material"
+	],
+	"↑ Speed Enrichment": [
+		faster_uranium_enrichment,
+		"Increases the speed of the Uranium235 enrichment"
+	],
+	"↓ Control Rods Speed ": [
+		slower_moving_control_rods,
+		"Decreases the speed of the control rods"
+	],
+	"↑ Activity Goal": [
+		higher_neutron_goal,
+		"Increases the reactivity goal of the reactor"
+	],
+	"↓ Activity Error Margin": [
+		smaller_neutron_margin,
+		"Decreases the error margin of the neutron activity goal"
+	],
+	"↑ Enrichment Percent": [
+		higher_enrichment_percent,
+		"Allows the reactor to be enriched to higher grade"
+	],
+	"↑ Enrichment Chance": [
+		higher_enrichment_chance,
+		"Increases the chance an atom will be enriched isntantly after fission"
+	],
 }
 
 func _on_upgrade_timer_timeout() -> void:
@@ -231,41 +253,40 @@ func _on_upgrade_timer_timeout() -> void:
 	var keys:Array = upgrade_dict.keys()
 	keys.shuffle()
 	var random_keys:Array = keys.slice(0, 3) 
-	$pauseMenu.upgrade_game_mode(random_keys)
+	$pauseMenu.upgrade_game_mode(random_keys, upgrade_dict)
 	
 
 func call_upgrade(key:String) -> void:
 	'''
 	thsi function is called from the pop up, it will call the function to activate the user choice
 	'''
-	upgrade_dict[key].call()
+	upgrade_dict[key][0].call()
 
 
 
 func make_bigger_reactor() -> void:
 	'''
-	expands the reactor size with one row and one coloumn and centers it
+	expands the reactor size with one row or one coloumn and centers it
 	'''
-	if x_row_build / y_row_build < 1.3: # add only either row or colm
+	if float(x_row_build) / (y_row_build) > 1.6: # add only either row or colm
 		for x in range(0, x_row_build):
 			var new_atom:Node = atom_scene.instantiate()
 			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y_row_build), true) 
 			add_child(new_atom) 
 
-			if x % 3 == 0:
-				var new_controlRod:Node = controlRod_scene.instantiate()
-				new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -300)) 
-				add_child(new_controlRod)
-		x_row_build += 1
-		# var new_atom:Node = atom_scene.instantiate()
-		# new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y_row_build), true) 
-		# add_child(new_atom) 
+
+		y_row_build += 1
 	else:
 		for y in range(0, y_row_build):
 			var new_atom:Node = atom_scene.instantiate()
 			new_atom.initialize(Vector2(margin + margin*x_row_build, margin + margin*y), true) 
 			add_child(new_atom) 
-		y_row_build += 1
+			
+		if x_row_build % 3 == 0:
+			var new_controlRod:Node = controlRod_scene.instantiate()
+			new_controlRod.initialize(Vector2(margin + margin*x_row_build +0.5*margin, -300)) 
+			add_child(new_controlRod)
+		x_row_build += 1
 	
 	center_cam_atoms()
 	

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dllddnf7rpmox"]
+
+[ext_resource type="Script" uid="uid://c542tju3wd47j" path="res://scenes/menus/property_change.gd" id="1_p8cke"]
+
+[node name="Tree" type="Tree"]
+custom_minimum_size = Vector2(420, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p8cke")
+
+[connection signal="item_edited" from="." to="." method="_on_item_edited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
