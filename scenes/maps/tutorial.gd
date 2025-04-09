@@ -26,8 +26,14 @@ func _ready() -> void:
 	game_runner_instant = get_parent()
 	game_runner_instant.game_mode_enabled = false
 	get_parent().get_node("Control").hide()
+	get_parent().get_node("Control/Control/MarginContainer/VBoxContainer/Tree").hide()
+	get_parent().get_node("Control/Control/MarginContainer/VBoxContainer/Layer2").show()
 	get_parent().get_node("State").hide()
 	get_parent().get_node("GameScore").hide()
+	
+	Atom.enable_enrich = false
+	Atom.instant_enrich_chance = 0.0
+	Atom.enable_sponteniues_neutrons = false
 	
 	
 	# start from start 
@@ -72,30 +78,27 @@ func DialogicSignal(argument:String) -> void:
 		tut_state = "first_chain_reaction"
 		$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)    
 		$Area2D/CollisionShape2D2.shape.radius = 1000
-		# make grid 
+		# make grid
+		Atom.enable_sponteniues_neutrons = false 
+		game_runner_instant.build_grid_and_center(2 * x_grid_range, 2 * y_grid_range, true, false, true, false)
 
-		for x in range(-x_grid_range ,x_grid_range):
-			for y in range(-y_grid_range, y_grid_range): 
-				var new_atom:Node = atom_scene.instantiate()
-				new_atom.initialize(get_viewport_rect().size / 2.0 - Vector2(
-					float(margin)/2.0 + margin*x,
-					float(margin)/2.0 + margin*y)
-				, true) 
-				add_child(new_atom) 
 				
 	elif argument == "chap4":
 		Dialogic.start("chap4")
 	
 	elif argument == "add_control_rods":
-		for x in range(-x_grid_range,x_grid_range):	
+		
+		for x in range(0, 2 * x_grid_range):
 			if x % 3 == 0:
 				var new_controlRod:Node = controlRod_scene.instantiate()
-				new_controlRod.initialize(get_viewport_rect().size / 2.0 - Vector2(
-					margin/2.0 + margin*x +0.5*margin - margin, 0)) 
-				add_child(new_controlRod) 
+				new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -420)) 
+				add_child(new_controlRod)
 				
 	elif argument == "more_control":
-		get_parent().get_node("Control").show()
+		Atom.enable_sponteniues_neutrons = false
+		Atom.enable_enrich = false
+		game_runner_instant._on_check_box_enrich_toggled(true)
+		# get_parent().get_node("Control").show()
 		get_parent().get_node("State").show()
 		
 # neutron collide with urnium atom center

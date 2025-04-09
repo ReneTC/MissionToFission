@@ -72,10 +72,8 @@ theme_override_font_sizes/font_size = 40
 text = "Pick an upgrade"
 horizontal_alignment = 1
 
-[node name="upgradeContainer" type="HBoxContainer" parent="Panel/upgradeMenu"]
+[node name="upgradeContainer" type="VBoxContainer" parent="Panel/upgradeMenu"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 20
 
 [node name="Opt1" type="Button" parent="Panel/upgradeMenu/upgradeContainer" groups=["button_ui"]]
 layout_mode = 2
@@ -85,11 +83,6 @@ text = "+1 Row of uranium"
 [node name="Opt2" type="Button" parent="Panel/upgradeMenu/upgradeContainer" groups=["button_ui"]]
 layout_mode = 2
 text = "25 % faster enrichment"
-
-[node name="Opt3" type="Button" parent="Panel/upgradeMenu/upgradeContainer" groups=["button_ui"]]
-visible = false
-layout_mode = 2
-text = "25 % more delayed neutrons"
 
 [node name="Upgrade2" type="Label" parent="Panel/upgradeMenu"]
 layout_mode = 2

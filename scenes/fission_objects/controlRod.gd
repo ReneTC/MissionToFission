@@ -10,8 +10,8 @@ var direction:float = 0.
 
 # logic to move every second ctrl rod
 var even:bool = true
-static var move_even = true
-static var last_created_even = true
+static var move_even:bool = true
+static var last_created_even:bool = true
 
 func _ready() -> void:
 	# set collisohape to set varables
@@ -26,12 +26,14 @@ func _ready() -> void:
 	last_created_even = not last_created_even
 	even = last_created_even
 
+	add_to_group("ctrl_rods")
+	
 func _draw() -> void:
 	draw_rect(Rect2(-self.width/2., -self.height/2., self.width, self.height), self.color)
 
 
 func initialize(pos_to_set:Vector2) -> void:
-	position = Vector2(pos_to_set[0], -420)
+	position = Vector2(pos_to_set)
 	
 # delete neutron on enter
 func _on_body_entered(body: Node2D) -> void:
@@ -50,8 +52,8 @@ func _process(delta: float) -> void:
 			
 			# move down
 		# TODO these should be static variables and only be changed upon CTRL rod creation
-		var min_height = -420
-		var max_height = GameRunner.y_row_build * GameRunner.margin + min_height
+		var min_height:float = -420
+		var max_height:float = GameRunner.y_row_build * GameRunner.margin + min_height
 		position.y = clampf(position.y+direction*delta*speed, min_height, max_height)
 		
 		# switch 

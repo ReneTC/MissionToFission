@@ -144,7 +144,9 @@ button_pressed = true
 text = "Enable Auto Ctrl Rods"
 
 [node name="Tree" parent="Control/Control/MarginContainer/VBoxContainer" instance=ExtResource("6_hifqd")]
+custom_minimum_size = Vector2(420, 40)
 layout_mode = 2
+theme = ExtResource("3_4kpoj")
 
 [node name="GameScore" type="CanvasLayer" parent="."]
 
@@ -305,7 +307,7 @@ wait_time = 60.0
 
 [node name="loss_timer" type="Timer" parent="."]
 process_mode = 1
-wait_time = 30.0
+wait_time = 25.0
 
 [node name="upgrade_timer" type="Timer" parent="."]
 process_mode = 1

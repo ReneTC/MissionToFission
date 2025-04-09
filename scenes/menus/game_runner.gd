@@ -153,7 +153,8 @@ func _on_check_box_enrich_toggled(toggled_on: bool) -> void:
 		
 		
 func _on_enrich_timer_timeout() -> void:
-	Atom.enrich_check()
+	if Atom.enable_enrich:
+		Atom.enrich_check()
 
 
 func _on_check_box_spontain_neutron_emis_toggled(toggled_on: bool) -> void:
@@ -166,26 +167,37 @@ func _on_check_box_spontain_neutron_emis_toggled(toggled_on: bool) -> void:
 				atom.start_spont_neutron_emission()
 
 
-func build_grid_and_center(x_grid:int, y_grid:int) -> void:
+func build_grid_and_center(
+		x_grid:int,
+		y_grid:int,
+		add_atoms:bool=true,
+		add_ctrl:bool=true,
+		encriched:bool=false,
+		keep_enrich_percent:bool=true
+	) -> void:
 	'''
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
 	# add atoms 
 	for x in range(x_row_build, x_grid):
 		for y in range(y_row_build, y_grid): 
-			var new_atom:Node = atom_scene.instantiate()
-			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), true, true) 
-			add_child(new_atom) 
-
-		if x % 3 == 0:
+			if add_atoms:
+				var new_atom:Node = atom_scene.instantiate()
+				new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), encriched, keep_enrich_percent) 
+				add_child(new_atom) 
+		
+		if x % 3 == 0 and add_ctrl:
 			var new_controlRod:Node = controlRod_scene.instantiate()
-			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -300)) 
+			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -420)) 
 			add_child(new_controlRod)
+
 	# store what has been build:
 	x_row_build = x_grid
 	y_row_build = y_grid 
 	# tween camera to center newly build grids of atoms. Only x position at the moment
 	center_cam_atoms()
+	
+	
 	
 
 	
@@ -283,8 +295,13 @@ func make_bigger_reactor() -> void:
 			add_child(new_atom) 
 			
 		if x_row_build % 3 == 0:
+			
+			# get pos of ctrl rod
+			var ctrl_rods: Array = get_tree().get_nodes_in_group("ctrl_rods")
+			var ctrl_rods_pos_y_to_mirror: ControlRod =  ctrl_rods[int(not ControlRod.last_created_even)]
+
 			var new_controlRod:Node = controlRod_scene.instantiate()
-			new_controlRod.initialize(Vector2(margin + margin*x_row_build +0.5*margin, -300)) 
+			new_controlRod.initialize(Vector2(margin + margin*x_row_build +0.5*margin, ctrl_rods_pos_y_to_mirror.global_position.y)) 
 			add_child(new_controlRod)
 		x_row_build += 1
 	
@@ -311,7 +328,7 @@ func slower_moving_control_rods() -> void:
 	ControlRod.speed *= 0.75
 	
 func smaller_neutron_margin() -> void:
-	self.margin_error *= 0.75
+	self.margin_error -= 10
 	
 func faster_uranium_enrichment() -> void:
 	Atom.enrich_speed *= 0.5
@@ -320,25 +337,6 @@ func faster_uranium_enrichment() -> void:
 	
 func higher_neutron_goal() -> void:
 	self.goal += 100
-
-func _on_h_scroll_bar_spont_speed_value_changed(value: float) -> void:
-	Atom.spont_emis_time = value
-	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_spont_speed/Label.text = "Spont emission speed: " + str(value)
-	if Atom.enable_sponteniues_neutrons:
-		var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
-		for atom in atoms:
-			if not atom.is_enriched:
-				atom.start_spont_neutron_emission()
-			
-func _on_h_scroll_bar_enrich_percent_value_changed(value: float) -> void:
-	Atom.enrich_percent = (100-value)/100
-	$Control/Control/MarginContainer/VBoxContainer/CheckBox_enrich.text = "Auto enrich " + str((1 - Atom.enrich_percent) * 100) + "%"
-	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_percent/Label.text = "Enrich Percent: " + str(value)
-
-func _on_h_scroll_bar_enrich_speed_value_changed(value: float) -> void:
-	Atom.enrich_speed = value
-	$enrich_timer.wait_time = Atom.enrich_speed
-	$Control/Control/MarginContainer/VBoxContainer/GodControl/HScrollBar_enrich_speed/Label.text = "Enrich Speed: " + str(value)
 
 
 func _on_check_box_enrich_2_toggled(toggled_on: bool) -> void:

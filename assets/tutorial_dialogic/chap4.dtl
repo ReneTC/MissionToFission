@@ -6,7 +6,10 @@ Don’t let it overheat. Don’t let it fizzle out. Keep the reactor stable. Use
 If you see a strong flash of blue light, congratulations\: you’re now part of the reactor core.
 Here are some buttons and display for you to control the reactor with.
 [signal arg="more_control"]
-Keep the reactor at 100 neutrons present in the core, with an accepted margin of plus minus 20.  and see how long time you can balance it there. If you are outside the margin, you will have 10 seconds to fix it.
-ONSUCCESS\: You managed to power a kettle without annihilating the lab. Mark the calendar—it’s a miracle.
-That's the simplest form of a nuclear reactor, It's really extremely oversimplified. But next time we  make it more realstic. Anyways, but on to the game.
-The games objective is to stay alive for as long as possible, wthout melting the core or stalling it. Good luck!
+Down on the right, you can see how many neutrons are present in the reactor. It indicates the reactivty. 
+You can manually control the rods with W or S. 
+Try it out.
+[wait time="10.0"]
+You managed to power a kettle without annihilating the lab. Mark the calendar—it’s a miracle.
+That's the simplest form of a nuclear reactor, It's really extremely oversimplified. But next time we  make it more realstic. 
+The games objective is to stay alive for as long as possible, wthout melting the core or stalling it. Or just toying around. Good luck! (Press escape to leave, tutorial is finished)

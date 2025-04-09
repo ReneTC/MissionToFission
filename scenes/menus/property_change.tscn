@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dllddnf7rpmox"]
+[gd_scene load_steps=3 format=3 uid="uid://dllddnf7rpmox"]
 
 [ext_resource type="Script" uid="uid://c542tju3wd47j" path="res://scenes/menus/property_change.gd" id="1_p8cke"]
+
+[sub_resource type="Theme" id="Theme_p8cke"]
 
 [node name="Tree" type="Tree"]
 custom_minimum_size = Vector2(420, 50)
@@ -9,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_p8cke")
 script = ExtResource("1_p8cke")
 
 [connection signal="item_edited" from="." to="." method="_on_item_edited"]

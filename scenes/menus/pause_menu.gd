@@ -59,7 +59,6 @@ func upgrade_game_mode(random_keys:Array, upgrade_dict:Dictionary) -> void:
 	# lock such that user dont esc pause 
 	can_pause = false
 
-			
 	# generate 2 options
 	$Panel/upgradeMenu/upgradeContainer/Opt1.text = random_keys[0]
 	$Panel/upgradeMenu/upgradeContainer/Opt2.text = random_keys[1]
@@ -90,4 +89,4 @@ func game_over_display(score:float) -> void:
 	# show correct menu
 	$Panel/pauseMenu.hide()
 	$Panel/gameoverMenu.show()
-	$Panel/gameoverMenu/score.text = "Your score is: " + str(score)
+	$Panel/gameoverMenu/score.text = "Your score is: %.1f" % score

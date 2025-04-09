@@ -25,9 +25,9 @@ This game is made with Godot 4.3, and scripted width GDScript. Probably it shoul
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)
-- fix contribute link credits. and chance to about instead
 - add dialouge manager cretids
 
 ## Todo now
-- make tooltip for upgrades
-- make tree for simualtion mode
+- make game end at 1000 neutrons
+- fix sandbox ui 
+- make sure everything reset when chaning maps

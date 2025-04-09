@@ -27,12 +27,14 @@ static var instant_enrich_chance:float = 0.25
 
 # spont emission neutron / delayed neutrons settings
 static var enable_sponteniues_neutrons:bool = true
-static var spont_emis_time:float = 5.0 # 1 is normalized
+static var spont_emis_time:float = 1.0 # 1 is normalized
+
+static var enrich_speed:float = 1.0
+static var enable_enrich:bool = true
 
 # other settings 
 static var enable_moderation:bool = false
 static var enable_xenon:bool = false
-static var enrich_speed:float = 1.0
 
 func get_random_decay_time() -> float:
 	return (50. * randf()) * spont_emis_time
@@ -100,7 +102,8 @@ func decay() -> void:
 	if enable_instant_enrich:
 		if randf() < instant_enrich_chance:
 			var random_atom:Node = globals.get_random_uninrched_atom()
-			random_atom.enrich()
+			if random_atom != null:
+				random_atom.enrich()
 
 	if not self.is_xenon and Atom.enable_xenon:
 		# not all should become xenon

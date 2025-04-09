@@ -1,5 +1,5 @@
 extends Tree
-@onready var tree = $"."
+@onready var tree: Node = $"."
 
 var upgrade_dict:Dictionary = {
 	# key: [func, tooltip, currentval, min, max, step]
@@ -31,17 +31,17 @@ var upgrade_dict:Dictionary = {
 	"Enrichment Percent": [
 		"func_higher_enrichment_percent",
 		"Allows the reactor to be enriched to higher grade",
-		Atom.enrich_percent,
-		100,
+		int(roundf((1-Atom.enrich_percent)*100)),
 		0,
-		5
+		100,
+		1
 	],
-	"Enrichment Chance": [
+	"Instant Enrichment Chance": [
 		"func_higher_enrichment_chance",
-		"Increases the chance an atom will be enriched isntantly after fission",
-		Atom.instant_enrich_chance,
-		100,
+		"Increases the chance a random atom will be enriched isntantly after fission",
+		int(roundf((Atom.instant_enrich_chance)*100)),
 		0,
+		100,
 		5
 	],
 }
@@ -49,12 +49,11 @@ var upgrade_dict:Dictionary = {
 	
 func _ready() -> void:
 	# create root and rename it
-	var root = tree.create_item()
+	var root: TreeItem = tree.create_item()
 	root.set_text(0, "Settings")
-	
-	var game_runner_instant: Node = get_parent()
-	for key in upgrade_dict:
-		var section = tree.create_item(root)
+
+	for key:String in upgrade_dict:
+		var section: TreeItem = tree.create_item(root)
 		section.set_range(0, 2)
 		section.set_cell_mode(0, TreeItem.CELL_MODE_RANGE)
 		section.set_editable(0, true)
@@ -68,20 +67,25 @@ func _on_mouse_entered() -> void:
 	tree.set_custom_minimum_size(Vector2(500, 220))
 
 func _on_mouse_exited() -> void:
-	tree.set_custom_minimum_size(Vector2(500, 40))
-	
-	
+	tree.set_custom_minimum_size(Vector2(500, 30))
 
 
 func _on_item_edited() -> void:
 	# update all valls here
-	# change all values to use percent not decimals
-	var sections = tree.get_root().get_children()
-	
-	print(sections.get_range(0))
+	var sections: Array = tree.get_root().get_children()
 	# just manual set them now
-	#Atom.spont_emis_time = sections.get_range(0)
-	#Atom.enrich_speed = sections.get_range(1)
-	#ControlRod.speed = sections.get_range(2)
-	#Atom.enrich_percent = sections.get_range(3)
-	#Atom.instant_enrich_chance = sections.get_range(4)
+	Atom.spont_emis_time = sections[0].get_range(0)
+	Atom.enrich_speed = sections[1].get_range(0)
+	ControlRod.speed = sections[2].get_range(0)
+	Atom.enrich_percent = 1 - (float(sections[3].get_range(0))/100)
+	Atom.instant_enrich_chance = float(sections[4].get_range(0))/100
+	
+	# update all values  for spont time
+	var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
+	for atom in atoms:
+		if not atom.is_enriched:
+			atom.start_spont_neutron_emission()
+
+	# update enrich clock 
+	$"../../../../../enrich_timer".wait_time = Atom.enrich_speed 
+	
