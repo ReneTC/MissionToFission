@@ -19,3 +19,4 @@ func _ready() -> void:
 	# tween in center caamera
 	var game_runner_instant: Node = get_parent()
 	game_runner_instant.build_grid_and_center(x_grid_range, y_grid_range)
+	

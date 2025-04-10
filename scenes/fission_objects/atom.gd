@@ -101,9 +101,10 @@ func decay() -> void:
 	# chance for enriching instant atom 
 	if enable_instant_enrich:
 		if randf() < instant_enrich_chance:
-			var random_atom:Node = globals.get_random_uninrched_atom()
-			if random_atom != null:
-				random_atom.enrich()
+			if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
+				var random_atom:Node = globals.get_random_uninrched_atom()
+				if random_atom != null:
+					random_atom.enrich()
 
 	if not self.is_xenon and Atom.enable_xenon:
 		# not all should become xenon
@@ -126,9 +127,9 @@ func decay() -> void:
 	
 static func enrich_check() -> void:
 	if float(unenriched_present)/float(unenriched_present+enriched_present) > enrich_percent:
-		# just pick random and hope it's nopt enriched already
 		var random_atom:Node = globals.get_random_uninrched_atom()
-		random_atom.enrich()
+		if random_atom != null:
+			random_atom.enrich()
 
 
 func enrich() -> void:

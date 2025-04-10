@@ -48,10 +48,10 @@ var upgrade_dict:Dictionary = {
 
 	
 func _ready() -> void:
+	
 	# create root and rename it
 	var root: TreeItem = tree.create_item()
 	root.set_text(0, "Settings")
-
 	for key:String in upgrade_dict:
 		var section: TreeItem = tree.create_item(root)
 		section.set_range(0, 2)
@@ -71,15 +71,26 @@ func _on_mouse_exited() -> void:
 
 
 func _on_item_edited() -> void:
+	
 	# update all valls here
 	var sections: Array = tree.get_root().get_children()
 	# just manual set them now
+	sections[0].set_range(0, Atom.spont_emis_time)
 	Atom.spont_emis_time = sections[0].get_range(0)
+	
+	sections[1].set_range(0, Atom.enrich_speed)
 	Atom.enrich_speed = sections[1].get_range(0)
+	
+	sections[2].set_range(0, ControlRod.speed)
 	ControlRod.speed = sections[2].get_range(0)
+	
+	sections[3].set_range(0, int(roundf((1-Atom.enrich_percent)*100)))
 	Atom.enrich_percent = 1 - (float(sections[3].get_range(0))/100)
+	
+	sections[4].set_range(0, int(roundf((1-Atom.instant_enrich_chance)*100)))
 	Atom.instant_enrich_chance = float(sections[4].get_range(0))/100
 	
+
 	# update all values  for spont time
 	var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
 	for atom in atoms:
@@ -88,4 +99,9 @@ func _on_item_edited() -> void:
 
 	# update enrich clock 
 	$"../../../../../enrich_timer".wait_time = Atom.enrich_speed 
+	
+
+func reset_vals() -> void:
+	globals.reset_game_var()
+	self._on_item_edited()
 	

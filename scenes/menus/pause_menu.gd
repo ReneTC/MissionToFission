@@ -37,7 +37,7 @@ func _on_continue_pressed() -> void:
 
 
 func _on_main_pressed() -> void:
-	globals.reset_game_var()
+	# globals.reset_game_var()
 	game_runner.game_paused = false	
 	var tween2:Tween = get_tree().create_tween()
 	tween2.set_ease(Tween.EaseType.EASE_OUT)
@@ -49,6 +49,7 @@ func _on_main_pressed() -> void:
 
 func new_map() -> void:
 	globals.reset_game_var()
+	print("restted on new map")
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 
 
@@ -89,4 +90,5 @@ func game_over_display(score:float) -> void:
 	# show correct menu
 	$Panel/pauseMenu.hide()
 	$Panel/gameoverMenu.show()
+	$Panel/gameoverMenu/reason.text = GameRunner.end_game_messge
 	$Panel/gameoverMenu/score.text = "Your score is: %.1f" % score

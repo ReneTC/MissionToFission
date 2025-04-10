@@ -25,6 +25,8 @@ func _ready() -> void:
 	set_collision_mask_value(globals.moderator_neutron_slot, true)
 	last_created_even = not last_created_even
 	even = last_created_even
+	
+	move_even = not move_even
 
 	add_to_group("ctrl_rods")
 	

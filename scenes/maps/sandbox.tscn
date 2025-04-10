@@ -53,15 +53,14 @@ theme = ExtResource("2_xshqi")
 button_pressed = true
 button_group = ExtResource("2_2bgpg")
 text = "Neutron"
-flat = true
 
 [node name="CheckButton2" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
 button_group = ExtResource("2_2bgpg")
 text = "Atom"
-flat = true
 
 [node name="CheckButton3" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+visible = false
 layout_mode = 2
 button_group = ExtResource("2_2bgpg")
 text = "Control Rod
@@ -69,10 +68,10 @@ text = "Control Rod
 flat = true
 
 [node name="CheckButton4" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
+visible = false
 layout_mode = 2
 button_group = ExtResource("2_2bgpg")
 text = "Water"
-flat = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/CheckButton5" to="." method="_on_check_button_5_toggled"]

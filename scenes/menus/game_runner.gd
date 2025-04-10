@@ -6,6 +6,7 @@ static var map_to_load: String = "res://scenes/maps/basic_reactor.tscn"
 static var map_loaded:Node = null
 static var neutron_on_click: bool = true
 
+
 # get fission objects
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
@@ -27,8 +28,10 @@ static var neutron_counter: int = 0
 var countdown_till_loss:int = 30 
 var countdown_till_upgrade:int = 10 # 1 minutes
 var score_timer:float = 0.
+
+static var end_game_messge: String = "You didn't stay within the power limit. "
 var game_paused: bool = false:
-	
+
 	get:
 		return game_paused
 	set(value): 
@@ -90,6 +93,13 @@ func game_logic(dt:float) -> void:
 	
 	# count neutrons 
 	neutron_counter = len(get_tree().get_nodes_in_group("neutrons"))
+	if neutron_counter > 1000:
+		end_game_messge = "
+		Reactor reactivity is over.
+		\n 1000 It's too much until 
+		\n the game is optimzied sorry!"
+		lost()
+	
 	# check if game should start
 	if game_mode_enabled and game_not_started:
 		if neutron_counter >= goal - margin_error:
@@ -173,7 +183,8 @@ func build_grid_and_center(
 		add_atoms:bool=true,
 		add_ctrl:bool=true,
 		encriched:bool=false,
-		keep_enrich_percent:bool=true
+		keep_enrich_percent:bool=true,
+		start_center: bool = false
 	) -> void:
 	'''
 	builds or add atoms and control rods to grid and camera will center it. 
@@ -188,7 +199,10 @@ func build_grid_and_center(
 		
 		if x % 3 == 0 and add_ctrl:
 			var new_controlRod:Node = controlRod_scene.instantiate()
-			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -420)) 
+			var start_val: float = -420
+			if start_center:
+				start_val = 420
+			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, start_val)) 
 			add_child(new_controlRod)
 
 	# store what has been build:
@@ -216,11 +230,12 @@ func lost() -> void:
 	''' 
 	Pop up message, save score, exit game. 
 	'''
+	game_paused = true
+	game_mode_enabled = false
 	$pauseMenu.game_over_display(score_timer)
 
 
 func _on_loss_timer_timeout() -> void:
-	game_paused = true
 	lost()
 
 # dict of possbilites for upgrades:

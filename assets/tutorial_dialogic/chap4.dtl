@@ -6,10 +6,13 @@ Don’t let it overheat. Don’t let it fizzle out. Keep the reactor stable. Use
 If you see a strong flash of blue light, congratulations\: you’re now part of the reactor core.
 Here are some buttons and display for you to control the reactor with.
 [signal arg="more_control"]
-Down on the right, you can see how many neutrons are present in the reactor. It indicates the reactivty. 
-You can manually control the rods with W or S. 
-Try it out.
-[wait time="10.0"]
+Down on the right, you can see how many neutrons are present in the reactor. It indicates the reactivty.
+You can manually control the rods with W or S.
+Enriched Uranium is constantly being replaced - see if you can get the neutron activity up to 50.
+[signal arg="more_control2"]
+[wait_input]
+[end_timeline]
+label sucess50
 You managed to power a kettle without annihilating the lab. Mark the calendar—it’s a miracle.
-That's the simplest form of a nuclear reactor, It's really extremely oversimplified. But next time we  make it more realstic. 
+That's the simplest form of a nuclear reactor, It's really extremely oversimplified. But next time we  make it more realstic.
 The games objective is to stay alive for as long as possible, wthout melting the core or stalling it. Or just toying around. Good luck! (Press escape to leave, tutorial is finished)

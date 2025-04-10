@@ -14,6 +14,7 @@ var margin: int = 60
 
 var game_runner_instant: Node = null
 
+
 func _ready() -> void:
 	
 	# disable spawn click with mouse
@@ -71,7 +72,12 @@ func DialogicSignal(argument:String) -> void:
 		for i in range(atoms.size() - 1, -1, -1):
 			atoms[i].queue_free()
 			atoms.remove_at(i)
-
+			
+		# TODO REMOVE NEUTRPNMS HERE 
+		var neutrons = get_tree().get_nodes_in_group("neutrons")
+		for neutron in neutrons:
+			neutron.kill_self()
+		
 		# show state of reactor
 		get_parent().get_node("MarginContainer").show()
 		GameRunner.neutron_on_click = true
@@ -91,15 +97,21 @@ func DialogicSignal(argument:String) -> void:
 		for x in range(0, 2 * x_grid_range):
 			if x % 3 == 0:
 				var new_controlRod:Node = controlRod_scene.instantiate()
-				new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, -420)) 
+				new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 				add_child(new_controlRod)
 				
 	elif argument == "more_control":
-		Atom.enable_sponteniues_neutrons = false
-		Atom.enable_enrich = false
+		Atom.enable_sponteniues_neutrons = true
+		Atom.spont_emis_time = 1.0
+		Atom.enable_enrich = true
+		Atom.enrich_speed = 0.5
+		ControlRod.enable_auomatic = false
 		game_runner_instant._on_check_box_enrich_toggled(true)
 		# get_parent().get_node("Control").show()
 		get_parent().get_node("State").show()
+		tut_state = "more_control2"
+		
+		
 		
 # neutron collide with urnium atom center
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -115,18 +127,24 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	
 	elif tut_state == "first_chain_reaction":
 		if Atom.enriched_present == 0:
-			$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, false)
+			# $Area2D.set_collision_mask_value(globals.neutrol_collide_slot, false)
 			$Timer.start()
-	
+			
+			
 	elif tut_state == "more_control":
 		get_parent().get_node("State").show()
 		get_parent().get_node("Control").show()
-
-
+		$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)
+		tut_state = "more_control2"
+	
+	elif tut_state == "more_control2" and len(get_tree().get_nodes_in_group("neutrons")) > 49:
+		Dialogic.start("chap4", "sucess50")
+		tut_state = "tut_done"
+	
 # timout call such that 3 calls wont happen
 func _on_timer_timeout() -> void:
 	if tut_state == "first_chain_reaction":
-		
+		tut_state = "more_control2"
 		Dialogic.start("chap3", "chain_complete")
 
 	

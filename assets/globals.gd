@@ -7,14 +7,35 @@ var moderator_neutron_slot: int = 4
 
 # reset keep and keep check of default settings
 func reset_game_var() -> void:
+	
 	Atom.enriched_present = 0
 	Atom.unenriched_present = 0
+	Atom.enrich_percent = 0.80
+	Atom.enable_instant_enrich = true
+	Atom.instant_enrich_chance = 0.25
+	Atom.enable_sponteniues_neutrons = true
+	Atom.spont_emis_time = 1.0 
+	Atom.enrich_speed = 1.0
+	Atom.enable_enrich = true
 	Atom.enable_moderation = false
 	Atom.enable_xenon = false
-	Atom.enable_sponteniues_neutrons = false
+
+	GameRunner.x_row_build = 0 
+	GameRunner.y_row_build = 0 
+	GameRunner.margin = 60
+	GameRunner.game_mode_enabled = false
+	GameRunner.game_not_started = true
+	GameRunner.goal = 400
+	GameRunner.margin_error = 100
+	GameRunner.neutron_counter = 0
+	GameRunner.end_game_messge = "You didn't stay within the power limit. "
+
+	ControlRod.speed = 50
+	ControlRod.enable_auomatic  = true
+	ControlRod.move_even = true
+	ControlRod.last_created_even = true
 	
-	Neutron.enable_moderation = false
-	Water.water_absorb_chance = 0.00
+	
 
 	DebugMenu.style = DebugMenu.Style.HIDDEN
 
