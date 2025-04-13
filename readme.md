@@ -26,8 +26,7 @@ Probably it should have been made width C# for better performance.
 
 
 ## Todo now
-- make sure everything reset when chaning maps
-- fix tutorial 
+- fix settings physics chganges
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)

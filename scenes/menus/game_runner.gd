@@ -62,7 +62,7 @@ func _ready() -> void:
 	# Instantiate the scene and Add the instance to the current scene
 	map_loaded = scene.instantiate()
 	add_child(map_loaded)
-	
+	$Control/Control/MarginContainer/VBoxContainer/Tree.set_vals()
 	# tween in map 
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
@@ -83,8 +83,7 @@ func _ready() -> void:
 	else:
 		get_node("GameScore").hide()
 	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta: float) -> void:
 	game_logic(_delta)
 	update_hud()

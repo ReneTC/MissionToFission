@@ -23,3 +23,4 @@ func _ready() -> void:
 	get_parent().get_node("State").show()
 	get_parent().get_node("GameScore").hide()
 	
+	

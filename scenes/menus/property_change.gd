@@ -69,25 +69,32 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	tree.set_custom_minimum_size(Vector2(500, 30))
 
-
-func _on_item_edited() -> void:
-	
-	# update all valls here
+func set_vals() -> void:
+	'''
+	Update the ui values 
+	'''
 	var sections: Array = tree.get_root().get_children()
 	# just manual set them now
 	sections[0].set_range(0, Atom.spont_emis_time)
+	sections[1].set_range(0, Atom.enrich_speed)
+	sections[2].set_range(0, ControlRod.speed)
+	sections[3].set_range(0, int(roundf((1-Atom.enrich_percent)*100)))
+	sections[4].set_range(0, int(roundf((1-Atom.instant_enrich_chance)*100)))
+	
+	
+func _on_item_edited() -> void:
+	# TODO make this uatomatic and make all val percentages isntead of decimals
+	# update all valls here
+	var sections: Array = tree.get_root().get_children()
+	# just manual set them now
 	Atom.spont_emis_time = sections[0].get_range(0)
 	
-	sections[1].set_range(0, Atom.enrich_speed)
 	Atom.enrich_speed = sections[1].get_range(0)
 	
-	sections[2].set_range(0, ControlRod.speed)
 	ControlRod.speed = sections[2].get_range(0)
 	
-	sections[3].set_range(0, int(roundf((1-Atom.enrich_percent)*100)))
 	Atom.enrich_percent = 1 - (float(sections[3].get_range(0))/100)
 	
-	sections[4].set_range(0, int(roundf((1-Atom.instant_enrich_chance)*100)))
 	Atom.instant_enrich_chance = float(sections[4].get_range(0))/100
 	
 
@@ -103,5 +110,5 @@ func _on_item_edited() -> void:
 
 func reset_vals() -> void:
 	globals.reset_game_var()
-	self._on_item_edited()
+	self.set_vals()
 	
