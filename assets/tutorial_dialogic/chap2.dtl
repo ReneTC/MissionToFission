@@ -5,6 +5,7 @@ Let's hit it with a neutron, and it  will split into smaller nuclei, releasing e
 label neutron_hit
 Boom! Beautiful, isn’t it? And by ‘beautiful,’ I mean terrifyingly powerful.
 Now YOU try it. Fire some neutrons and make them split the Uranium.
+Click mouse to fire a neutron in a random direction. 
 [signal arg="you_try_split"]
 [end_timeline]
 label manual_neutron

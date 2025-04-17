@@ -54,6 +54,8 @@ general/balloon_path="res://dialouge_test//balloon.tscn"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

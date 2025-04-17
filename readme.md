@@ -30,3 +30,13 @@ Probably it should have been made width C# for better performance.
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)
+
+# Feedback:
+- screen resolution for mac is off
+- I think it would help to have more instructions on what's happening
+during the Game Mode and more clear objectives. It's definitely fun playing
+around with. But if you had certain objectives to obtain and certain levels to pass,
+it would make it way cooler Idk what you have in mind, but one idea would be that
+you need to produce a certain amount of energy to power something without destroying it.
+I think you mentioned a kettle in the tutorial. So level 1 could be a kettle, level 2, a whole room,
+level 3 an entire house, ... etc.

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://cn5xuu2uvf5w3"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://cn5xuu2uvf5w3"]
 
 [ext_resource type="StyleBox" uid="uid://bjyv5lg5wj1jp" path="res://assets/themes/style/hover_pressed.tres" id="1_mt7qf"]
 
@@ -117,6 +117,24 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
+[sub_resource type="FontFile" id="FontFile_7egdk"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hooha"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(1, 1, 1, 0.623529)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc3am"]
 bg_color = Color(0.176471, 0.556863, 1, 1)
 corner_radius_top_left = 5
@@ -153,5 +171,9 @@ Label/styles/normal = null
 MarginContainer/constants/margin_bottom = 100
 MarginContainer/constants/margin_top = 100
 Panel/styles/panel = SubResource("StyleBoxFlat_fkr46")
+PopupPanel/colors/title_outline_modulate = Color(0, 0, 0, 1)
+PopupPanel/fonts/title_font = SubResource("FontFile_7egdk")
+PopupPanel/styles/embedded_border = null
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_hooha")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_xc3am")
 VBoxContainer/constants/separation = 20
