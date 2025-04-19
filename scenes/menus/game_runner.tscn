@@ -4,10 +4,10 @@
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
 [ext_resource type="PackedScene" uid="uid://btg6pnsjf142h" path="res://scenes/menus/pause_menu.tscn" id="3_vb0gl"]
 [ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="4_oxp31"]
-[ext_resource type="Texture2D" uid="uid://bpreyncu2xvly" path="res://assets/bg.png" id="5_rngj5"]
+[ext_resource type="Texture2D" uid="uid://dej04prvvqbi3" path="res://assets/bg.png" id="5_rngj5"]
 [ext_resource type="Script" uid="uid://b718qs4uwc73e" path="res://scenes/menus/speedometer.gd" id="5_tngng"]
 [ext_resource type="PackedScene" uid="uid://dllddnf7rpmox" path="res://scenes/menus/property_change.tscn" id="6_hifqd"]
-[ext_resource type="Texture2D" uid="uid://ifasjtrtmmh2" path="res://assets/indi.png" id="7_tngng"]
+[ext_resource type="Texture2D" uid="uid://bp80li7irhnuy" path="res://assets/indi.png" id="7_tngng"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rngj5"]
 bg_color = Color(1, 0.105882, 0.101961, 1)
