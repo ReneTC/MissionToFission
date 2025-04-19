@@ -69,7 +69,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
-text = "Pick an upgrade"
+text = "Modify the reactor"
 horizontal_alignment = 1
 
 [node name="upgradeContainer" type="VBoxContainer" parent="Panel/upgradeMenu"]

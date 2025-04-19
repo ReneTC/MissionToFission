@@ -30,13 +30,11 @@ func reset_game_var() -> void:
 	GameRunner.neutron_counter = 0
 	GameRunner.end_game_messge = "You didn't stay within the power limit. "
 
-	ControlRod.speed = 50
+	ControlRod.speed = 65
 	ControlRod.enable_auomatic  = true
 	ControlRod.move_even = true
 	ControlRod.last_created_even = true
 	
-	
-
 	DebugMenu.style = DebugMenu.Style.HIDDEN
 
 
@@ -44,3 +42,7 @@ func get_random_uninrched_atom() -> Node:
 	var atoms: Array = get_tree().get_nodes_in_group("atoms")
 	var filtered: Array = atoms.filter(func(x: Atom) -> bool: return not x.is_enriched and not x.is_xenon)
 	return filtered.pick_random() if filtered.size() > 0 else null
+
+func draw_grid() -> void:
+	const GRID_STEP = 40
+const GRID_SIZE = 20

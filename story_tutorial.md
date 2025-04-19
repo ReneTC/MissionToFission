@@ -54,3 +54,5 @@ You managed to power a kettle without annihilating the lab. Mark the calendar—
 
 
 "Burn it off by temporarily increasing the reaction rate—or wait for it to decay naturally.  Either way, it’s a constant pain in the isotopes. Handle it.
+
+MAKE RBMK REACTOR

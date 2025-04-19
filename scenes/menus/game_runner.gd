@@ -84,6 +84,7 @@ func _ready() -> void:
 		get_node("GameScore").hide()
 	
 
+
 func _process(_delta: float) -> void:
 	game_logic(_delta)
 	update_hud()
@@ -223,11 +224,14 @@ func center_cam_atoms() -> void:
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
-	tween.tween_property($Camera2D, "position", Vector2(center_x - DisplayServer.screen_get_size()[0]/2., 0), 1)
+	tween.tween_property($Camera2D, "position", Vector2(center_x -1920/2., 0), 1)
+	# tween.tween_property($Camera2D, "position", Vector2(center_x, 0), 1)
+	$Camera2D.position = Vector2(center_x, 0)
+
 	
 func lost() -> void:
 	''' 
-	Pop up message, save score, exit game. 
+	Pop up message, save score, exit game. "size/viewport_width"
 	'''
 	game_paused = true
 	game_mode_enabled = false
