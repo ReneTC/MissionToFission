@@ -242,11 +242,12 @@ func _on_loss_timer_timeout() -> void:
 	lost()
 
 # dict of possbilites for upgrades:
+# TODO import thius from physics changer and append the game margin things
 var upgrade_dict:Dictionary = {
 	# "↑ Reactor Size": make_bigger_reactor,
 	"↑ Delayed Neutrons": [
 		faster_delaed_neutrons,
-		"Increases the speed of random neutrons releaed by waste material"
+		"Increases the ammount of random neutrons releaed by waste material"
 	],
 	"↑ Speed Enrichment": [
 		faster_uranium_enrichment,
@@ -288,7 +289,7 @@ func _on_upgrade_timer_timeout() -> void:
 
 func call_upgrade(key:String) -> void:
 	'''
-	thsi function is called from the pop up, it will call the function to activate the user choice
+	thhis function is called from the pop up, it will call the function to activate the user choice
 	'''
 	upgrade_dict[key][0].call()
 
@@ -332,7 +333,7 @@ func higher_enrichment_percent() -> void:
 	Atom.enrich_percent *= 0.75
 	
 func higher_enrichment_chance() -> void:
-	Atom.instant_enrich_chance *= 1.4
+	Atom.instant_enrich_chance *= 1.3
 	
 func faster_delaed_neutrons() -> void: 
 	Atom.spont_emis_time *= 0.75 

@@ -66,8 +66,5 @@ Inconveniences:
   filtering when too many neutrons are present?
 - The sound of the control rods loops in a relatively annoying way and continues even when the rods are fully inserted 
   or withdrawn.
-
-- Wording issue: "Increases the speed of random neutrons released by waste material" sounds like the actual speed of 
-  the neutrons is being modified, which may be misleading.
 - The speed of delayed neutrons and the speed of enrichment increases the lower the corresponding value is set 
   in the settings tab.

@@ -5,7 +5,7 @@ var upgrade_dict:Dictionary = {
 	# key: [func, tooltip, currentval, min, max, step]
 	"Delayed Neutrons": [
 		"func_faster_delaed_neutrons",
-		"Increases the speed of random neutrons releaed by waste material",
+		"Increases the ammount of random neutrons releaed by waste material",
 		Atom.spont_emis_time,
 		0.01, 
 		10,
@@ -19,6 +19,7 @@ var upgrade_dict:Dictionary = {
 		10,
 		0.1
 	],
+	
 	"Control Rods Speed ": [
 		"func_slower_moving_control_rods",
 		"Decreases the speed of the control rods",
