@@ -224,7 +224,7 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
-text = "Version: 0.01"
+text = "Version: 0.02"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bmfp5")

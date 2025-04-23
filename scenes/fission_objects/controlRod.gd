@@ -1,7 +1,6 @@
 extends Area2D
 class_name ControlRod
 
-var height: float = 900
 var width: float = 10
 var color:Color = Color("444444")
 static var speed: float = 50
@@ -10,29 +9,49 @@ var direction:float = 0.
 
 # logic to move every second ctrl rod
 var even:bool = true
-static var move_even:bool = true
+static var move_even:bool = false
 static var last_created_even:bool = true
+
+static var min_height: float = 200
+static var max_height: float = - 420
+static var rod_height: float = 900
+
+static var _registered_nodes: Array = []
 
 func _ready() -> void:
 	# set collisohape to set varables
 	var rectangle_shape:Shape2D =  $CollisionShape2D.shape as RectangleShape2D
-	rectangle_shape.extents = Vector2(self.width/2., self.height/2.) 
+	rectangle_shape.extents = Vector2(self.width/2., self.rod_height/2.) 
 	
 	# enable collison check w neutrons
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
-
 	# also fast neutrons
 	set_collision_mask_value(globals.moderator_neutron_slot, true)
+	
+	# logic for moving unevenly up and down
 	last_created_even = not last_created_even
 	even = last_created_even
+	# move_even = not move_even
 	
-	move_even = not move_even
-
+	# logic to n
 	add_to_group("ctrl_rods")
+	_registered_nodes.append(self)
+	update_control_rods()
+	
+	# force all to up initted to max y height
+	# if size bigger than to, take eve nidnex and get that position 
+	# also modify the collision shape 
+	if len(_registered_nodes) > 2:
+		position.y = _registered_nodes[int(last_created_even)].position.y
+	else:
+		position.y = max_height
 	
 func _draw() -> void:
-	draw_rect(Rect2(-self.width/2., -self.height/2., self.width, self.height), self.color)
-
+	draw_rect(Rect2(-self.width/2., -self.rod_height/2., self.width, self.rod_height), self.color)
+	# set collisohape to set varables
+	var rectangle_shape:Shape2D =  $CollisionShape2D.shape as RectangleShape2D
+	rectangle_shape.extents = Vector2(self.width/2., self.rod_height/2.) 
+	
 
 func initialize(pos_to_set:Vector2) -> void:
 	position = Vector2(pos_to_set)
@@ -52,18 +71,16 @@ func _process(delta: float) -> void:
 			elif GameRunner.neutron_counter < GameRunner.goal:
 				direction = -1
 			
-			# move down
-		# TODO these should be static variables and only be changed upon CTRL rod creation
-		var min_height:float = -420
-		var max_height:float = GameRunner.y_row_build * GameRunner.margin + min_height
 		position.y = clampf(position.y+direction*delta*speed, min_height, max_height)
 		
-		# switch 
-		if move_even and position.y == max_height:
-			move_even = not move_even
+	# switch 
+	if move_even and position.y == max_height:
+		move_even = not move_even
 
-		elif not move_even and position.y == min_height:
-			move_even = not move_even
+	elif not move_even and position.y == min_height:
+		move_even = not move_even
+
+
 			
 func get_input() -> void:
 	if Input.is_action_just_pressed("w") or Input.is_action_just_pressed("s"):
@@ -81,6 +98,17 @@ func get_input() -> void:
 	if Input.is_action_pressed("w"):
 		direction = -1
 
-
+		
 func _physics_process(_delta:float) -> void:
 	get_input()
+	
+static func update_control_rods() -> void:
+	rod_height = GameRunner.y_row_build * GameRunner.margin 
+	min_height = -rod_height/2 + GameRunner.margin/2
+	max_height = rod_height/2 + GameRunner.margin/2
+	
+	# que redraw
+	for ctrlrod in _registered_nodes:
+		ctrlrod.queue_redraw()
+		ctrlrod.position.y = clampf(ctrlrod.position.y, min_height, max_height)
+		

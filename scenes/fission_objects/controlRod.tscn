@@ -22,7 +22,7 @@ shape = SubResource("RectangleShape2D_spc3x")
 
 [node name="looper" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_x2umj")
-volume_db = -31.886
+volume_db = -35.0
 bus = &"SFX"
 parameters/looping = true
 

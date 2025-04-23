@@ -1,6 +1,7 @@
 extends Node2D
 
 var x_grid_range: int = 10
+#var x_grid_range: int = 13
 var y_grid_range: int = 5
 var margin: int = 60
 # Called when the node enters the scene tree for the first time.

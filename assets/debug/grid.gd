@@ -4,7 +4,7 @@ const GRID_STEP = 100
 const GRID_SIZE = 20
 
 
-func _draw():
+func _draw() -> void:
 	var default_font = ThemeDB.fallback_font
 	var default_font_size = ThemeDB.fallback_font_size
 

@@ -26,10 +26,11 @@ Probably it should have been made width C# for better performance.
 
 
 ## Todo now
-- fix settings physics chganges
+- fix settings physics chganges ( change to percentages not decimals)
 - tutorial: add game actually
-- change to percentages not decimals 
-
+- make physics changer hold most items
+- clean up, move scenes around
+- clean up: make container for layout, move game logic into own holder
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)
@@ -49,15 +50,6 @@ level 3 an entire house, ... etc.
 --------------------------------------------------------------------------------
 Bugs:
 --------------------------------------------------------------------------------
-- None of the reactors were screen-centered for me; the reactor in Simulation Mode was cut off on the right side 
-  of the screen.
-- If more than 1000 neutrons are on screen, the game ends as intended. However, the "Main Menu" button loops you 
-  back to the game over screen, as long as there are still more than 1000 neutrons active.
-- In Simulation Mode, I occasionally get a neutron counter of 150+ even if there are fewer than 30 on screen, and 
-  I don't hear that much fission happening. Maybe this has something to do with parts of the reactor being off-screen? 
-  The "offset" of 150+ neutrons from the real value seems relatively consistent, as far as I can tell.
-- I cannot move the control rods upward in Simulation Mode at the beginning. This only works once all control rods 
-  have been fully inserted at least once.
 
 --------------------------------------------------------------------------------
 Inconveniences:
@@ -66,5 +58,5 @@ Inconveniences:
   filtering when too many neutrons are present?
 - The sound of the control rods loops in a relatively annoying way and continues even when the rods are fully inserted 
   or withdrawn.
-- The speed of delayed neutrons and the speed of enrichment increases the lower the corresponding value is set 
-  in the settings tab.
+
+MAYBE add every 5 seconds a check if control rods are bad?

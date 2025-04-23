@@ -15,4 +15,10 @@ Enriched Uranium is constantly being replaced - see if you can get the neutron a
 label sucess50
 You managed to power a kettle without annihilating the lab. Mark the calendar—it’s a miracle.
 That's the simplest form of a nuclear reactor, It's really extremely oversimplified. But next time we  make it more realstic.
-The games objective is to stay alive for as long as possible, wthout melting the core or stalling it. Or just toying around. Good luck! (Press escape to leave, tutorial is finished)
+The games objective is to stay alive for as long as possible, wthout melting the core or stalling it.
+[signal arg="final_game"]
+Try to survive for a score of 60. - That is, staying within the green zone for 60 seconds. (Indicator is in the down right)
+From time to time, the reactor and the physical properties reactor will modified. You choose how!
+[end_timeline]
+label sucessFINAL
+You did it. Exit the tutorial and play the game mode to see how long time you can keep the reactor in check. Or have fun in the simulation mode. Press Esc.

@@ -11,10 +11,14 @@ func _ready() -> void:
 	
 	$UiButtonSound.connect_button_ui()
 	
-	for x in range(0, 30):
-		var new_atom:Node = atom_scene.instantiate()
-		new_atom.initialize(Vector2(DisplayServer.screen_get_size()[0] * randf(), DisplayServer.screen_get_size()[1] * randf()), randi_range(0, 1),) 
-		add_child(new_atom) 
+	var margin = 65
+	for x in range(-1, 30):
+		for y in range(-2, 17):
+			if randf() > 0.90:
+				var new_atom:Node = atom_scene.instantiate()
+				new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), randi_range(0, 1),) 
+				add_child(new_atom) 
+
 	Atom.enable_sponteniues_neutrons = true
 	
 	# connect not implimented buttons

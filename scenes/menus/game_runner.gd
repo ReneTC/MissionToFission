@@ -27,7 +27,7 @@ static var margin_error:int = 100
 static var neutron_counter: int = 0
 var countdown_till_loss:int = 30 
 var countdown_till_upgrade:int = 10 # 1 minutes
-var score_timer:float = 0.
+static var score_timer:float = 0.
 
 static var end_game_messge: String = "You didn't stay within the power limit. "
 var game_paused: bool = false:
@@ -91,9 +91,9 @@ func _process(_delta: float) -> void:
 
 func game_logic(dt:float) -> void:
 	
-	# count neutrons 
+	# count neutrons this doesnt need to be every 1/60 sec
 	neutron_counter = len(get_tree().get_nodes_in_group("neutrons"))
-	if neutron_counter > 1000:
+	if game_mode_enabled and neutron_counter > 1000:
 		end_game_messge = "
 		Reactor reactivity is over.
 		\n 1000 It's too much until 
@@ -123,6 +123,7 @@ func update_hud() -> void:
 	'''
 	This function updates the game HUD / visuals. Such as erichiment percent, the goal and so on.
 	'''
+	# TODO move this into the own label
 	if Engine.get_physics_frames() % 15 == 1:
 
 		# update game counter (score and such)
@@ -190,8 +191,14 @@ func build_grid_and_center(
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
 	# add atoms 
-	for x in range(x_row_build, x_grid):
-		for y in range(y_row_build, y_grid): 
+	var x_range = range(x_row_build, x_grid)
+	var y_range = range(y_row_build, y_grid)
+	# store what has been build:
+	x_row_build = x_grid
+	y_row_build = y_grid 
+	
+	for x in x_range:
+		for y in y_range:
 			if add_atoms:
 				var new_atom:Node = atom_scene.instantiate()
 				new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), encriched, keep_enrich_percent) 
@@ -202,12 +209,10 @@ func build_grid_and_center(
 			var start_val: float = -420
 			if start_center:
 				start_val = 420
-			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, start_val)) 
+			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 			add_child(new_controlRod)
 
-	# store what has been build:
-	x_row_build = x_grid
-	y_row_build = y_grid 
+
 	# tween camera to center newly build grids of atoms. Only x position at the moment
 	center_cam_atoms()
 	
@@ -226,7 +231,10 @@ func center_cam_atoms() -> void:
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($Camera2D, "position", Vector2(center_x -1920/2., 0), 1)
 	# tween.tween_property($Camera2D, "position", Vector2(center_x, 0), 1)
-	$Camera2D.position = Vector2(center_x, 0)
+	# $Camera2D.position = Vector2(center_x, 0)
+	
+	# also update ctr rods 
+	ControlRod.update_control_rods()
 
 	
 func lost() -> void:
@@ -279,7 +287,7 @@ func _on_upgrade_timer_timeout() -> void:
 	'''
 	generates 3 random upgrades and calls the pop up to ask whcih one user want
 	'''
-	make_bigger_reactor()
+	
 	game_paused = true
 	var keys:Array = upgrade_dict.keys()
 	keys.shuffle()
@@ -293,7 +301,7 @@ func call_upgrade(key:String) -> void:
 	'''
 	upgrade_dict[key][0].call()
 
-
+	make_bigger_reactor()
 
 func make_bigger_reactor() -> void:
 	'''

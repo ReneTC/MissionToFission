@@ -111,7 +111,16 @@ func DialogicSignal(argument:String) -> void:
 		get_parent().get_node("State").show()
 		tut_state = "more_control2"
 		
-		
+	elif argument == "final_game":
+		GameRunner.game_mode_enabled = true
+		GameRunner.goal = 100
+		GameRunner.margin_error = 50
+		# get_parent().get_node("Control").show()
+		# get_parent().get_node("Control/Control/MarginContainer/VBoxContainer/Layer2").hide()
+		# get_parent().get_node("Control/Control/MarginContainer/VBoxContainer/Tree").hide()
+		get_parent().get_node("State").show()
+		get_parent().get_node("GameScore").show()
+		tut_state = "final_game2"
 		
 # neutron collide with urnium atom center
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -140,6 +149,10 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	elif tut_state == "more_control2" and len(get_tree().get_nodes_in_group("neutrons")) > 49:
 		Dialogic.start("chap4", "sucess50")
 		tut_state = "tut_done"
+		
+	elif tut_state == "final_game2" and GameRunner.score_timer > 60:
+		tut_state = "final_game3"
+		Dialogic.start("chap4", "sucessFINAL")
 	
 # timout call such that 3 calls wont happen
 func _on_timer_timeout() -> void:

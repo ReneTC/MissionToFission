@@ -26,6 +26,7 @@ func reset_game_var() -> void:
 	GameRunner.game_mode_enabled = false
 	GameRunner.game_not_started = true
 	GameRunner.goal = 400
+	GameRunner.score_timer = 0
 	GameRunner.margin_error = 100
 	GameRunner.neutron_counter = 0
 	GameRunner.end_game_messge = "You didn't stay within the power limit. "

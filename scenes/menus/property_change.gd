@@ -3,17 +3,17 @@ extends Tree
 
 var upgrade_dict:Dictionary = {
 	# key: [func, tooltip, currentval, min, max, step]
-	"Delayed Neutrons": [
+	"TIme until Delayed Neutron": [
 		"func_faster_delaed_neutrons",
-		"Increases the ammount of random neutrons releaed by waste material",
+		"Ammount of random neutrons releaed by waste material",
 		Atom.spont_emis_time,
 		0.01, 
 		10,
 		0.1,
 	],
-	"Speed Enrichment": [
+	"Time Until Enrichment": [
 		"func_faster_uranium_enrichment",
-		"Increases the speed of the Uranium235 enrichment",
+		"The Speed of the Uranium235 enrichment",
 		Atom.enrich_speed,
 		0.01, 
 		10,
@@ -22,7 +22,7 @@ var upgrade_dict:Dictionary = {
 	
 	"Control Rods Speed ": [
 		"func_slower_moving_control_rods",
-		"Decreases the speed of the control rods",
+		"The speed of the control rods",
 		ControlRod.speed,
 		10,
 		100,
