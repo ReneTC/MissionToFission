@@ -40,7 +40,8 @@ directories/dtl_directory={
 "chap1": "res://assets/tutorial_dialogic/chap1.dtl",
 "chap2": "res://assets/tutorial_dialogic/chap2.dtl",
 "chap3": "res://assets/tutorial_dialogic/chap3.dtl",
-"chap4": "res://assets/tutorial_dialogic/chap4.dtl"
+"chap4": "res://assets/tutorial_dialogic/chap4.dtl",
+"chap5_water": "res://assets/tutorial_dialogic/chap5_water.dtl"
 }
 variables={}
 glossary/default_case_sensitive=true
@@ -65,6 +66,7 @@ animations/leave_default_length=0.5
 animations/leave_default_wait=true
 animations/cross_fade_default_length=0.5
 audio/max_channels=4.0
+text/autopauses={}
 
 [dialogue_manager]
 

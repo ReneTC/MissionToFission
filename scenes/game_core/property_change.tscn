@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dllddnf7rpmox"]
 
-[ext_resource type="Script" uid="uid://c542tju3wd47j" path="res://scenes/menus/property_change.gd" id="1_p8cke"]
+[ext_resource type="Script" uid="uid://c542tju3wd47j" path="res://scenes/game_core/property_change.gd" id="1_p8cke"]
 
 [sub_resource type="Theme" id="Theme_p8cke"]
 

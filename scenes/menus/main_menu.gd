@@ -1,6 +1,6 @@
 extends Control
 
-var gameRunner:PackedScene = load("res://scenes/menus/game_runner.tscn")
+var gameRunner:PackedScene = load("res://scenes/game_core/game_runner.tscn")
 var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 
@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	$UiButtonSound.connect_button_ui()
 	
-	var margin = 65
+	var margin:float = 65.
 	for x in range(-1, 30):
 		for y in range(-2, 17):
 			if randf() > 0.90:
@@ -56,33 +56,34 @@ func _on_button_quit_pressed() -> void:
 
 # bad code, select menu
 func _on_button_sandbox_pressed() -> void:
-	animate_out("res://scenes/maps/sandbox.tscn", "res://scenes/menus/game_runner.tscn")
+	animate_out("res://scenes/maps/misc/sandbox.tscn", "res://scenes/game_core/game_runner.tscn")
 
 
 func _on_button_credits_pressed() -> void:
-	animate_out("res://scenes/maps/rbmk_reactor.tscn", "res://addons/maaacks_credits_scene/examples/scenes/end_credits/end_credits.tscn")
-
-
-func _on_button_performances_pressed() -> void:
-	animate_out("res://scenes/maps/performance_test.tscn", "res://scenes/menus/game_runner.tscn")
+	animate_out("res://scenes/maps/2_rmbk/rbmk_reactor.tscn", "res://addons/maaacks_credits_scene/examples/scenes/end_credits/end_credits.tscn")
 
 
 func _on_button_pressed() -> void:
-	animate_out("res://scenes/maps/tutorial.tscn", "res://scenes/menus/game_runner.tscn")
+	animate_out("res://scenes/maps/1_basic_reactor/tutorial.tscn", "res://scenes/game_core/game_runner.tscn")
 
 func _on_button_3_pressed() -> void:
-	animate_out("res://scenes/maps/basic_reactor.tscn", "res://scenes/menus/game_runner.tscn")
+	animate_out("res://scenes/maps/1_basic_reactor/basic_reactor.tscn", "res://scenes/game_core/game_runner.tscn")
+
 
 func _on_404_pressed() -> void:
-	animate_out("res://scenes/menus/404.tscn", "res://scenes/menus/game_runner.tscn")
+	animate_out("res://scenes/menus/404.tscn", "res://scenes/game_core/game_runner.tscn")
 
 func _on_button_2_pressed() -> void:
-	animate_out("res://scenes/maps/basic_reactor_game.tscn", "res://scenes/menus/game_runner.tscn")
-	
-func _on_simulate_mode_rbmk_pressed() -> void:
-	animate_out("res://scenes/maps/rbmk_reactor.tscn", "res://scenes/menus/game_runner.tscn")
+	animate_out("res://scenes/maps/1_basic_reactor/basic_reactor_game.tscn", "res://scenes/game_core/game_runner.tscn")
 
 # escape on exit
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+
+func _on_simulate_mode_rbmk_pressed() -> void:
+	animate_out("res://scenes/maps/2_rbmk/rbmk_reactor.tscn", "res://scenes/game_core/game_runner.tscn")
+
+
+func _on_tutorial_pressed() -> void:
+	animate_out("res://scenes/maps/2_rbmk/tutorial.tscn", "res://scenes/game_core/game_runner.tscn")

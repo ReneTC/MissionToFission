@@ -1,14 +1,14 @@
 extends Area2D
 class_name Water
 
-var height: float = 50
-var width: float = 50
+var height: float = 60
+var width: float = 60
 var cold_color:Color = Color("DCEEFF")
 var hot_color:Color = Color("FF4949")
 var gone_color:Color = Color("FFFFFF")
 var speed: float = 10
 
-static var water_absorb_chance: float = 0.05
+static var water_absorb_chance: float = 0.1
 
 var temp: float = 0.
 
@@ -36,14 +36,13 @@ func initialize(pos_to_set:Vector2) -> void:
 	
 
 func _process(_delta:float) -> void:
-	if Engine.get_process_frames() % 30 == 0:
-		self.temp = clampf(self.temp - 1, 0, 100000000)
-		# consider only redraw on temot change 
-		queue_redraw()
+	self.temp = clampf(self.temp - 0.1, 0, 100000000)
+	# consider only redraw on temot change 
+	queue_redraw()
 
 
 func _on_body_entered(body: Node2D) -> void:
-	self.temp += 1
+	self.temp += 5
 	if randf() < water_absorb_chance:
 		body.queue_free()
 	

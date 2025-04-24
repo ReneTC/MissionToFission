@@ -86,7 +86,7 @@ func DialogicSignal(argument:String) -> void:
 		$Area2D/CollisionShape2D2.shape.radius = 1000
 		# make grid
 		Atom.enable_sponteniues_neutrons = false 
-		game_runner_instant.build_grid_and_center(2 * x_grid_range, 2 * y_grid_range, true, false, true, false)
+		game_runner_instant.build_grid_and_center(2 * x_grid_range, 2 * y_grid_range, true, false, true)
 
 				
 	elif argument == "chap4":

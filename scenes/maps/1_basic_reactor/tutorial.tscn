@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c218xvf3ok43v"]
+
+[ext_resource type="Script" uid="uid://dclke8sinwsje" path="res://scenes/maps/1_basic_reactor/tutorial.gd" id="1_322t5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bxto"]
+radius = 20.0
+
+[node name="Tutorial" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_322t5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1bxto")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

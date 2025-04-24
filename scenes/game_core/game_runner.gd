@@ -11,13 +11,15 @@ static var neutron_on_click: bool = true
 var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
 var controlRod_scene:PackedScene = load("res://scenes/fission_objects/controlRod.tscn")
+var moderator_scene:PackedScene = load("res://scenes/fission_objects/moderator.tscn")
+var water_scene:PackedScene = load("res://scenes/fission_objects/water.tscn")
 
 signal toggle_game_paused(is_paused: bool)
 
 # keep track on what grid has been build
 static var x_row_build:int = 0 
 static var y_row_build:int = 0 
-static var margin: int = 60
+static var margin: float = 60.
 
 # game settings
 static var game_mode_enabled: bool = false
@@ -185,41 +187,47 @@ func build_grid_and_center(
 		add_ctrl:bool=true,
 		encriched:bool=false,
 		keep_enrich_percent:bool=true,
-		start_center: bool = false
+		ctlrod_spacer:int = 3,
+		add_moderator:bool = false,
+		add_water:bool=false
 	) -> void:
 	'''
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
 	# add atoms 
-	var x_range = range(x_row_build, x_grid)
-	var y_range = range(y_row_build, y_grid)
+	var x_range:Array = range(x_row_build, x_grid)
+	var y_range:Array = range(y_row_build, y_grid)
 	# store what has been build:
 	x_row_build = x_grid
 	y_row_build = y_grid 
 	
-	for x in x_range:
-		for y in y_range:
+	for x:int in x_range:
+		for y:int in y_range:
 			if add_atoms:
 				var new_atom:Node = atom_scene.instantiate()
 				new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), encriched, keep_enrich_percent) 
 				add_child(new_atom) 
+				
+			if add_water:
+				var new_water:Node = water_scene.instantiate()
+				new_water.initialize(Vector2(margin + margin*x, margin + margin*y)) 
+				add_child(new_water) 
 		
-		if x % 3 == 0 and add_ctrl:
+		if x % ctlrod_spacer == 0 and add_ctrl:
 			var new_controlRod:Node = controlRod_scene.instantiate()
-			var start_val: float = -420
-			if start_center:
-				start_val = 420
 			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 			add_child(new_controlRod)
+			
+		if x % ctlrod_spacer == 2 and add_moderator:
+			var new_moderator:Node = moderator_scene.instantiate()
+			new_moderator.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
+			add_child(new_moderator)
 
 
 	# tween camera to center newly build grids of atoms. Only x position at the moment
 	center_cam_atoms()
 	
-	
-	
 
-	
 func center_cam_atoms() -> void:
 	var atoms: Array[Node] = get_tree().get_nodes_in_group("atoms")
 	var atom_x_positons: Array = []
@@ -230,8 +238,6 @@ func center_cam_atoms() -> void:
 	tween.set_ease(Tween.EaseType.EASE_OUT)
 	tween.set_trans(Tween.TransitionType.TRANS_CUBIC)
 	tween.tween_property($Camera2D, "position", Vector2(center_x -1920/2., 0), 1)
-	# tween.tween_property($Camera2D, "position", Vector2(center_x, 0), 1)
-	# $Camera2D.position = Vector2(center_x, 0)
 	
 	# also update ctr rods 
 	ControlRod.update_control_rods()
