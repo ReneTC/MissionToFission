@@ -35,6 +35,7 @@ func reset_game_var() -> void:
 	ControlRod.enable_auomatic  = true
 	ControlRod.move_even = true
 	ControlRod.last_created_even = true
+	ControlRod._registered_nodes = []
 	
 	DebugMenu.style = DebugMenu.Style.HIDDEN
 
@@ -43,3 +44,11 @@ func get_random_uninrched_atom() -> Node:
 	var atoms: Array = get_tree().get_nodes_in_group("atoms")
 	var filtered: Array = atoms.filter(func(x: Atom) -> bool: return not x.is_enriched and not x.is_xenon)
 	return filtered.pick_random() if filtered.size() > 0 else null
+
+func play(audio: AudioStream) -> void:
+	var audio_player := AudioStreamPlayer2D.new()
+	audio_player.stream = audio
+	Engine.get_main_loop().root.add_child(audio_player)
+	audio_player.play()
+	await audio_player.finished
+	audio_player.queue_free()

@@ -37,7 +37,8 @@ func _draw() -> void:
 	
 	# draw inner white circle as dot to indicate fast neutron
 	if is_fast:
-		draw_circle(Vector2(0, 0), self.radius*0.5, Color("FFFFFF"))
+		var radi:float =  lerp(0., 0.5, (current_speed-100.)/100.)
+		draw_circle(Vector2(0, 0), self.radius*radi, Color("FFFFFF"))
 
 
 func get_random_direction() -> Vector2:

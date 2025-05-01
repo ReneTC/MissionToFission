@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamPlaylist" load_steps=2 format=3 uid="uid://df4q4h6pjows6"]
+
+[ext_resource type="AudioStream" uid="uid://b1pg82fiocbb3" path="res://assets/sounds/SUCESS.wav" id="1_3ufvb"]
+
+[resource]
+stream_count = 1
+stream_0 = ExtResource("1_3ufvb")

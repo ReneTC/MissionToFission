@@ -1,1 +1,16 @@
-oi
+Fission creates heat—a LOT of it. If you don’t cool the reactor, it’ll turn into a very expensive lava lamp.
+That’s why we use water. It absorbs heat, carries it to turbines, and—bonus—can soak up neutrons.
+[signal arg="add_water"]
+Let's add some non-moving water. Neutrons scattering with water heats it up. If the water becomes hot it turns red, and too hot it evaporates. Then it's no longere there and can't absorb neutrons.
+A real reactor has fresh coolant water pumping in, but also has water circluated to a steam turbine. Let's ignore that and just let the water cool off with time.
+[signal arg="add_xenon"]
+There is more to a reactor. There is an annyoing problem with some of the daughter products. There is a small chance a fissioned U235 will turn into Xenon. Depicted as a black nuclei.
+Xenon-135, the reactor’s version of a hangover. It builds up during fission and eats neutrons, choking your chain reaction. If you don’t manage it, your reactor’s basically on strike. A very unstable strike.
+Reactor operators removes it either by "burning" it off by temporarily increasing the reaction rate—or wait for it to decay naturally.  Either way, it’s a constant pain in the isotopes.
+One last thing.
+Neutrons when released zip around too fast with a low probablity of interacting.
+[signal arg="add_fast"]
+Let's denote that with a white dot in the Neutrons. They are now fast.
+That’s where moderators come in. They slow neutrons down so they’re more likely to hit U-235. Basically, they make neutrons less useless.
+[signal arg="add_moderation"]
+Water has the ability to moderate Neutrons. But the RBMK reactor in Chernobyl used graphite. Let's add that - dentoed as a white rod.

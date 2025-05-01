@@ -189,20 +189,29 @@ func build_grid_and_center(
 		keep_enrich_percent:bool=true,
 		ctlrod_spacer:int = 3,
 		add_moderator:bool = false,
-		add_water:bool=false
+		add_water:bool=false,
+		ignore_build:bool=false,
 	) -> void:
 	'''
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
-	# add atoms 
-	var x_range:Array = range(x_row_build, x_grid)
-	var y_range:Array = range(y_row_build, y_grid)
-	# store what has been build:
-	x_row_build = x_grid
-	y_row_build = y_grid 
+ 
+	var x_range:Array = []
+	var y_range:Array = []
 	
+	if not ignore_build:
+		x_range = range(x_row_build, x_grid)
+		y_range = range(y_row_build, y_grid)
+		# store what has been build:
+		x_row_build = x_grid
+		y_row_build = y_grid 
+	else:
+		x_range = range(0, x_grid)
+		y_range = range(0, y_grid)
+		
 	for x:int in x_range:
 		for y:int in y_range:
+			
 			if add_atoms:
 				var new_atom:Node = atom_scene.instantiate()
 				new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), encriched, keep_enrich_percent) 

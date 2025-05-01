@@ -3,14 +3,14 @@ class_name ControlRod
 
 var width: float = 10
 var color:Color = Color("444444")
-static var speed: float = 50
-static var enable_auomatic : bool = true
+static var speed: float = 0  # set in globals
+static var enable_auomatic : bool = true # set in globals
 var direction:float = 0.
 
 # logic to move every second ctrl rod
 var even:bool = true
-static var move_even:bool = false
-static var last_created_even:bool = true
+static var move_even:bool = false # set in globals
+static var last_created_even:bool = true # set in globals
 
 static var min_height: float = 200
 static var max_height: float = - 420

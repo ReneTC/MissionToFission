@@ -45,4 +45,13 @@ func _on_body_entered(body: Node2D) -> void:
 	self.temp += 5
 	if randf() < water_absorb_chance:
 		body.queue_free()
-	
+	# let water moderate
+	if Neutron.enable_moderation and body.is_fast:
+		body.current_speed *= 0.95
+		body.linear_velocity = body.linear_velocity.normalized() * body.current_speed
+		# stop collidng width moderator:
+		if body.current_speed < 100:
+			body.is_fast = false
+		body.queue_redraw()
+		
+		

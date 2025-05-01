@@ -45,14 +45,16 @@ func _ready() -> void:
 
 func DialogicSignal(argument:String) -> void:
 	if argument == "put_u_and_play":
+		globals.play(preload("res://assets/sounds/pop.wav"))
 		var new_atom:Node = atom_scene.instantiate()
 		new_atom.initialize(get_viewport_rect().size / 2, true) 
-		add_child(new_atom) 
+		add_child(new_atom)  
 		atoms.append(new_atom)
 		Dialogic.start("chap2")
 		
 	elif argument == "play_neutron":
 		tut_state = "play_neutron"
+		globals.play(preload("res://assets/sounds/Popup1.wav"))
 		var new_neutron:Node = neutron_scene.instantiate()
 		new_neutron.initialize(get_viewport_rect().size / 2 - Vector2(300, 0), Vector2(1, 0)) 
 		add_child(new_neutron) 
@@ -86,8 +88,8 @@ func DialogicSignal(argument:String) -> void:
 		$Area2D/CollisionShape2D2.shape.radius = 1000
 		# make grid
 		Atom.enable_sponteniues_neutrons = false 
-		game_runner_instant.build_grid_and_center(2 * x_grid_range, 2 * y_grid_range, true, false, true)
-
+		game_runner_instant.build_grid_and_center(2 * x_grid_range, 2 * y_grid_range, true, false, true, false)
+		globals.play(preload("res://assets/sounds/long_sound.wav"))
 				
 	elif argument == "chap4":
 		Dialogic.start("chap4")
@@ -99,7 +101,9 @@ func DialogicSignal(argument:String) -> void:
 				var new_controlRod:Node = controlRod_scene.instantiate()
 				new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 				add_child(new_controlRod)
-				
+		globals.play(preload("res://assets/sounds/long_sound.wav"))
+		
+		
 	elif argument == "more_control":
 		Atom.enable_sponteniues_neutrons = true
 		Atom.spont_emis_time = 1.0
@@ -110,6 +114,8 @@ func DialogicSignal(argument:String) -> void:
 		# get_parent().get_node("Control").show()
 		get_parent().get_node("State").show()
 		tut_state = "more_control2"
+		
+		globals.play(preload("res://assets/sounds/long_sound.wav"))
 		
 	elif argument == "final_game":
 		GameRunner.game_mode_enabled = true
@@ -122,6 +128,8 @@ func DialogicSignal(argument:String) -> void:
 		get_parent().get_node("GameScore").show()
 		tut_state = "final_game2"
 		
+		# globals.play(preload("res://assets/sounds/long_sound.wav"))
+		
 # neutron collide with urnium atom center
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if tut_state == "play_neutron":
@@ -132,6 +140,7 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	elif tut_state == "you_try_split":
 		$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, false)
 		Dialogic.start("chap2", "manual_neutron")
+		globals.play(preload("res://assets/sounds/SUCESS.wav"))
 		GameRunner.neutron_on_click = false
 	
 	elif tut_state == "first_chain_reaction":
@@ -149,15 +158,18 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	elif tut_state == "more_control2" and len(get_tree().get_nodes_in_group("neutrons")) > 49:
 		Dialogic.start("chap4", "sucess50")
 		tut_state = "tut_done"
+		globals.play(preload("res://assets/sounds/SUCESS.wav"))
 		
 	elif tut_state == "final_game2" and GameRunner.score_timer > 60:
 		tut_state = "final_game3"
 		Dialogic.start("chap4", "sucessFINAL")
+		globals.play(preload("res://assets/sounds/SUCESS.wav"))
 	
 # timout call such that 3 calls wont happen
 func _on_timer_timeout() -> void:
 	if tut_state == "first_chain_reaction":
 		tut_state = "more_control2"
+		
 		Dialogic.start("chap3", "chain_complete")
 
 	
