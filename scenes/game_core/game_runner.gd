@@ -114,9 +114,10 @@ func game_logic(dt:float) -> void:
 		score_timer += dt
 		
 		# check if you are out of bounds, then start loose timer
-		var out_of_bounds_neutrons: bool = neutron_counter <= goal - margin_error or neutron_counter >= goal + margin_error
+		var out_of_bounds_neutrons: bool = neutron_counter < goal - margin_error or neutron_counter > goal + margin_error
 		if out_of_bounds_neutrons and $loss_timer.is_stopped():
 			$loss_timer.start()
+			globals.play(preload("res://assets/sounds/error.wav"))
 		# stop loose timer if you recovered neutrons activity
 		if !$loss_timer.is_stopped() and !out_of_bounds_neutrons:
 				$loss_timer.stop()
@@ -322,6 +323,7 @@ func call_upgrade(key:String) -> void:
 func make_bigger_reactor() -> void:
 	'''
 	expands the reactor size with one row or one coloumn and centers it
+	TODO this should also zoom out not only center x
 	'''
 	if float(x_row_build) / (y_row_build) > 1.6: # add only either row or colm
 		for x in range(0, x_row_build):

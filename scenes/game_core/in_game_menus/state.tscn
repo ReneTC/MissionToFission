@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://blxwqysuqrs4c"]
+
+[ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_wan2e"]
+[ext_resource type="Script" uid="uid://b718qs4uwc73e" path="res://scenes/game_core/speedometer.gd" id="2_660ix"]
+[ext_resource type="Texture2D" uid="uid://dej04prvvqbi3" path="res://assets/bg.png" id="3_cvn1o"]
+[ext_resource type="Texture2D" uid="uid://bp80li7irhnuy" path="res://assets/indi.png" id="4_wvlgr"]
+
+[node name="State" type="CanvasLayer"]
+
+[node name="State" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(200, 230)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -354.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_wan2e")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("2_660ix")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="State"]
+layout_mode = 2
+max_value = 1000.0
+value = 500.0
+fill_mode = 4
+radial_initial_angle = 315.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 83.27)
+texture_under = ExtResource("3_cvn1o")
+texture_progress = ExtResource("3_cvn1o")
+tint_over = Color(0.471143, 0.402246, 0.723374, 1)
+tint_progress = Color(0.495881, 0.998768, 0, 1)
+
+[node name="Indi" type="Sprite2D" parent="State/TextureProgressBar"]
+position = Vector2(167, 161)
+rotation = -2.61799
+scale = Vector2(0.928771, 0.950855)
+texture = ExtResource("4_wvlgr")
+offset = Vector2(48.7641, -19.0051)
+
+[node name="min" type="Label" parent="State/TextureProgressBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 160.0
+offset_right = 42.0
+offset_bottom = 183.0
+text = "0"
+
+[node name="max" type="Label" parent="State/TextureProgressBar"]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 160.0
+offset_right = 334.0
+offset_bottom = 183.0
+text = "1000"
+
+[node name="currentVal" type="Label" parent="State/TextureProgressBar"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 140.0
+offset_right = 202.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 30
+text = "400"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="State/TextureProgressBar"]
+layout_mode = 2
+offset_left = 112.0
+offset_top = -25.0
+offset_right = 219.0
+offset_bottom = -2.0
+pivot_offset = Vector2(53, 184)
+text = " "
+horizontal_alignment = 1
+vertical_alignment = 1

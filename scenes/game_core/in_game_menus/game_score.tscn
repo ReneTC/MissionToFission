@@ -65,7 +65,6 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme = ExtResource("1_xmk7t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rngj5")
-value = 50.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="GameScore/MarginContainer/VBoxContainer2/loose-bar"]
