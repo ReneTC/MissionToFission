@@ -25,9 +25,11 @@ Probably it should have been made width C# for better performance.
 - Optimize performance.
 
 ## Todo now
+- RBMK reactor should have modifcations such as xenon chance water cooling, water mdoeration ability and so on.
 - change to percentages not decimals in all settings
 - make physics changer hold most items, now it's duplciated
 - clean up: make container for layout, move game logic into own holder
+
 
 ## Small Todo's 
 - Tween animations (such as color changes and deletions)

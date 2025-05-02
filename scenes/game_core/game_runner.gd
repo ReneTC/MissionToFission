@@ -193,20 +193,36 @@ func build_grid_and_center(
 		add_moderator:bool = false,
 		add_water:bool=false,
 		ignore_build:bool=false,
+		expander:bool=false, 
 	) -> void:
 	'''
 	builds or add atoms and control rods to grid and camera will center it. 
 	'''
- 
 	var x_range:Array = []
 	var y_range:Array = []
 	
 	if not ignore_build:
 		x_range = range(x_row_build, x_grid)
 		y_range = range(y_row_build, y_grid)
+		
+		# hack to reuse function to expand reatpr 
+		if expander:
+			if x_range == []:
+				x_range = range(0, x_grid)
+			if y_range == []:
+				y_range = range(0, y_grid)
+				if x_range[0] % ctlrod_spacer == 0 and add_ctrl and expander:
+					var new_controlRod:Node = controlRod_scene.instantiate()
+					new_controlRod.initialize(Vector2(margin + margin*x_range[0] +0.5*margin, 0)) 
+					add_child(new_controlRod)
+				
+				if x_range[0] % ctlrod_spacer == 2 and add_moderator and expander:
+					var new_moderator:Node = moderator_scene.instantiate()
+					new_moderator.initialize(Vector2(margin + margin*x_range[0] +0.5*margin, 0)) 
+					add_child(new_moderator)
 		# store what has been build:
 		x_row_build = x_grid
-		y_row_build = y_grid 
+		y_row_build = y_grid
 	else:
 		x_range = range(0, x_grid)
 		y_range = range(0, y_grid)
@@ -224,12 +240,12 @@ func build_grid_and_center(
 				new_water.initialize(Vector2(margin + margin*x, margin + margin*y)) 
 				add_child(new_water) 
 		
-		if x % ctlrod_spacer == 0 and add_ctrl:
+		if x % ctlrod_spacer == 0 and add_ctrl and not expander:
 			var new_controlRod:Node = controlRod_scene.instantiate()
 			new_controlRod.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 			add_child(new_controlRod)
 			
-		if x % ctlrod_spacer == 2 and add_moderator:
+		if x % ctlrod_spacer == 2 and add_moderator and not expander:
 			var new_moderator:Node = moderator_scene.instantiate()
 			new_moderator.initialize(Vector2(margin + margin*x +0.5*margin, 0)) 
 			add_child(new_moderator)
@@ -252,7 +268,7 @@ func center_cam_atoms() -> void:
 	
 	# also update ctr rods 
 	ControlRod.update_control_rods()
-
+	Moderator.update_mods()	
 	
 func lost() -> void:
 	''' 
@@ -317,21 +333,52 @@ func call_upgrade(key:String) -> void:
 	thhis function is called from the pop up, it will call the function to activate the user choice
 	'''
 	upgrade_dict[key][0].call()
-
-	make_bigger_reactor()
+	var add_x:int = 0
+	var add_y:int = 0
+	if float(x_row_build) / (y_row_build) > 1.6: # add only either row or colm
+		add_y += 1
+	else:
+		add_x += 1
+	# messy code. if atom enable moderation then its a rbmk reator. This function should find another way of finding out
+	if Atom.enable_moderation:
+			build_grid_and_center(
+				x_row_build + add_x,
+				y_row_build + add_y,
+				true,
+				true,
+				true,
+				false,
+				4,
+				true,
+				true,
+				false,
+				true
+			)
+	else:
+		build_grid_and_center(
+				x_row_build + add_x,
+				y_row_build + add_y,
+				true,
+				true,
+				true,
+				false,
+				3,
+				false,
+				false,
+				false,
+				true
+			)
 
 func make_bigger_reactor() -> void:
 	'''
 	expands the reactor size with one row or one coloumn and centers it
-	TODO this should also zoom out not only center x
 	'''
+	
 	if float(x_row_build) / (y_row_build) > 1.6: # add only either row or colm
 		for x in range(0, x_row_build):
 			var new_atom:Node = atom_scene.instantiate()
 			new_atom.initialize(Vector2(margin + margin*x, margin + margin*y_row_build), true) 
 			add_child(new_atom) 
-
-
 		y_row_build += 1
 	else:
 		for y in range(0, y_row_build):
@@ -351,7 +398,7 @@ func make_bigger_reactor() -> void:
 		x_row_build += 1
 	
 	center_cam_atoms()
-	
+
 	
 	
 

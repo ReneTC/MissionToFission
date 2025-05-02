@@ -92,6 +92,7 @@ func on_body_entered(body: Node) -> void:
 			
 		elif self.is_xenon and Atom.enable_xenon:
 			self.is_xenon = false 
+			self.is_enriched = false
 			queue_redraw()
 			body.kill_self()
 
@@ -164,6 +165,7 @@ func start_spont_neutron_emission() -> void:
 # becomes xenon
 func _on_timer_xenon_timeout() -> void:
 	self.is_xenon = true
+	self.is_enriched = false
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 
 	if enable_moderation:

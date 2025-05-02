@@ -70,6 +70,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -179,11 +180,11 @@ horizontal_alignment = 1
 
 [node name="s" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["button_ui"]]
 layout_mode = 2
-text = " ̶T̶u̶t̶o̶r̶i̶a̶l̶"
+text = "Tutorial"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["404", "button_ui"]]
+[node name="game_mode_rbmk" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["button_ui"]]
 layout_mode = 2
-text = " ̶G̶a̶m̶e̶ ̶m̶o̶d̶e̶"
+text = "Game Mode"
 
 [node name="simulate_mode_rbmk" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2" groups=["button_ui"]]
 layout_mode = 2
@@ -224,7 +225,8 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox"]
 layout_mode = 2
-text = "Version: 0.02"
+text = "PRE ALPHA: Version: 0.02
+Please submit bugs and ideas on Steam or github"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bmfp5")
@@ -248,6 +250,7 @@ anchor_mode = 0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/simplified_reactor/Button/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2/s" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2/game_mode_rbmk" to="." method="_on_game_mode_rbmk_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/HBoxContainer/rbmk_reactor/Button/VBoxContainer2/simulate_mode_rbmk" to="." method="_on_simulate_mode_rbmk_pressed"]
 [connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox" to="." method="_on_buttons_v_box_child_entered_tree"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ButtonsVBox/Button_sandbox" to="." method="_on_button_sandbox_pressed"]

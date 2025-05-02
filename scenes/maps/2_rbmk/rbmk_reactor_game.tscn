@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d050c01nvs1h6"]
+
+[ext_resource type="PackedScene" uid="uid://jrlpr8m6wdtl" path="res://scenes/maps/2_rbmk/rbmk_reactor.tscn" id="1_0mtvs"]
+[ext_resource type="Script" uid="uid://4pois3fyfen3" path="res://scenes/maps/2_rbmk/rbmk_reactor_game.gd" id="2_nt1es"]
+
+[node name="RbmkReactor" instance=ExtResource("1_0mtvs")]
+script = ExtResource("2_nt1es")

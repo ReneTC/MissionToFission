@@ -17,10 +17,11 @@ static var max_height: float = - 420
 static var rod_height: float = 900
 
 static var _registered_nodes: Array = []
+var rectangle_shape:Shape2D =  null
 
 func _ready() -> void:
 	# set collisohape to set varables
-	var rectangle_shape:Shape2D =  $CollisionShape2D.shape as RectangleShape2D
+	rectangle_shape = $CollisionShape2D.shape as RectangleShape2D
 	rectangle_shape.extents = Vector2(self.width/2., self.rod_height/2.) 
 	
 	# enable collison check w neutrons
@@ -49,7 +50,6 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_rect(Rect2(-self.width/2., -self.rod_height/2., self.width, self.rod_height), self.color)
 	# set collisohape to set varables
-	var rectangle_shape:Shape2D =  $CollisionShape2D.shape as RectangleShape2D
 	rectangle_shape.extents = Vector2(self.width/2., self.rod_height/2.) 
 	
 
@@ -109,6 +109,6 @@ static func update_control_rods() -> void:
 	
 	# que redraw
 	for ctrlrod: CanvasItem in _registered_nodes:
-		ctrlrod.queue_redraw()
 		ctrlrod.position.y = clampf(ctrlrod.position.y, min_height, max_height)
+		ctrlrod.queue_redraw()
 		

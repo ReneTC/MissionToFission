@@ -8,7 +8,7 @@ var water_scene:PackedScene = load("res://scenes/fission_objects/water.tscn")
 var tut_state: String = "chap5_water"
 var atoms: Array = []
 
-var x_grid_range: int = 15
+var x_grid_range: int = 14
 var y_grid_range: int = 10
 var margin: int = 60
 

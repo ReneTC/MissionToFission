@@ -1,7 +1,6 @@
 extends Area2D
 class_name Moderator
 
-@export var height: float = 850
 @export var width: float = 10
 @export var color:Color = Color("1A1A1A")
 
@@ -9,11 +8,13 @@ static var min_height: float = 200
 static var max_height: float = - 420
 static var rod_height: float = 900
 
+var rectangle_shape:Shape2D =  null
+
 static var _registered_nodes: Array = []
 func _ready() -> void:
 	# set collisohape to set varables
-	var rectangle_shape:RectangleShape2D =  $CollisionShape2D.shape as RectangleShape2D
-	rectangle_shape.extents = Vector2(self.width/2., self.height/2.) 
+	rectangle_shape =  $CollisionShape2D.shape as RectangleShape2D
+	rectangle_shape.extents = Vector2(self.width/2., self.rod_height/2.) 
 	
 	# enable collison check w neutrons
 	set_collision_mask_value(globals.moderator_neutron_slot, true)
@@ -24,9 +25,9 @@ func _ready() -> void:
 	position.y = max_height
 
 func _draw() -> void:
-	draw_rect(Rect2(-self.width/2., -self.height/2., self.width, self.height), Color("ffffff"))
-	draw_rect(Rect2(-self.width/2.+1, -self.height/2.+1, self.width+1, self.height+1), self.color, false)
-
+	draw_rect(Rect2(-self.width/2., -self.rod_height/2., self.width, self.rod_height), Color("ffffff"))
+	draw_rect(Rect2(-self.width/2.+1, -self.rod_height/2.+1, self.width+1, self.rod_height+1), self.color, false)
+	rectangle_shape.extents = Vector2(self.width/2., self.rod_height/2.) 
 
 func initialize(pos_to_set:Vector2) -> void:
 	position = Vector2(pos_to_set[0], pos_to_set[1])
@@ -51,5 +52,5 @@ static func update_mods() -> void:
 	
 	# que redraw
 	for ctrlrod: CanvasItem in _registered_nodes:
+		ctrlrod.position.y = rod_height /2  + GameRunner.margin/2
 		ctrlrod.queue_redraw()
-		ctrlrod.position.y = clampf(ctrlrod.position.y, min_height, max_height)

@@ -8,9 +8,10 @@ There is more to a reactor. There is an annyoing problem with some of the daught
 Xenon-135, the reactor’s version of a hangover. It builds up during fission and eats neutrons, choking your chain reaction. If you don’t manage it, your reactor’s basically on strike. A very unstable strike.
 Reactor operators removes it either by "burning" it off by temporarily increasing the reaction rate—or wait for it to decay naturally.  Either way, it’s a constant pain in the isotopes.
 One last thing.
-Neutrons when released zip around too fast with a low probablity of interacting.
+Neutrons when released zip around too fast which causes a low probablity of interacting.
 [signal arg="add_fast"]
-Let's denote that with a white dot in the Neutrons. They are now fast.
-That’s where moderators come in. They slow neutrons down so they’re more likely to hit U-235. Basically, they make neutrons less useless.
+Let's denote fast neutrons with a white dot in the Neutrons. They are now fast.
+That’s where moderators come in. They slow neutrons down so they’re more likely to interact with U-235. Basically, they make neutrons less useless.
 [signal arg="add_moderation"]
 Water has the ability to moderate Neutrons. But the RBMK reactor in Chernobyl used graphite. Let's add that - dentoed as a white rod.
+That's it for the tutorial for now! Press escape.

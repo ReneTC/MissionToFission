@@ -1,16 +1,9 @@
 extends Node2D
-
+class_name rbmk_reactor
 # grid settings
 var x_grid_range: int = 30
 var y_grid_range: int = 15
 var margin: int = 60
-
-# get fission objects
-var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
-var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
-var controlRod_scene:PackedScene = load("res://scenes/fission_objects/controlRod.tscn")
-var water_scene:PackedScene = load("res://scenes/fission_objects/water.tscn")
-var moderator_scene:PackedScene = load("res://scenes/fission_objects/moderator.tscn")
 
 
 func _ready() -> void:
@@ -21,7 +14,7 @@ func _ready() -> void:
 	Neutron.enable_moderation = true
 	GameRunner.game_mode_enabled = false
 	GameRunner.goal = 200 # set this to let ctrl rods  autoamtic aim for something
-	Atom.spont_emis_time = 3.0
+
 	
 	get_parent().get_node("Control").show()
 	get_parent().get_node("Control/Control/MarginContainer/VBoxContainer/Layer2").show()
