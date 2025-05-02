@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://84wk8lfpyvk4"]
+
+[ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_xmk7t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rngj5"]
+bg_color = Color(1, 0.105882, 0.101961, 1)
+
+[node name="GameScore" type="CanvasLayer"]
+
+[node name="GameScore" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 188.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("1_xmk7t")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="GameScore"]
+layout_mode = 2
+localize_numeral_system = false
+theme = ExtResource("1_xmk7t")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameScore/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="GameScore/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+disabled = true
+text = "Score: 0.0"
+
+[node name="upgrade-bar" type="ProgressBar" parent="GameScore/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="GameScore/MarginContainer/VBoxContainer2/upgrade-bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.705
+offset_bottom = 2.145
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Modify timer"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="loose-bar" type="ProgressBar" parent="GameScore/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_xmk7t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rngj5")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="GameScore/MarginContainer/VBoxContainer2/loose-bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.705
+offset_bottom = 2.145
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Loose timout"
+horizontal_alignment = 1
+vertical_alignment = 3

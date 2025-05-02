@@ -125,7 +125,7 @@ func update_hud() -> void:
 	'''
 	This function updates the game HUD / visuals. Such as erichiment percent, the goal and so on.
 	'''
-	# TODO move this into the own label
+	# TODO move this into the own script
 	if Engine.get_physics_frames() % 15 == 1:
 
 		# update game counter (score and such)
@@ -265,7 +265,7 @@ func _on_loss_timer_timeout() -> void:
 	lost()
 
 # dict of possbilites for upgrades:
-# TODO import thius from physics changer and append the game margin things
+# TODO import this from physics changer and append the game margin things now itøs duplciated
 var upgrade_dict:Dictionary = {
 	# "↑ Reactor Size": make_bigger_reactor,
 	"↑ Delayed Neutrons": [

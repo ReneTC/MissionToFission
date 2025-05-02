@@ -1,11 +1,11 @@
 This is Uranium-235, the rock star of radioactive elements. It’s unstable, cranky, and dangerous—basically my spirit animal.
-Let's hit it with a neutron, and it  will split into smaller nuclei, releasing energy and more neutrons. That’s fission, the phenomenon that powers everything from reactors to extremely powerfull and  extremely regrettable explosions.
+Let's hit it with a neutron, and it will split into smaller nuclei, releasing energy and more neutrons. That’s fission, the phenomenon that powers everything from reactors to extremely powerful and extremely regrettable explosions.
 [signal arg="play_neutron"]
 [end_timeline]
 label neutron_hit
 Boom! Beautiful, isn’t it? And by ‘beautiful,’ I mean terrifyingly powerful.
 Now YOU try it. Fire some neutrons and make them split the Uranium.
-Click mouse to fire a neutron in a random direction. 
+Click mouse to fire a neutron in a random direction.
 [signal arg="you_try_split"]
 [end_timeline]
 label manual_neutron

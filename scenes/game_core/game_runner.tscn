@@ -4,14 +4,12 @@
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="3_4kpoj"]
 [ext_resource type="PackedScene" uid="uid://btg6pnsjf142h" path="res://scenes/menus/pause_menu.tscn" id="3_vb0gl"]
 [ext_resource type="PackedScene" uid="uid://cbmt0q3frns" path="res://assets/scene_fader.tscn" id="4_oxp31"]
-[ext_resource type="Texture2D" uid="uid://bpreyncu2xvly" path="res://assets/bg.png" id="5_rngj5"]
+[ext_resource type="Texture2D" uid="uid://dej04prvvqbi3" path="res://assets/bg.png" id="5_rngj5"]
 [ext_resource type="Script" uid="uid://b718qs4uwc73e" path="res://scenes/game_core/speedometer.gd" id="5_tngng"]
 [ext_resource type="PackedScene" uid="uid://dllddnf7rpmox" path="res://scenes/game_core/property_change.tscn" id="6_hifqd"]
-[ext_resource type="Texture2D" uid="uid://ifasjtrtmmh2" path="res://assets/indi.png" id="7_tngng"]
+[ext_resource type="PackedScene" uid="uid://84wk8lfpyvk4" path="res://scenes/game_core/in_game_menus/game_score.tscn" id="6_qcncn"]
+[ext_resource type="Texture2D" uid="uid://bp80li7irhnuy" path="res://assets/indi.png" id="7_tngng"]
 [ext_resource type="PackedScene" uid="uid://ca4r5cak5lcwv" path="res://assets/debug/grid.tscn" id="9_hifqd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rngj5"]
-bg_color = Color(1, 0.105882, 0.101961, 1)
 
 [node name="GameRunner" type="Node"]
 process_mode = 3
@@ -149,80 +147,7 @@ custom_minimum_size = Vector2(420, 40)
 layout_mode = 2
 theme = ExtResource("3_4kpoj")
 
-[node name="GameScore" type="CanvasLayer" parent="."]
-
-[node name="GameScore" type="MarginContainer" parent="GameScore"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -400.0
-offset_bottom = 188.0
-grow_horizontal = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme = ExtResource("3_4kpoj")
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="MarginContainer" type="MarginContainer" parent="GameScore/GameScore"]
-layout_mode = 2
-localize_numeral_system = false
-theme = ExtResource("3_4kpoj")
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="GameScore/GameScore/MarginContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="GameScore/GameScore/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-disabled = true
-text = "Score: 0.0"
-
-[node name="upgrade-bar" type="ProgressBar" parent="GameScore/GameScore/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-show_percentage = false
-
-[node name="Label" type="Label" parent="GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 2.705
-offset_bottom = 2.145
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Modify timer"
-horizontal_alignment = 1
-vertical_alignment = 3
-
-[node name="loose-bar" type="ProgressBar" parent="GameScore/GameScore/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-theme = ExtResource("3_4kpoj")
-theme_override_styles/fill = SubResource("StyleBoxFlat_rngj5")
-value = 50.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="GameScore/GameScore/MarginContainer/VBoxContainer2/loose-bar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 2.705
-offset_bottom = 2.145
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Loose timout"
-horizontal_alignment = 1
-vertical_alignment = 3
+[node name="GameScore" parent="." instance=ExtResource("6_qcncn")]
 
 [node name="State" type="CanvasLayer" parent="."]
 
@@ -311,7 +236,6 @@ process_mode = 1
 wait_time = 25.0
 
 [node name="Grid" parent="." instance=ExtResource("9_hifqd")]
-visible = false
 
 [node name="upgrade_timer" type="Timer" parent="."]
 process_mode = 1
