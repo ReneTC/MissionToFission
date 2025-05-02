@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://84wk8lfpyvk4"]
+[gd_scene load_steps=4 format=3 uid="uid://84wk8lfpyvk4"]
 
+[ext_resource type="Script" uid="uid://cxx7em7pfut6c" path="res://scenes/game_core/in_game_menus/game_score.gd" id="1_lo3xg"]
 [ext_resource type="Theme" uid="uid://cn5xuu2uvf5w3" path="res://assets/themes/theme.tres" id="1_xmk7t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rngj5"]
 bg_color = Color(1, 0.105882, 0.101961, 1)
 
 [node name="GameScore" type="CanvasLayer"]
+script = ExtResource("1_lo3xg")
 
 [node name="GameScore" type="MarginContainer" parent="."]
 anchors_preset = 1

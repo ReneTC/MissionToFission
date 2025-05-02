@@ -130,13 +130,14 @@ func update_hud() -> void:
 
 		# update game counter (score and such)
 		if game_mode_enabled and $GameScore/GameScore.is_visible_in_tree():
-			$GameScore/GameScore/MarginContainer/VBoxContainer2/Button.text = "Survive: %.1f" % score_timer
-	
-			$"GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar".max_value = countdown_till_upgrade
-			$"GameScore/GameScore/MarginContainer/VBoxContainer2/upgrade-bar".value = $upgrade_timer.time_left
-			$"GameScore/GameScore/MarginContainer/VBoxContainer2/loose-bar".max_value = countdown_till_loss
-			$"GameScore/GameScore/MarginContainer/VBoxContainer2/loose-bar".value = $loss_timer.time_left
-	
+			$GameScore.update_hud(
+				self.score_timer,
+				self.countdown_till_upgrade,
+				self.countdown_till_loss,
+				$upgrade_timer.time_left,
+				$loss_timer.time_left,
+			)
+			
 		# update neutron bar
 		if $State/State.is_visible_in_tree():
 			$State/State.set_current_value(neutron_counter)
