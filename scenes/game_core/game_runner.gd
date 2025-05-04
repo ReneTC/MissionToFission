@@ -146,6 +146,7 @@ func update_hud() -> void:
 
 		# Update enrich percent shower 
 		if $Control/Control.is_visible_in_tree():
+			# TODO this should be in it's own script and node
 			var percent: float =  (float(Atom.enriched_present)/float(Atom.enriched_present + Atom.unenriched_present)) * 100
 			$Control/Control/MarginContainer/VBoxContainer/Layer1/Enrich_bar.value = percent
 			$Control/Control/MarginContainer/VBoxContainer/Layer1/Enrich_bar/Label.text = "Enrichment: " + '%.1f' % percent + "%"
@@ -284,8 +285,8 @@ func _on_loss_timer_timeout() -> void:
 
 # dict of possbilites for upgrades:
 # TODO import this from physics changer and append the game margin things now itøs duplciated
+
 var upgrade_dict:Dictionary = {
-	# "↑ Reactor Size": make_bigger_reactor,
 	"↑ Delayed Neutrons": [
 		faster_delaed_neutrons,
 		"Increases the ammount of random neutrons releaed by waste material"
@@ -316,6 +317,21 @@ var upgrade_dict:Dictionary = {
 	],
 }
 
+var upgrade_dict_rbmk:Dictionary = {
+	"↑ Xenon chance": [
+		higher_xenon_chance,
+		"Increases the chance an atom will be transmute into xenon after fission"
+	],
+	"↓ Water flow": [
+		water_flow_decrease,
+		"Decreasese the ammount of water flowing, meaning water will cool of slower"
+	],
+	"↑ Water absorb chance": [
+		water_absorb_chance,
+		"Increases the chance water will absorb neutrons"
+	],
+}
+
 func _on_upgrade_timer_timeout() -> void:
 	'''
 	generates 3 random upgrades and calls the pop up to ask whcih one user want
@@ -332,6 +348,10 @@ func call_upgrade(key:String) -> void:
 	'''
 	thhis function is called from the pop up, it will call the function to activate the user choice
 	'''
+	
+	# if mdoeration is enable the game mode is rbmk. rethink this code
+	if Atom.enable_moderation:
+		upgrade_dict.merge(upgrade_dict_rbmk)
 	upgrade_dict[key][0].call()
 	var add_x:int = 0
 	var add_y:int = 0
@@ -339,7 +359,7 @@ func call_upgrade(key:String) -> void:
 		add_y += 1
 	else:
 		add_x += 1
-	# messy code. if atom enable moderation then its a rbmk reator. This function should find another way of finding out
+	# messy code. if atom enable moderation then its a rbmk reator. This function should be rethinked
 	if Atom.enable_moderation:
 			build_grid_and_center(
 				x_row_build + add_x,
@@ -399,8 +419,6 @@ func make_bigger_reactor() -> void:
 	
 	center_cam_atoms()
 
-	
-	
 
 func higher_enrichment_percent() -> void:
 	Atom.enrich_percent *= 0.75
@@ -422,6 +440,17 @@ func slower_moving_control_rods() -> void:
 func smaller_neutron_margin() -> void:
 	self.margin_error -= 10
 	
+
+func higher_xenon_chance() -> void:
+	Atom.become_xenon_later_chance *= 1.5
+	
+func water_flow_decrease() -> void:
+	Water.cool_of_speed *= 0.5
+	
+func water_absorb_chance() -> void:
+	Water.water_absorb_chance *= 1.3
+	
+	
 func faster_uranium_enrichment() -> void:
 	Atom.enrich_speed *= 0.5
 	$enrich_timer.wait_time = Atom.enrich_speed
@@ -429,7 +458,6 @@ func faster_uranium_enrichment() -> void:
 	
 func higher_neutron_goal() -> void:
 	self.goal += 100
-
 
 func _on_check_box_enrich_2_toggled(toggled_on: bool) -> void:
 	ControlRod.enable_auomatic = toggled_on

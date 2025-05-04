@@ -37,7 +37,7 @@ func _on_continue_pressed() -> void:
 
 
 func _on_main_pressed() -> void:
-	# globals.reset_game_var()
+	globals.reset_game_var()
 	game_runner.game_paused = false	
 	var tween2:Tween = get_tree().create_tween()
 	tween2.set_ease(Tween.EaseType.EASE_OUT)

@@ -8,8 +8,8 @@ var hot_color:Color = Color("FF4949")
 var gone_color:Color = Color("FFFFFF")
 var speed: float = 10
 
-static var water_absorb_chance: float = 0.1
-
+static var water_absorb_chance: float = 0.05
+static var cool_of_speed:float = 10
 var temp: float = 0.
 
 
@@ -36,22 +36,23 @@ func initialize(pos_to_set:Vector2) -> void:
 	
 
 func _process(_delta:float) -> void:
-	self.temp = clampf(self.temp - 0.1, 0, 100000000)
+	self.temp = clampf(self.temp - (self.cool_of_speed*_delta), 0, 100000000)
 	# consider only redraw on temot change 
 	queue_redraw()
 
 
 func _on_body_entered(body: Node2D) -> void:
 	self.temp += 5
-	if randf() < water_absorb_chance:
-		body.queue_free()
-	# let water moderate
-	if Neutron.enable_moderation and body.is_fast:
-		body.current_speed *= 0.95
-		body.linear_velocity = body.linear_velocity.normalized() * body.current_speed
-		# stop collidng width moderator:
-		if body.current_speed < 100:
-			body.is_fast = false
-		body.queue_redraw()
-		
-		
+	if self.temp < 100:
+		if randf() < water_absorb_chance:
+			body.queue_free()
+		# let water moderate
+		if Neutron.enable_moderation and body.is_fast:
+			body.current_speed *= 0.95
+			body.linear_velocity = body.linear_velocity.normalized() * body.current_speed
+			# stop collidng width moderator:
+			if body.current_speed < 100:
+				body.is_fast = false
+			body.queue_redraw()
+			
+			

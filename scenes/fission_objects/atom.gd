@@ -9,7 +9,7 @@ var color_decayed:Color = Color("BBBBBB")
 var color_xenon:Color = Color("444444")
 @export var is_enriched: bool = true
 @export var is_xenon: bool = false
-var become_xenon_later_chance: float = 0.5 
+static var become_xenon_later_chance: float = 0.25 
 var xenon_time_rand_multiplier:float = 10
 
 var neutron_scene: PackedScene

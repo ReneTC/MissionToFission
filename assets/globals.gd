@@ -17,6 +17,7 @@ func reset_game_var() -> void:
 	Atom.spont_emis_time = 1.0 
 	Atom.enrich_speed = 1.0
 	Atom.enable_enrich = true
+	Atom.become_xenon_later_chance = 0.25 
 	Atom.enable_moderation = false
 	Atom.enable_xenon = false
 
@@ -36,6 +37,11 @@ func reset_game_var() -> void:
 	ControlRod.move_even = true
 	ControlRod.last_created_even = true
 	ControlRod._registered_nodes = []
+	
+	Moderator._registered_nodes = []
+
+	Water.water_absorb_chance = 0.05
+	Water.cool_of_speed = 10	
 	
 	DebugMenu.style = DebugMenu.Style.HIDDEN
 

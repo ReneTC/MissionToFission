@@ -1,15 +1,18 @@
 extends Tree
+class_name physics_changer
 @onready var tree: Node = $"."
 
-var upgrade_dict:Dictionary = {
-	# key: [func, tooltip, currentval, min, max, step]
-	"TIme until Delayed Neutron": [
+static var upgrade_dict:Dictionary = {
+	# key: [func, tooltip, currentval, min, max, step, change if picked, name in game mode]
+	"Time until Delayed Neutron": [
 		"func_faster_delaed_neutrons",
 		"Ammount of random neutrons releaed by waste material",
 		Atom.spont_emis_time,
 		0.01, 
 		10,
 		0.1,
+		0.75,
+		"↑ Delayed Neutrons"
 	],
 	"Time Until Enrichment": [
 		"func_faster_uranium_enrichment",
@@ -17,7 +20,9 @@ var upgrade_dict:Dictionary = {
 		Atom.enrich_speed,
 		0.01, 
 		10,
-		0.1
+		0.1,
+		0.5,
+		"↑ Speed Enrichment",
 	],
 	
 	"Control Rods Speed ": [
@@ -26,7 +31,9 @@ var upgrade_dict:Dictionary = {
 		ControlRod.speed,
 		10,
 		100,
-		5
+		5,
+		0.75,
+		"↓ Control Rods Speed"
 		
 	],
 	"Enrichment Percent": [

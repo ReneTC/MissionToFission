@@ -19,7 +19,7 @@ func _ready() -> void:
 	get_parent().get_node("GameScore").show()
  
 	# tween in center caamera
-	x_grid_range = 10
-	y_grid_range = 5
-
+	x_grid_range = 12
+	y_grid_range = 6
+	
 	get_parent().build_grid_and_center(x_grid_range, y_grid_range, true, true, false, true, 4, true, true)
