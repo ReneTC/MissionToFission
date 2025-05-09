@@ -108,7 +108,7 @@ static func update_control_rods() -> void:
 	max_height = rod_height/2 + GameRunner.margin/2
 	
 	# que redraw
-	for ctrlrod: CanvasItem in _registered_nodes:
-		ctrlrod.position.y = clampf(ctrlrod.position.y, min_height, max_height)
-		ctrlrod.queue_redraw()
+	#for ctrlrod: CanvasItem in _registered_nodes:
+		#ctrlrod.position.y = clampf(ctrlrod.position.y, min_height, max_height)
+		#ctrlrod.queue_redraw()
 		
