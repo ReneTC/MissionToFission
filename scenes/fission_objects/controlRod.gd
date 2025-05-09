@@ -58,7 +58,8 @@ func initialize(pos_to_set:Vector2) -> void:
 	
 # delete neutron on enter
 func _on_body_entered(body: Node2D) -> void:
-	body.kill_self()
+	# Have neutron shrink as dying to indicate absorption
+	body.kill_self_deflate()
 
 
 func _process(delta: float) -> void:
