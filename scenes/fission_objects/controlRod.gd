@@ -88,13 +88,20 @@ func get_input() -> void:
 	if not enable_auomatic:
 		direction = 0
 		
+	if Input.is_action_just_released("s") or Input.is_action_just_released("ui_up") \
+		or Input.is_action_just_released("w") or Input.is_action_just_released("ui_down"):
+			$looper.stop()
+			$sound_rod_end.play()
+	
+	if Input.is_action_just_pressed("s") or Input.is_action_just_pressed("ui_up") \
+		or Input.is_action_just_pressed("w") or Input.is_action_just_pressed("ui_down"):
+		$looper.play()
+		
 	if Input.is_action_pressed("s") or Input.is_action_pressed("ui_up"):
 		enable_auomatic = false
-		$looper.play()
 		direction = 1
 	if Input.is_action_pressed("w") or Input.is_action_pressed("ui_down"):
 		enable_auomatic = false
-		$looper.play()
 		direction = -1
 
 		
