@@ -93,9 +93,9 @@ func get_input() -> void:
 		$looper.stop()
 		$sound_rod_end.play()
 		
-	if Input.is_action_pressed("s"):
+	if Input.is_action_pressed("s") or Input.is_action_pressed("ui_up"):
 		direction = 1
-	if Input.is_action_pressed("w"):
+	if Input.is_action_pressed("w") or Input.is_action_pressed("ui_down"):
 		direction = -1
 
 		
