@@ -30,6 +30,7 @@ func configure_settings() -> void:
 
 func animate_in() -> void:
 	configure_settings()
+	Dialogic.end_timeline() # Prevents text boxes from showing when exiting tutorial
 	$fly_in_sound.play()
 	$SceneFader.fade_out()
 	var tween:Tween = get_tree().create_tween()
