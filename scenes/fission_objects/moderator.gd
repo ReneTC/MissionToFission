@@ -50,7 +50,7 @@ static func update_mods() -> void:
 	min_height = -rod_height/2 + GameRunner.margin/2
 	max_height = rod_height/2 + GameRunner.margin/2
 	
-	# que redraw
-	for ctrlrod: CanvasItem in _registered_nodes:
-		ctrlrod.position.y = rod_height /2  + GameRunner.margin/2
-		ctrlrod.queue_redraw()
+	## que redraw
+	#for ctrlrod: CanvasItem in _registered_nodes:
+		#ctrlrod.position.y = rod_height /2  + GameRunner.margin/2
+		#ctrlrod.queue_redraw()
