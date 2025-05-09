@@ -59,8 +59,8 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		self.radius -= delta * 40
 		queue_redraw()
-	if self.radius <= 0:
-		queue_free()
+		if self.radius <= 0:
+			queue_free()
 
 func kill_self() -> void:
 	queue_free()
