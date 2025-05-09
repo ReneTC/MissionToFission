@@ -47,8 +47,6 @@ func reset_game_var() -> void:
 	
 	DebugMenu.style = DebugMenu.Style.HIDDEN
 	
-
-
 func get_random_uninrched_atom() -> Node:
 	var atoms: Array = get_tree().get_nodes_in_group("atoms")
 	var filtered: Array = atoms.filter(func(x: Atom) -> bool: return not x.is_enriched and not x.is_xenon)

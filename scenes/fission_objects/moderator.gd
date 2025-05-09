@@ -49,3 +49,8 @@ static func update_mods() -> void:
 	rod_height = GameRunner.y_row_build * GameRunner.margin 
 	min_height = -rod_height/2 + GameRunner.margin/2
 	max_height = rod_height/2 + GameRunner.margin/2
+	
+	# que redraw
+	for moderator: CanvasItem in _registered_nodes:
+		moderator.position.y = rod_height /2  + GameRunner.margin/2
+		moderator.queue_redraw()
