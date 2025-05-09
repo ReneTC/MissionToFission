@@ -13,7 +13,6 @@ You can also help by submitting bugs, or ideas on how to enhance the game.
 
 ## Godot 
 This game is made with Godot 4.4, and scripted width GDScript.
-Probably it should have been made width C# for better performance. 
 
 ## Known Issues: 
 - Only runs on 1920*1080 screen
@@ -23,16 +22,18 @@ Probably it should have been made width C# for better performance.
 - Add "options" settings, for sound music and such.
 - make screen responsive.
 - Optimize performance.
-
+- Tween animations (such as color changes and deletions)
 ## Todo now
-- RBMK reactor should have modifcations such as xenon chance water cooling, water mdoeration ability and so on.
-- change to percentages not decimals in all settings
+- Bug 1 - When played around in the different tutorials and sandboxes and I went back to the simplified reactor tutorial it used a fast neutron instead of a thermal neutron, which didn't progress the tutorial...  had to exit and go back into the game for it to work again as a thermal neutron.
+- Bug 2 - When i tabbed out of the game after exiting a tutorial and tabbed back in i got the tutorial text on the homepage.
+- bug 3 - you cant exit the game when prompted for reactor modification.
+- Text bounces on control when you hover over the,
+- change to percentages from decimals in all settings
 - make physics changer hold most items, now it's duplciated
-- clean up: make container for layout, move game logic into own holder
 
 
 ## Small Todo's 
-- Tween animations (such as color changes and deletions)
+
 
 ## Unfixed feedback:
 - The fission sound becomes quite distorted when 500+ neutrons are active. Maybe limit the gain or apply some audio 
