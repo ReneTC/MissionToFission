@@ -7,3 +7,12 @@ func update_hud(score_timer:float, countdown_till_upgrade:float, countdown_till_
 	$"GameScore/MarginContainer/VBoxContainer2/upgrade-bar".value = upgrade_time_left
 	$"GameScore/MarginContainer/VBoxContainer2/loose-bar".max_value = countdown_till_loss
 	$"GameScore/MarginContainer/VBoxContainer2/loose-bar".value = loss_time_left
+
+
+func show_lose(reason:String) -> void:
+	$"GameScore/MarginContainer/VBoxContainer2/loose-bar".show()
+	$"GameScore/MarginContainer/VBoxContainer2/loose-bar/Label".text = reason
+	
+	
+func hide_lose() -> void:
+	$"GameScore/MarginContainer/VBoxContainer2/loose-bar".hide()

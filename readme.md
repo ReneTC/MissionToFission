@@ -1,13 +1,18 @@
 # Mission To Fission
 This game/simulator started out as a simulation to explain fission on the YouTube channel Higgsino Physics. 
 
-Feel free to clone this project, load width Godot and play for free. It will also be on steam later.
+Feel free to clone this project, load width Godot and play for free. You can also just install it on [Steam here. (Not free)](https://store.steampowered.com/app/3402730/Mission_To_Fission/)
 
 This game is currently under development.
 
 ## Contributing 
-Feel free to submit code changes! I would love the help. Everyone who submits code will be included under the credits tab in the game. 
-**!! Please notice !!** While the game is free and open source for everyone able to compile it, it's for sale on steam. The income is for further development of the game and new videos. 
+Feel free to submit code changes! We have a dev chat on [discord: here](https://discord.gg/ZtZfFED4)
+
+Kanban board of issues we wish to work on: [here](https://github.com/users/ReneTC/projects/4/views/1)
+
+Everyone who submits code will be included under the credits tab in the game. 
+
+**!! Please notice !!** While the game is free and open source for everyone able to compile it, it's for sale on Steam. I would love to be transparent about this. The income is for further development of the game and new videos. 
 
 You can also help by submitting bugs, or ideas on how to enhance the game. 
 

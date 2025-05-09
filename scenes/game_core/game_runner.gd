@@ -118,9 +118,21 @@ func game_logic(dt:float) -> void:
 		if out_of_bounds_neutrons and $loss_timer.is_stopped():
 			$loss_timer.start()
 			globals.play(preload("res://assets/sounds/error.wav"))
+			
+			# display bar 
+			var reason:String = ""
+			if neutron_counter < goal - margin_error:
+				reason = "Reactor is stalling!"
+			else:
+				reason = "Reactor is too active!"
+			$GameScore.show_lose(reason)
+			
 		# stop loose timer if you recovered neutrons activity
 		if !$loss_timer.is_stopped() and !out_of_bounds_neutrons:
 				$loss_timer.stop()
+				
+				# hide bar
+				$GameScore.hide_lose()
 				
 func update_hud() -> void:
 	'''
@@ -457,7 +469,7 @@ func faster_uranium_enrichment() -> void:
 
 	
 func higher_neutron_goal() -> void:
-	self.goal += 100
+	self.goal += 50
 
 func _on_check_box_enrich_2_toggled(toggled_on: bool) -> void:
 	ControlRod.enable_auomatic = toggled_on
