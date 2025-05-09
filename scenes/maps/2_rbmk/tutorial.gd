@@ -16,7 +16,7 @@ var game_runner_instant: Node = null
 
 
 func _ready() -> void:
-	
+	globals.reset_game_var()
 	# disable spawn click with mouse
 	$Area2D.set_collision_mask_value(globals.neutrol_collide_slot, true)
 	$Area2D.position = get_viewport_rect().size / 2

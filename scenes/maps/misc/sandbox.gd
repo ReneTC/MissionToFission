@@ -12,7 +12,7 @@ var click_object:PackedScene = neutron_scene
 func _ready() -> void:
 	# start debug 
 	# DebugMenu.style = DebugMenu.Style.VISIBLE_DETAILED
-
+	globals.reset_game_var()
 	GameRunner.neutron_on_click = false
 
 func _on_gui_input(event: InputEvent) -> void:

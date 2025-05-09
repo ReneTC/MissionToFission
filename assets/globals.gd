@@ -20,6 +20,8 @@ func reset_game_var() -> void:
 	Atom.become_xenon_later_chance = 0.25 
 	Atom.enable_moderation = false
 	Atom.enable_xenon = false
+	
+	Neutron.enable_moderation = false
 
 	GameRunner.x_row_build = 0 
 	GameRunner.y_row_build = 0 
@@ -44,6 +46,7 @@ func reset_game_var() -> void:
 	Water.cool_of_speed = 10	
 	
 	DebugMenu.style = DebugMenu.Style.HIDDEN
+	
 
 
 func get_random_uninrched_atom() -> Node:
