@@ -20,6 +20,8 @@ func reset_game_var() -> void:
 	Atom.become_xenon_later_chance = 0.25 
 	Atom.enable_moderation = false
 	Atom.enable_xenon = false
+	
+	Neutron.enable_moderation = false
 
 	GameRunner.x_row_build = 0 
 	GameRunner.y_row_build = 0 
@@ -33,7 +35,7 @@ func reset_game_var() -> void:
 	GameRunner.end_game_messge = "You didn't stay within the power limit. "
 
 	ControlRod.speed = 65
-	ControlRod.enable_auomatic  = true
+	ControlRod.enable_auomatic = false # Automatics are off by default
 	ControlRod.move_even = true
 	ControlRod.last_created_even = true
 	ControlRod._registered_nodes = []
@@ -44,8 +46,7 @@ func reset_game_var() -> void:
 	Water.cool_of_speed = 10	
 	
 	DebugMenu.style = DebugMenu.Style.HIDDEN
-
-
+	
 func get_random_uninrched_atom() -> Node:
 	var atoms: Array = get_tree().get_nodes_in_group("atoms")
 	var filtered: Array = atoms.filter(func(x: Atom) -> bool: return not x.is_enriched and not x.is_xenon)

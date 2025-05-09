@@ -94,7 +94,7 @@ func on_body_entered(body: Node) -> void:
 			self.is_xenon = false 
 			self.is_enriched = false
 			queue_redraw()
-			body.kill_self()
+			body.kill_self_deflate()
 
 
 func decay() -> void:

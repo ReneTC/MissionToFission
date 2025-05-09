@@ -16,6 +16,7 @@ var game_runner_instant: Node = null
 
 
 func _ready() -> void:
+	globals.reset_game_var()
 	
 	# disable spawn click with mouse
 	GameRunner.neutron_on_click = false

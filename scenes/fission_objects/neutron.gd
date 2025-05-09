@@ -7,6 +7,7 @@ var thermal_speed:float = 100
 var current_speed:float = thermal_speed
 var fast_speed:float = 200
 var is_fast:bool = false
+var is_dead:bool = false
 
 
 
@@ -53,9 +54,21 @@ func initialize(pos_to_set:Vector2, movement_direction:Vector2 = get_random_dire
 		self.current_speed = self.fast_speed
 	linear_velocity = self.current_speed * movement_direction
 
+func _physics_process(delta: float) -> void:
+	# If the neutron is dead, shrink the raidius every frame
+	if is_dead:
+		self.radius -= delta * 40
+		queue_redraw()
+		if self.radius <= 0:
+			queue_free()
 
 func kill_self() -> void:
 	queue_free()
+
+func kill_self_deflate() -> void:
+	# Kills the neutron in a way to make it shrink before disappearing, indicating absorption
+	is_dead = true
+	linear_velocity = Vector2()
 	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	kill_self()

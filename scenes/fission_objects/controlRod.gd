@@ -58,7 +58,8 @@ func initialize(pos_to_set:Vector2) -> void:
 	
 # delete neutron on enter
 func _on_body_entered(body: Node2D) -> void:
-	body.kill_self()
+	# Have neutron shrink as dying to indicate absorption
+	body.kill_self_deflate()
 
 
 func _process(delta: float) -> void:
@@ -83,19 +84,17 @@ func _process(delta: float) -> void:
 
 			
 func get_input() -> void:
-	if Input.is_action_just_pressed("w") or Input.is_action_just_pressed("s"):
-			enable_auomatic = false
-			$looper.play()
-
-	if Input.is_action_just_released("w") or Input.is_action_just_released("s"):
-		enable_auomatic = false
+	# Prevent rods from moving if not in auto mode
+	if not enable_auomatic:
 		direction = 0
-		$looper.stop()
-		$sound_rod_end.play()
 		
-	if Input.is_action_pressed("s"):
+	if Input.is_action_pressed("s") or Input.is_action_pressed("ui_up"):
+		enable_auomatic = false
+		$looper.play()
 		direction = 1
-	if Input.is_action_pressed("w"):
+	if Input.is_action_pressed("w") or Input.is_action_pressed("ui_down"):
+		enable_auomatic = false
+		$looper.play()
 		direction = -1
 
 		
@@ -111,4 +110,3 @@ static func update_control_rods() -> void:
 	for ctrlrod: CanvasItem in _registered_nodes:
 		ctrlrod.position.y = clampf(ctrlrod.position.y, min_height, max_height)
 		ctrlrod.queue_redraw()
-		

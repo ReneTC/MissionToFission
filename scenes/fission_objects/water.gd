@@ -45,7 +45,7 @@ func _on_body_entered(body: Node2D) -> void:
 	self.temp += 5
 	if self.temp < 100:
 		if randf() < water_absorb_chance:
-			body.queue_free()
+			body.kill_self_deflate()
 		# let water moderate
 		if Neutron.enable_moderation and body.is_fast:
 			body.current_speed *= 0.95

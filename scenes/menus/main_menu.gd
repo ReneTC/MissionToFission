@@ -6,7 +6,7 @@ var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn"
 
 func _ready() -> void:
 	$MarginContainer.position[1] = -932.5
-	globals.reset_game_var()
+	configure_settings()
 	animate_in()
 	
 	$UiButtonSound.connect_button_ui()
@@ -19,14 +19,18 @@ func _ready() -> void:
 				new_atom.initialize(Vector2(margin + margin*x, margin + margin*y), randi_range(0, 1),) 
 				add_child(new_atom) 
 
-	Atom.enable_sponteniues_neutrons = true
-	
 	# connect not implimented buttons
 	var buttons_404: Array[Node] = get_tree().get_nodes_in_group("404")
 	for button in buttons_404:
 		button.pressed.connect(_on_404_pressed)
-	
+
+func configure_settings() -> void:
+	globals.reset_game_var()
+	Atom.enable_sponteniues_neutrons = true
+
 func animate_in() -> void:
+	configure_settings()
+	Dialogic.end_timeline() # Prevents text boxes from showing when exiting tutorial
 	$fly_in_sound.play()
 	$SceneFader.fade_out()
 	var tween:Tween = get_tree().create_tween()

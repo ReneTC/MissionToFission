@@ -7,6 +7,7 @@ var margin: int = 60
 
 
 func _ready() -> void:
+	globals.reset_game_var()
 	# set map settings 
 	# Atom.enrich_percent = 0.5
 	Atom.enable_moderation = true
