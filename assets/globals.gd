@@ -35,7 +35,7 @@ func reset_game_var() -> void:
 	GameRunner.end_game_messge = "You didn't stay within the power limit. "
 
 	ControlRod.speed = 65
-	ControlRod.enable_auomatic  = true
+	ControlRod.enable_auomatic = false # Automatics are off by default
 	ControlRod.move_even = true
 	ControlRod.last_created_even = true
 	ControlRod._registered_nodes = []
