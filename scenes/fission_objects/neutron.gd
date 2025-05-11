@@ -1,14 +1,14 @@
 extends RigidBody2D
 class_name Neutron
 
-@export var radius: float = 5.
+@export var radius: float = 0. # used in fade in, size will be 5 
 @export var color:Color = Color("444444")
 var thermal_speed:float = 100
 var current_speed:float = thermal_speed
 var fast_speed:float = 200
 var is_fast:bool = false
-var is_dead:bool = false
-
+var is_dead:bool = false # parameter to fade out
+var just_born:bool = true # parameter to fade in 
 
 
 static var enable_moderation:bool = false
@@ -61,6 +61,16 @@ func _physics_process(delta: float) -> void:
 		queue_redraw()
 		if self.radius <= 0:
 			queue_free()
+			
+	# if neutron just born, fade in the radius		
+	elif just_born:
+		self.radius += delta * 40
+		queue_redraw()
+		if self.radius >= 5.:
+			self.radius = 5.
+			queue_redraw()
+			self.just_born = false
+		
 
 func kill_self() -> void:
 	queue_free()

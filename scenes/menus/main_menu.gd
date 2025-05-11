@@ -1,8 +1,6 @@
 extends Control
 
-var gameRunner:PackedScene = load("res://scenes/game_core/game_runner.tscn")
 var atom_scene:PackedScene = load("res://scenes/fission_objects/atom.tscn")
-var neutron_scene:PackedScene = load("res://scenes/fission_objects/neutron.tscn")
 
 func _ready() -> void:
 	$MarginContainer.position[1] = -932.5
