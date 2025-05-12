@@ -9,7 +9,7 @@ var color_decayed:Color = Color("BBBBBB")
 var color_xenon:Color = Color("444444")
 var color_to_draw:Color = color_decayed
 var current_color:Color = color_to_draw
-var color_interpolate = 0
+var color_interpolate:float = 0.
 var has_finsihed_faded: bool = true  # used to fade a color in
 
 @export var is_enriched: bool = true
