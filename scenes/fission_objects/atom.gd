@@ -7,11 +7,15 @@ class_name Atom
 var color_enriched:Color = Color("2D8EFF")
 var color_decayed:Color = Color("BBBBBB")
 var color_xenon:Color = Color("444444")
+var color_to_draw:Color = color_decayed
+var current_color:Color = color_to_draw
+var color_interpolate:float = 0.
+var has_finsihed_faded: bool = true  # used to fade a color in
+
 @export var is_enriched: bool = true
 @export var is_xenon: bool = false
 static var become_xenon_later_chance: float = 0.25 
 var xenon_time_rand_multiplier:float = 10
-
 var neutron_scene: PackedScene
 
 @onready var parent:Node = self.get_parent()
@@ -47,8 +51,11 @@ func _ready() -> void:
 	$CollisionShape2D.shape.radius = self.radius
 	
 	if self.is_enriched:
+		current_color = color_enriched
+		
 		set_collision_mask_value(globals.neutrol_collide_slot, true)
 	else:
+		current_color = color_decayed
 		self.start_spont_neutron_emission()
 
 	# look for fast nuetrons 
@@ -77,10 +84,7 @@ func initialize(pos_to_set:Vector2, encriched:bool = true, keep_enrich_percent: 
 
 
 func _draw() -> void:
-	var color_to_draw:Color = color_decayed
-	if is_enriched: color_to_draw = color_enriched
-	elif is_xenon: color_to_draw = color_xenon
-	draw_circle(Vector2(0, 0), self.radius, color_to_draw)
+	draw_circle(Vector2(0, 0), self.radius, current_color)
 
 
 func on_body_entered(body: Node) -> void:
@@ -88,15 +92,28 @@ func on_body_entered(body: Node) -> void:
 		if is_enriched == true and not body.is_fast:
 			decay()
 			emit_neutrons(self.number_neutrons_emitted)
-			body.kill_self()
+			body.kill_self_deflate()
 			
 		elif self.is_xenon and Atom.enable_xenon:
 			self.is_xenon = false 
 			self.is_enriched = false
+			self.has_finsihed_faded = false
+			self.color_to_draw = color_decayed
 			queue_redraw()
 			body.kill_self_deflate()
 
-
+func _physics_process(delta: float) -> void:
+	# color in atom when changing state or born
+	if not has_finsihed_faded:
+		color_interpolate += delta*0.5
+		self.current_color = self.current_color.lerp(self.color_to_draw, color_interpolate)
+		queue_redraw()
+		if color_interpolate >= 1:
+			self.color_interpolate = 0
+			self.has_finsihed_faded = true
+			self.current_color = self.color_to_draw
+			
+			
 func decay() -> void:
 	
 	# chance for enriching instant atom 
@@ -124,6 +141,8 @@ func decay() -> void:
 	if enable_moderation:
 		set_collision_mask_value(globals.moderator_neutron_slot, false)
 	queue_redraw()
+	self.has_finsihed_faded = false
+	self.color_to_draw = color_decayed
 	
 	
 static func enrich_check() -> void:
@@ -135,6 +154,7 @@ static func enrich_check() -> void:
 
 func enrich() -> void:
 	self.is_enriched = true
+	self.color_to_draw = color_enriched
 	if self.enable_sponteniues_neutrons:
 		$Timer_spontenius_neutron_emission.paused = true
 	unenriched_present -= 1
@@ -166,6 +186,8 @@ func start_spont_neutron_emission() -> void:
 func _on_timer_xenon_timeout() -> void:
 	self.is_xenon = true
 	self.is_enriched = false
+	self.has_finsihed_faded = false
+	self.color_to_draw = color_xenon
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 
 	if enable_moderation:
