@@ -155,6 +155,7 @@ static func enrich_check() -> void:
 func enrich() -> void:
 	self.is_enriched = true
 	self.color_to_draw = color_enriched
+	self.has_finsihed_faded = false
 	if self.enable_sponteniues_neutrons:
 		$Timer_spontenius_neutron_emission.paused = true
 	unenriched_present -= 1
