@@ -51,11 +51,11 @@ func _ready() -> void:
 	$CollisionShape2D.shape.radius = self.radius
 	
 	if self.is_enriched:
-		color_to_draw = color_enriched
-		self.has_finsihed_faded = false
+		current_color = color_enriched
+		
 		set_collision_mask_value(globals.neutrol_collide_slot, true)
 	else:
-		color_to_draw = color_decayed
+		current_color = color_decayed
 		self.start_spont_neutron_emission()
 
 	# look for fast nuetrons 
