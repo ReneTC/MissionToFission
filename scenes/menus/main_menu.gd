@@ -93,3 +93,7 @@ func _on_tutorial_pressed() -> void:
 
 func _on_game_mode_rbmk_pressed() -> void:
 	animate_out("res://scenes/maps/2_rbmk/rbmk_reactor_game.tscn", "res://scenes/game_core/game_runner.tscn")
+
+
+func _on_simulate_mode_lwr_pressed() -> void:
+	animate_out("res://scenes/maps/3_lwr/lwr_simulate.tscn", "res://scenes/game_core/game_runner.tscn")

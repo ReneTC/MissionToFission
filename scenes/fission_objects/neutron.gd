@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 			
 	# if neutron just born, fade in the radius		
 	elif just_born:
-		self.radius += delta * 40
+		self.radius += delta * 80
 		queue_redraw()
 		if self.radius >= 5.:
 			self.radius = 5.
