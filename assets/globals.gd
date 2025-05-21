@@ -43,7 +43,7 @@ func reset_game_var() -> void:
 	Moderator._registered_nodes = []
 
 	Water.water_absorb_chance = 0.05
-	Water.cool_of_speed = 10	
+	Water.cool_of_speed = 15	
 	
 	DebugMenu.style = DebugMenu.Style.HIDDEN
 	

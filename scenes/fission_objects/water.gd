@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 class_name Water
 
 var height: float = 60
@@ -7,10 +7,11 @@ var cold_color:Color = Color("DCEEFF")
 var hot_color:Color = Color("FF4949")
 var gone_color:Color = Color("FFFFFF")
 var speed: float = 10
+var temp: float = 0.
 
 static var water_absorb_chance: float = 0.05
-static var cool_of_speed:float = 10
-var temp: float = 0.
+static var cool_of_speed:float = 15
+static var enable_movement = false
 
 
 func _ready() -> void:
@@ -22,7 +23,9 @@ func _ready() -> void:
 	set_collision_mask_value(globals.neutrol_collide_slot, true)
 	set_collision_mask_value(globals.moderator_neutron_slot, true)
 	
-
+	contact_monitor = true
+	max_contacts_reported = 1
+	
 
 func _draw() -> void:
 	var color_draw:Color = self.gone_color
@@ -42,17 +45,17 @@ func _process(_delta:float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	self.temp += 5
-	if self.temp < 100:
-		if randf() < water_absorb_chance:
-			body.kill_self_deflate()
-		# let water moderate
-		if Neutron.enable_moderation and body.is_fast:
-			body.current_speed *= 0.95
-			body.linear_velocity = body.linear_velocity.normalized() * body.current_speed
-			# stop collidng width moderator:
-			if body.current_speed < 100:
-				body.is_fast = false
-			body.queue_redraw()
-			
+	if body is Neutron:
+		self.temp += 5
+		if self.temp < 100:
+			if randf() < water_absorb_chance:
+				body.kill_self_deflate()
+			# let water moderate
+			if Neutron.enable_moderation and body.is_fast:
+				body.current_speed *= 0.95
+				body.linear_velocity = body.linear_velocity.normalized() * body.current_speed
+				# stop collidng width moderator:
+				if body.current_speed < 100:
+					body.is_fast = false
+				body.queue_redraw()
 			

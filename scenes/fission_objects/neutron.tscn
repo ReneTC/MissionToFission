@@ -10,7 +10,7 @@
 z_index = 1
 collision_layer = 0
 collision_mask = 0
-linear_damp_mode = 1
+mass = 0.001
 script = ExtResource("1_q8b54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

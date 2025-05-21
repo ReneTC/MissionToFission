@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmm7dwh1dnc6r"]
+
+[ext_resource type="Script" uid="uid://dag04kevwrspp" path="res://scenes/maps/3_lwr/lwr_simulate.gd" id="1_0dugb"]
+[ext_resource type="PackedScene" uid="uid://c74ussd5bg5p0" path="res://scenes/fission_objects/container.tscn" id="2_vsx07"]
+
+[node name="LwrSimulate" type="Node2D"]
+script = ExtResource("1_0dugb")
+
+[node name="Container" parent="." instance=ExtResource("2_vsx07")]
